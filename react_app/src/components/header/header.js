@@ -2,14 +2,24 @@ import styled from "styled-components";
 import colors from "../variables";
 import Btn from "../button";
 
-const Section = styled.section`
-  padding: 1rem;
+const Head = styled.header`
+  padding: 1.5rem 0;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  border-radius: 10px;
+  width: 100%;
   background-color: ${colors.background_black};
   color: ${colors.txt_white};
+`;
+
+const DivUne = styled.div`
+display: flex;
+justify-content: space-around;
+width: 65%;
+`;
+
+const DivDeux = styled.div`
+display: flex;
+justify-content: space-around;
+width: 35%;
 `;
 
 function Header() {
@@ -17,14 +27,16 @@ function Header() {
   let urldeux = url.replace(/\/$/, "");
   let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
 
+  const user = window.localStorage.getItem("user");
+
   function deconnexion() {
     localStorage.clear();
-    window.location.assign("/login");
+    window.location.assign("/");
   }
 
   return (
-    <Section>
-
+    <Head>
+      <DivUne>
       <Btn
         link={"/"}
         disabled={false}
@@ -90,6 +102,9 @@ function Header() {
         bghover={colors.btn_blue}
         text="Boutique"
       />
+      </DivUne>
+
+      <DivDeux>
     {TrueUrl === "login" ? null : TrueUrl === "signup" ? null : (
        <Btn
         link={"/panier"}
@@ -105,7 +120,8 @@ function Header() {
       />
     )}
 
-       <Btn
+    {!user === false ? null : (
+      <Btn
         link={"/signup"}
         disabled={false}
         bg={TrueUrl === "signup" ? colors.btn_blue : "none"}
@@ -115,8 +131,10 @@ function Header() {
         bghover={colors.btn_blue}
         text="Inscription"
       />
+    )}
 
-       <Btn
+    {!user === false ? null : (
+      <Btn
         link={"/login"}
         disabled={false}
         bg={TrueUrl === "login" ? colors.btn_blue : "none"}
@@ -126,8 +144,10 @@ function Header() {
         bghover={colors.btn_blue}
         text="Connexion"
       />
+    )}
 
-    {TrueUrl === "login" ? null : TrueUrl === "signup" ? null : (
+
+    {TrueUrl === "login" ? null : TrueUrl === "signup" ? null : !user === true ? null :(
       <Btn
         link={"/compte"}
         disabled={
@@ -140,9 +160,10 @@ function Header() {
         bghover={colors.btn_blue}
         text="Mon compte"
       />
+
     )}
 
-    {TrueUrl === "login" ? null : TrueUrl === "signup" ? null : (
+    {TrueUrl === "login" ? null : TrueUrl === "signup" ? null : !user === true ? null :(
         <Btn
           onclick={(e) => deconnexion()}
           disabled={null}
@@ -154,7 +175,8 @@ function Header() {
           text="Deconnexion"
         />
     )}
-    </Section>
+    </DivDeux>
+    </Head>
   );
 }
 

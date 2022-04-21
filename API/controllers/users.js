@@ -9,6 +9,7 @@ exports.signup = (req, res, next) => {
       const newuser = new User({
         email: req.body.email,
         password: hash,
+        identifiant: req.body.identifiant,
         admin: false,
       });
       newuser
@@ -17,6 +18,12 @@ exports.signup = (req, res, next) => {
         .catch((err) => res.status(401).json({ err }));
     })
     .catch((err) => res.status(500).json({ err }));
+};
+
+exports.read_all = (req, res, next) => {
+  User.find()
+    .then((u) => res.status(200).json({ message: "voici vos users", users: u }))
+    .catch((err) => res.status(404).json({ err }));
 };
 
 exports.login = (req, res, next) => {
@@ -44,12 +51,10 @@ exports.login = (req, res, next) => {
         .catch((err) => res.status(401).json({ err }));
     })
     .catch((err) =>
-      res
-        .status(404)
-        .json({
-          message: "utilisateur non trouvé : " + req.body.email,
-          error: err,
-        })
+      res.status(404).json({
+        message: "utilisateur non trouvé : " + req.body.email,
+        error: err,
+      })
     );
 };
 
@@ -75,39 +80,45 @@ exports.delete = (req, res, next) => {
 };
 
 exports.update = (req, res, next) => {
-
   const token = req.headers.authorization.split(" ")[1];
   const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
   const userID = decodedToken.userID;
   const targetID = req.params.TargetId;
 
   if (userID === targetID) {
-    bcrypt
-      .hash(req.body.password, 10)
-      .then((hash) => {
-        const newEmail = req.body.email;
-        hash = newpassword;
+    User.findById(userID).then((user) => {
+      bcrypt.compare(req.body.oldpassword, user.password).then((valid) => {
+        if (!valid) {
+          res.status(401).json({ message: "l'ancien mdp ne correspond pas" });
+        }
+        bcrypt
+          .hash(req.body.password, 10)
+          .then((hash) => {
+            const newEmail = req.body.email;
 
-        const updateUser = {
-          email: newEmail,
-          password: hash,
-        };
+            const updateUser = {
+              email: newEmail,
+              password: hash,
+            };
 
-        User.findByIdAndUpdate(targetID, updateUser)
-          .then(() =>
-            res.status(200).json({
-              message: `votre email à était modififié par ${updateUser.email}`,
-            })
-          )
+            user
+              .update(updateUser)
+              .then(() =>
+                res.status(200).json({
+                  message: `votre email à était modififié par ${updateUser.email}`,
+                })
+              )
+              .catch((err) =>
+                res
+                  .status(404)
+                  .json({ message: "utilisateur introuvable", error: err })
+              );
+          })
           .catch((err) =>
-            res
-              .status(404)
-              .json({ message: "utilisateur introuvable", error: err })
+            res.status(500).json({ message: "bcrypt error", error: err })
           );
-      })
-      .catch((err) =>
-        res.status(500).json({ message: "bcrypt error", error: err })
-      );
+      });
+    });
   } else {
     res.status(403).json({
       error: "Vous n'avez pas les droit pour modifier cet utilisateur",

@@ -1,7 +1,15 @@
+import styled from "styled-components";
+import colors from "../variables";
+
+const Foote = styled.footer`
+  height: 15rem;
+  border: 2px solid red;
+`;
+
 function Footer() {
-    return (
-    <h1>oui</h1>
-    )
+  return (
+    <Foote> footer </Foote>
+  );
 }
 
 export default Footer;

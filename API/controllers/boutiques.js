@@ -8,7 +8,7 @@ exports.create_product = (req, res, next) => {
   const userID = decodedToken.userID;
 
   const newproduct = req.file
-    ? new Boutique ({
+    ? new Boutique({
         ...req.body,
         creatorID: userID,
         image: `${req.protocol}://${req.get("host")}/images/${
@@ -31,17 +31,12 @@ exports.create_product = (req, res, next) => {
 };
 
 exports.read_all = (req, res, next) => {
-  const token = req.headers.authorization.split(" ")[1];
-  const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
-  const userID = decodedToken.userID;
-
-  Boutique.find({ creatorId: userID })
-    .then((produit) =>
-      res.status(200).json({ message: "voici vos produits", product: produit })
+  Boutique.find()
+    .then((product) =>
+      res.status(200).json({ message: "voici vos produits", product: product })
     )
     .catch((err) => res.status(404).json({ err }));
 };
-
 
 exports.update_product = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
@@ -79,7 +74,7 @@ exports.update_product = (req, res, next) => {
               .catch((err) => res.status(404).json({ err }));
           });
         } else {
-            product
+          product
             .updateOne(newproduct)
             .then(() =>
               res
@@ -113,7 +108,9 @@ exports.delete_product = (req, res, next) => {
           .then((deleted) => {
             res
               .status(200)
-              .json({ message: `Votre produit : ${deleted.titre} est supprimé` });
+              .json({
+                message: `Votre produit : ${deleted.titre} est supprimé`,
+              });
           })
           .catch((err) =>
             res

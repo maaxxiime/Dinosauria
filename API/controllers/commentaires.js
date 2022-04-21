@@ -7,29 +7,30 @@ exports.create_commentaire = (req, res, next) => {
   const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
   const userID = decodedToken.userID;
 
-  const newcommentaire =  new Commentaire({
-        ...req.body,
-        creatorId: userID,
-    });
+  const newcommentaire = new Commentaire({
+    ...req.body,
+    creatorId: userID,
+  });
 
   newcommentaire
     .save()
     .then((createdItem) =>
-      res
-        .status(201)
-        .json({ message: "le commentaire vient d'être crée", created: createdItem })
+      res.status(201).json({
+        message: "le commentaire vient d'être crée",
+        created: createdItem,
+      })
     )
     .catch((err) => res.status(401).json({ err }));
 };
 
 exports.read_all = (req, res, next) => {
-  const token = req.headers.authorization.split(" ")[1];
-  const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
-  const userID = decodedToken.userID;
 
-  Commentaire.find({ creatorId: userID })
-    .then((commentaire) =>
-      res.status(200).json({ message: "voici les commentaires", commentaire: commentaire })
+  Commentaire.find()
+    .sort("desc")
+    .then((commentaires) =>
+      res
+        .status(200)
+        .json({ message: "voici les commentaires", commentaires: commentaires })
     )
     .catch((err) => res.status(404).json({ err }));
 };
@@ -42,13 +43,11 @@ exports.upvote_commentaire = (req, res, next) => {
 };
 
 exports.downvote_commentaire = (req, res, next) => {
-    const token = req.headers.authorization.split(" ")[1];
-    const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
-    const userID = decodedToken.userID;
-    const TargetId = req.params.TargetId;
+  const token = req.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
+  const userID = decodedToken.userID;
+  const TargetId = req.params.TargetId;
 };
-
-
 
 exports.delete_commentaire = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
@@ -62,9 +61,9 @@ exports.delete_commentaire = (req, res, next) => {
         commentaire
           .deleteOne()
           .then((deleted) => {
-            res
-              .status(200)
-              .json({ message: `Votre commentaire : ${deleted.texte} est supprimé` });
+            res.status(200).json({
+              message: `Votre commentaire : ${deleted.texte} est supprimé`,
+            });
           })
           .catch((err) =>
             res
