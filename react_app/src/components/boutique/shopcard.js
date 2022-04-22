@@ -65,6 +65,19 @@ font-size: 1rem;
 `;
 
 function Card(props) {
+  let nb = 0;
+
+
+  function add(e) {
+    nb += 1;
+    let Qte = nb;
+
+  }
+
+  function remove(e) {
+
+  }
+
   return (
     <Mydiv>
       <img src={props.src}></img>
@@ -72,7 +85,7 @@ function Card(props) {
       <p className="description"> {props.description} </p>
       <Input>
         <Btn
-          onclick="{(e) => send(e)}"
+          onclick={(e) => add(e)}
           disabled={false}
           bg={colors.background_black}
           textcolor={colors.txt_white}
@@ -82,10 +95,10 @@ function Card(props) {
           text="+"
         />
         <Box>
-            <p id="quantité"> 1 </p>
+            <p id="quantité">  </p>
         </Box>
         <Btn
-          onclick="{(e) => send(e)}"
+          onclick={(e) => remove(e)}
           disabled={false}
           bg={colors.background_black}
           textcolor={colors.txt_white}
