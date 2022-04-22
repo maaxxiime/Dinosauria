@@ -151,7 +151,7 @@ function Signup() {
           onChange={(e) => checkValues(e)}
         />
 
-        <label for="email"> Identifiant : </label>
+        <label for="identifiant"> Identifiant : </label>
         <input
           id="identifiant"
           type="text"

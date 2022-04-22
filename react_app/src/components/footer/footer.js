@@ -16,9 +16,6 @@ const Foote = styled.footer`
   & h3 {
     margin: 1.5rem 0;
   }
-  & p {
-    font-size: 0.9rem;
-  }
 `;
 
 const Contacts = styled.div`
