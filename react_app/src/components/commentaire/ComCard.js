@@ -5,31 +5,55 @@ import axios from "axios";
 import { apiurl } from "../variables";
 import { useState, useEffect } from "react";
 
-
 const Mydiv = styled.div`
-
-& .DivText {
+  & .DivText {
     border: 2px solid ${colors.background_black};
     border-radius: 1.5rem;
     width: 40rem;
-    height: 7rem;
+    height: auto;
     margin: 1rem 0;
     text-align: center;
-}
+
+    & .content {
+      color: ${colors.txt_black};
+      font-size: 1rem;
+      margin: 1rem 1rem;
+      word-wrap: break-word;
+    }
+  }
 `;
 
-const Text = styled.p`
-color: ${colors.txt_black};
-font-size: 1rem;
-margin: 1rem 0 0 0;
+const Foot = styled.div`
+display: flex;
+justify-content: space-between;
+
+& p {
+    margin: 0 2rem;
+    opacity: 0.5;
+}
+
 `;
 
 function Card(props) {
+    function formatDate(str) {
+        const options = {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        const d = new Date(str);
+        const date = d.toLocaleDateString("fr-FR", options);
+        return date;
+      }
 
   return (
     <Mydiv>
       <div className="DivText">
-        <Text className="content">{props.texte}</Text>
+        <p className="content">{props.texte}</p>
+        <Foot>
+        <p> {props.identifiant} </p>
+        <p> {formatDate(props.date)} </p>
+        </Foot>
       </div>
     </Mydiv>
   );

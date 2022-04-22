@@ -53,6 +53,7 @@ function PostCommentaire() {
   function send(e) {
     let commentaire = document.getElementById("commentaire");
 
+
     const data = {
       texte: commentaire.value,
     };
@@ -71,7 +72,7 @@ function PostCommentaire() {
       )
       .then((res) => {
         setRes(res.data.message);
-        window.location.reload();
+        window.location.assign("/");
       })
       .catch((err) => {
         setRes(err.message);

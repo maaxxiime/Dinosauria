@@ -45,6 +45,8 @@ function ReadCommentaire() {
             {ComCard.map((commentaires) => (
               <Card
                 texte={commentaires.texte}
+                date={commentaires.createdAt}
+                identifiant={commentaires.identifiant}
               />
             ))}
           </div>
