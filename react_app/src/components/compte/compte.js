@@ -1,6 +1,6 @@
 function Compte() {
     return (
-    <h1>oui</h1>
+    <h1>Faire un populaite avec mongoose pour trouver les commentaires posté par l'user</h1>
     )
 }
 

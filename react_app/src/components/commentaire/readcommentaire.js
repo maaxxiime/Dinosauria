@@ -46,7 +46,7 @@ function ReadCommentaire() {
               <Card
                 texte={commentaires.texte}
                 date={commentaires.createdAt}
-                identifiant={commentaires.identifiant}
+                identifiant={commentaires.creatorId.identifiant}
               />
             ))}
           </div>

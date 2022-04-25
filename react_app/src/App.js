@@ -20,11 +20,30 @@ import Cgv from "./components/cgv/cgv.js";
 import Cookies from "./components/cookies/cookies.js";
 import Données from "./components/données/données.js";
 import Footer from "./components/footer/footer.js";
+import { useEffect } from "react";
 
 function App() {
+  function initializePanier() {
+    var panier = localStorage.getItem("panier");
+
+    if (!panier) {
+      var panier = {
+        musée: 0,
+        cinéma: 0,
+        jardin: 0,
+        campement: 0,
+      };
+      localStorage.setItem("panier", JSON.stringify(panier));
+    }
+  }
+
+  useEffect(() => {
+    initializePanier();
+  }, []);
+
   return (
     <BrowserRouter>
-    <Header />
+      <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
@@ -44,7 +63,7 @@ function App() {
         <Route path="/données" element={<Données />} />
         <Route path="*" element={<Error />} />
       </Routes>
-    <Footer />
+      <Footer />
     </BrowserRouter>
   );
 }

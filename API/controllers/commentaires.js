@@ -24,8 +24,8 @@ exports.create_commentaire = (req, res, next) => {
 };
 
 exports.read_all = (req, res, next) => {
-
   Commentaire.find()
+    .populate("creatorId")
     .sort("desc")
     .then((commentaires) =>
       res

@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import colors from "../variables";
 import Btn from "../button";
-import axios from "axios";
-import { apiurl } from "../variables";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+// images
+import ticket from "../../assets/img/billet.png";
+import cinema from "../../assets/img/billet-de-cinema.png";
+import feu from "../../assets/img/feu-de-camp.png";
+import plante from "../../assets/img/feuille-de-monstera.png";
 
 const Mydiv = styled.div`
   width: 17rem;
@@ -16,14 +19,15 @@ const Mydiv = styled.div`
   align-items: center;
   text-align: center;
   position: relative;
+  margin: 1rem 2rem;
   & img {
     width: 5rem;
     margin: 0 0 1rem 0;
   }
 
   & .title {
-      font-size: 1rem;
-      margin: 0 0 1rem 0;
+    font-size: 1rem;
+    margin: 0 0 1rem 0;
   }
 
   & .description {
@@ -32,60 +36,107 @@ const Mydiv = styled.div`
 
   & .price {
     margin: 0 0 1rem 0;
-
   }
 
   & .absolute {
-      position: absolute;
-      bottom: -0.6rem;
+    position: absolute;
+    bottom: -0.6rem;
   }
 `;
 
 const Input = styled.div`
-display: flex;
-width: 100%;
-align-items: center;
-justify-content: space-evenly;
-margin: 0 0 1rem 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 0 1rem 0;
 `;
 
 const Box = styled.div`
-width: 3rem;
-height: 2rem;
-border-radius: 0.9rem;
-background-color: ${colors.btn_blue};
-display: flex;
-align-items: center;
-justify-content: center;
+  width: 3rem;
+  height: 2rem;
+  border-radius: 0.9rem;
+  background-color: ${colors.btn_blue};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-& p {
-color: ${colors.txt_white};
-font-size: 1rem;
-}
+  & p {
+    color: ${colors.txt_white};
+    font-size: 1rem;
+  }
 `;
 
 function Card(props) {
-  let nb = 0;
+  const [Qte, setQte] = useState(0);
 
+  var panier = JSON.parse(localStorage.getItem("panier"));
 
-  function add(e) {
-    nb += 1;
-    let Qte = nb;
-
+  function addOne() {
+      setQte(Qte + 1);
   }
 
-  function remove(e) {
+  function removeOne() {
+    if(Qte <= 0 ) {
+      Qte = 0;
+    } else {
+      setQte(Qte - 1);
+    }
+  }
 
+  console.log(Qte);
+
+  function addPanier() {
+    switch (props.titre) {
+      case "Ticket d'entrée pour le muséum":
+        panier.musée += Qte;
+        localStorage.setItem("panier", JSON.stringify(panier));
+      break;
+
+      case "Ticket d'entrée pour le film en VR": 
+      panier.cinéma += Qte;
+      localStorage.setItem("panier", JSON.stringify(panier));
+
+      break;
+
+      case "Ticket d'entrée pour le jardin": 
+      panier.jardin += Qte;
+      localStorage.setItem("panier", JSON.stringify(panier));
+
+      break;
+
+      case "Ticket d'entrée pour le campement du jurassique": 
+      panier.campement += Qte;
+      localStorage.setItem("panier", JSON.stringify(panier));
+
+      break;
+
+      default:
+        console.log("défaut")
+    }
+    console.log(panier);
   }
 
   return (
     <Mydiv>
-      <img src={props.src}></img>
+      <img
+        src={
+          props.titre === "Ticket d'entrée pour le campement du jurassique"
+            ? feu
+            : props.titre === "Ticket d'entrée pour le film en VR"
+            ? cinema
+            : props.titre === "Ticket d'entrée pour le jardin"
+            ? plante
+            : props.titre === "Ticket d'entrée pour le muséum"
+            ? ticket
+            : ticket
+        }
+      ></img>
       <p className="title"> {props.titre} </p>
       <p className="description"> {props.description} </p>
       <Input>
         <Btn
-          onclick={(e) => add(e)}
+          onclick={() => addOne()}
           disabled={false}
           bg={colors.background_black}
           textcolor={colors.txt_white}
@@ -95,10 +146,10 @@ function Card(props) {
           text="+"
         />
         <Box>
-            <p id="quantité">  </p>
+          <p> {Qte} </p>
         </Box>
         <Btn
-          onclick={(e) => remove(e)}
+          onclick={() => removeOne()}
           disabled={false}
           bg={colors.background_black}
           textcolor={colors.txt_white}
@@ -110,9 +161,9 @@ function Card(props) {
       </Input>
       <p className="price"> {props.prix} € TTC</p>
 
-      <div className="absolute"> 
-      <Btn
-          onclick="{(e) => send(e)}"
+      <div className="absolute">
+        <Btn
+          onclick={() => addPanier()}
           disabled={false}
           bgGradient={colors.btn_gradient}
           textcolor={colors.txt_white}
