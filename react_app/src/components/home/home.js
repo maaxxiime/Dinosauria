@@ -6,7 +6,11 @@ import Btn from "../button";
 import axios from "axios";
 import { apiurl } from "../variables";
 import qs from "qs";
+import LoadImage from "../img-loader/loader";
+
+// image
 import sliderUn from "../../assets/img/slider_1_ccexpress.jpeg"
+import sliderUnloader from "../../assets/img/slider_1_loader.jpg"
 import sliderDeux from "../../assets/img/slider_2_ccexpress.jpeg"
 import sliderTrois from "../../assets/img/slider_3_ccexpress.jpeg"
 import sliderQuatre from "../../assets/img/slider_4_ccexpress.jpeg"
@@ -115,6 +119,10 @@ function Home() {
                 <h1> Composé de 8 salles </h1>
                 <h1> Un jardin et un campement ! </h1>
             </BoxSlider>
+        <LoadImage
+        smallImgSrc={sliderUnloader}
+        largeImgSrc={sliderUn}
+        />
         <SimpleImageSlider
           width={"100%"}
           height={600}

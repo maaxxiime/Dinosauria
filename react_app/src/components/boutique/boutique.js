@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import colors from "../variables";
 import { useState, useEffect } from "react";
-import Btn from "../button";
 import axios from "axios";
 import { apiurl } from "../variables";
-import qs from "qs";
 import Card from "./shopcard";
 
 const MainSection = styled.section`
@@ -63,7 +60,7 @@ function Boutique() {
 
   return (
     <MainSection>
-      <h1>Boutique de Dinosauria </h1>
+      <h1> Boutique de Dinosauria </h1>
       <p className="low-title">
         {" "}
         Choisissez les produits qui vous intéresse !{" "}

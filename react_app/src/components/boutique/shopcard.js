@@ -3,10 +3,10 @@ import colors from "../variables";
 import Btn from "../button";
 import { useState } from "react";
 // images
-import ticket from "../../assets/img/billet.png";
-import cinema from "../../assets/img/billet-de-cinema.png";
-import feu from "../../assets/img/feu-de-camp.png";
-import plante from "../../assets/img/feuille-de-monstera.png";
+import musée from "../../assets/img/billet.png";
+import cinéma from "../../assets/img/billet-de-cinema.png";
+import campement from "../../assets/img/feu-de-camp.png";
+import jardin from "../../assets/img/feuille-de-monstera.png";
 
 const Mydiv = styled.div`
   width: 17rem;
@@ -115,6 +115,7 @@ function Card(props) {
         console.log("défaut")
     }
     console.log(panier);
+    window.location.reload()
   }
 
   return (
@@ -122,14 +123,14 @@ function Card(props) {
       <img
         src={
           props.titre === "Ticket d'entrée pour le campement du jurassique"
-            ? feu
+            ? campement
             : props.titre === "Ticket d'entrée pour le film en VR"
-            ? cinema
+            ? cinéma
             : props.titre === "Ticket d'entrée pour le jardin"
-            ? plante
+            ? jardin
             : props.titre === "Ticket d'entrée pour le muséum"
-            ? ticket
-            : ticket
+            ? musée
+            : musée
         }
       ></img>
       <p className="title"> {props.titre} </p>
