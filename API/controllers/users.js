@@ -102,7 +102,7 @@ exports.update = (req, res, next) => {
             };
 
             user
-              .update(updateUser)
+              .updateOne(updateUser)
               .then(() =>
                 res.status(200).json({
                   message: `votre email à était modififié par ${updateUser.email}`,
