@@ -70,13 +70,17 @@ function Compte() {
   }
 
   function getcommentaire() {
-    
+
+    const config = {
+      headers: {
+        Authorization: "Bearer " + usertoken,
+      },
+    };
+
     axios
-      .get(apiurl + "/commentaires/compte/" + UserId)
+      .get(apiurl + "/commentaires/compte/", config)
       .then((res) => {
-        console.log(res);
-        setComCard(res.data.commentaires);
-        console.log(ComCard);
+        setComCard(res.data.commentaire);
       })
       .catch((err) => {
         console.log(err);
