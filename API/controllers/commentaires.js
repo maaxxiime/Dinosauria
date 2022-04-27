@@ -35,6 +35,23 @@ exports.read_all = (req, res, next) => {
     .catch((err) => res.status(404).json({ err }));
 };
 
+
+exports.read_all_by_userId = (req, res, next) => {
+  const token = req.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
+  const userID = decodedToken.userID;
+
+  Commentaire.find({ creatorId: userID })
+    .then((commentaires) =>
+      res.status(200).json({ message: "voici vos commentaires", commentaire: commentaires })
+    )
+    .catch((err) => res.status(404).json({ err }));
+};
+
+
+
+
+
 exports.upvote_commentaire = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);

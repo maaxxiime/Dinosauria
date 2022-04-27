@@ -5,10 +5,12 @@ import Btn from "../button";
 import axios from "axios";
 import { apiurl } from "../variables";
 import qs from "qs";
+import Card from "../commentaire/ComCard.js";
 
 const Section = styled.section``;
 
 function Compte() {
+  const [ComCard, setComCard] = useState(null);
   const user = window.localStorage.getItem("user");
   let userJson = JSON.parse(user);
   let email = userJson.email;
@@ -49,7 +51,6 @@ function Compte() {
   }
 
   function delet() {
-    
     const config = {
       headers: {
         Authorization: "Bearer " + usertoken,
@@ -67,6 +68,24 @@ function Compte() {
         console.log(err);
       });
   }
+
+  function getcommentaire() {
+    
+    axios
+      .get(apiurl + "/commentaires/compte/" + UserId)
+      .then((res) => {
+        console.log(res);
+        setComCard(res.data.commentaires);
+        console.log(ComCard);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  useEffect(() => {
+    getcommentaire();
+  }, []);
 
   return (
     <Section>
@@ -125,15 +144,31 @@ function Compte() {
           />
         </form>
         <Btn
-            onclick={() => delet()}
-            disabled={null}
-            bg={colors.background_black}
-            textcolor={colors.txt_white}
-            bd={colors.background_black}
-            bdhover={colors.btn_blue}
-            bghover={colors.btn_blue}
-            text="Supprimer mon compte"
-          />
+          onclick={() => delet()}
+          disabled={null}
+          bg={colors.background_black}
+          textcolor={colors.txt_white}
+          bd={colors.background_black}
+          bdhover={colors.btn_blue}
+          bghover={colors.btn_blue}
+          text="Supprimer mon compte"
+        />
+      </div>
+
+      <div>
+        <h1>Mes commentaires</h1>
+
+        {ComCard && (
+          <div className="container">
+            {ComCard.map((commentaires) => (
+              <Card
+                texte={commentaires.texte}
+                date={commentaires.createdAt}
+                identifiant={commentaires.creatorId.identifiant}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </Section>
   );
