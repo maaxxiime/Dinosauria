@@ -52,70 +52,113 @@ const Input = styled.div`
   margin: 0 0 1rem 0;
 `;
 
-const Box = styled.div`
-  width: 3rem;
-  height: 2rem;
-  border-radius: 0.9rem;
-  background-color: ${colors.btn_blue};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  & p {
-    color: ${colors.txt_white};
-    font-size: 1rem;
-  }
-`;
-
 function Card(props) {
-  const [Qte, setQte] = useState(0);
+  const Box = styled.div`
+    width: 3rem;
+    height: 2rem;
+    border-radius: 0.9rem;
+    background-color: ${colors.btn_blue};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 
-  var panier = JSON.parse(localStorage.getItem("panier"));
+    & p {
+      color: ${colors.txt_white};
+      font-size: 1rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 0;
+      margin: 0;
+      &.appear {
+        animation: appear 150ms ease-in-out forwards;
+        @keyframes appear {
+          from {
+            top: -2rem;
+          }
+          to {
+            top: 50%;
+          }
+        }
+      }
+
+      &.disappear {
+        animation: disappear 150ms ease-in-out forwards;
+        @keyframes disappear {
+          from {
+            top: 50%;
+          }
+          to {
+            top: 3rem;
+          }
+        }
+      }
+    }
+  `;
+
+  const [Qte, setQte] = useState(0);
+  let qte = document.getElementById("qte-" + props.id);
 
   function addOne() {
+    qte.classList.add("disappear");
+    setTimeout(() => {
+
       setQte(Qte + 1);
+      qte.classList.remove("disappear");
+    }, 100);
   }
 
   function removeOne() {
-    if(Qte <= 0 ) {
-      Qte = 0;
-    } else {
-      setQte(Qte - 1);
+    if (Qte > 0) {
+      qte.classList.add("disappear");
+      setTimeout(() => {
+        
+        setQte(Qte - 1);
+        qte.classList.remove("disappear");
+      }, 100);
     }
   }
 
   console.log(Qte);
 
   function addPanier() {
+    var panier = JSON.parse(localStorage.getItem("panier"));
+
     switch (props.titre) {
       case "Ticket d'entrée pour le muséum":
         panier.musée += Qte;
         localStorage.setItem("panier", JSON.stringify(panier));
-      break;
+        Qte = 0;
+        break;
 
-      case "Ticket d'entrée pour le film en VR": 
-      panier.cinéma += Qte;
-      localStorage.setItem("panier", JSON.stringify(panier));
+      case "Ticket d'entrée pour le film en VR":
+        panier.cinéma += Qte;
+        localStorage.setItem("panier", JSON.stringify(panier));
+        Qte = 0;
 
-      break;
+        break;
 
-      case "Ticket d'entrée pour le jardin": 
-      panier.jardin += Qte;
-      localStorage.setItem("panier", JSON.stringify(panier));
+      case "Ticket d'entrée pour le jardin":
+        panier.jardin += Qte;
+        localStorage.setItem("panier", JSON.stringify(panier));
+        Qte = 0;
 
-      break;
+        break;
 
-      case "Ticket d'entrée pour le campement du jurassique": 
-      panier.campement += Qte;
-      localStorage.setItem("panier", JSON.stringify(panier));
+      case "Ticket d'entrée pour le campement du jurassique":
+        panier.campement += Qte;
+        localStorage.setItem("panier", JSON.stringify(panier));
+        Qte = 0;
 
-      break;
+        break;
 
       default:
-        console.log("défaut")
+        console.log("défaut");
     }
     console.log(panier);
-    window.location.reload()
+    // window.location.reload()
   }
 
   return (
@@ -147,7 +190,10 @@ function Card(props) {
           text="+"
         />
         <Box>
-          <p> {Qte} </p>
+          <p id={"qte-" + props.id} className="appear">
+            {" "}
+            {Qte}{" "}
+          </p>
         </Box>
         <Btn
           onclick={() => removeOne()}

@@ -6,7 +6,6 @@ import axios from "axios";
 import { apiurl } from "../variables";
 import Card from "./productcard";
 
-
 const MainSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -41,27 +40,29 @@ const MainSection = styled.section`
 `;
 
 const ValidDiv = styled.div`
-display: flex;
-flex-direction: column;
-margin: 1rem;
-text-align: center;
-border: 2px solid ${colors.txt_black};
-border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  text-align: center;
+  border: 2px solid ${colors.txt_black};
+  border-radius: 1rem;
 
-& #total {
-  font-size: 1rem;
-}
+  & #total {
+    font-size: 1rem;
+  }
 
-& .myBtn {
-  margin: 1rem 0 0 0;
-}
+  & .myBtn {
+    margin: 1rem 0 0 0;
+  }
 `;
 
 function Panier() {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
-  var panier = JSON.parse(localStorage.getItem("panier"));
+  const [Total, setTotal] = useState(0);
 
+  console.log("iuszybukr");
+  console.log("iuszybukr");
 
   function getboutiques() {
     axios
@@ -80,23 +81,7 @@ function Panier() {
     getboutiques();
   }, []);
 
-  let QteMusée = panier.musée;
-  let PrixMusée = QteMusée * 10;
-
-  let QteCinéma = panier.cinéma;
-  let PrixCinéma = QteCinéma * 5;
-
-  let QteJardin = panier.jardin;
-  let PrixJardin = QteJardin * 5;
-
-  let QteCampement = panier.campement;
-  let PrixCampement = QteCampement * 15;
-
-  let Total = PrixMusée + PrixCinéma + PrixJardin + PrixCampement;
-  
-  function validPanier() {
-
-  }
+  function validPanier() {}
 
   return (
     <MainSection>
@@ -112,6 +97,8 @@ function Panier() {
                 titre={boutiques.titre}
                 description={boutiques.description}
                 prix={boutiques.prix}
+                Total={Total}
+                setTotal={setTotal}
               />
             ))}
           </div>
@@ -122,25 +109,30 @@ function Panier() {
                 titre={boutiques.titre}
                 description={boutiques.description}
                 prix={boutiques.prix}
+                Total={Total}
+                setTotal={setTotal}
               />
             ))}
           </div>
         </div>
       )}
-      
+
       <ValidDiv>
         <p> Votre total est de : </p>
-        <p id="total" className="bold"> {Total} € TTC </p>
-      <Btn
-        onclick={() => validPanier()}
-        disabled={false}
-        bgGradient={colors.btn_gradient}
-        textcolor={colors.txt_white}
-        bd={null}
-        bdhover={colors.btn_blue}
-        bghover={null}
-        text="Valider le panier"
-      />
+        <p id="total" className="bold">
+          {" "}
+          {Total} € TTC{" "}
+        </p>
+        <Btn
+          onclick={() => validPanier()}
+          disabled={false}
+          bgGradient={colors.btn_gradient}
+          textcolor={colors.txt_white}
+          bd={null}
+          bdhover={colors.btn_blue}
+          bghover={null}
+          text="Valider le panier"
+        />
       </ValidDiv>
     </MainSection>
   );

@@ -4,65 +4,65 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 const LoaderDiv = styled.div`
-
-  .image-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  &.blur {
+    filter: blur(7px);
     position: relative;
-    overflow: hidden;
+    & .real-image {
+      opacity: 0;
+    }
   }
 
-  .placeholder-image,
-  .real-image {
+  & img {
+    border-radius: 8rem;
+  }
+
+  & .placeholder-image,
+  & .real-image {
     width: 100%;
+    opacity: 1;
+    object-fit: cover;
   }
 
-  .blur .real-image {
-    opacity: 0;
-  }
-
-  .real-image {
+  & .real-image {
     position: absolute;
     top: 0;
     left: 0;
   }
-
-  .blur {
-    filter: blur(5px);
+  & .placeholder-image {
+    position: relative;
   }
 
-  .unblur {
-    animation: unblur 1s linear;
-  }
-
-  @keyframes unblur {
-    from {
-      filter: blur(5px);
-    }
-    to {
-      filter: blur(0);
+  &.unblur {
+    position: relative;
+    animation: unblur 1s ease-in-out forwards;
+    @keyframes unblur {
+      from {
+        filter: blur(7px);
+      }
+      to {
+        filter: blur(0);
+      }
     }
   }
 `;
 
 const LoadImage = (props) => {
-    const [blur, setBlur] = React.useState(true);
-    const loadingImage = React.useRef();
-    
-    React.useEffect(() => {
-      if (loadingImage.current.complete) {
-        setBlur(false);
-      }
-      
-      loadingImage.current.addEventListener('load', () => {
-        setBlur(false);
-      });
-    }, []);
-    
-    return (
-      <LoaderDiv className={`image-container ${blur ? "blur" : "unblur"}`}>
-        <img className="placeholder-image" src={props.smallImgSrc} />
-        <img className="real-image" ref={loadingImage} src={props.largeImgSrc} />
-      </LoaderDiv> 
-    )
-  }
+  const [Blur, setBlur] = useState(true);
+
+  return (
+    <LoaderDiv className={Blur ? "blur" : "unblur"}>
+      <img className="placeholder-image" src={props.smallImgSrc} />
+      <img
+        onLoad={() => setBlur(false)}
+        className="real-image"
+        src={props.largeImgSrc}
+      />
+    </LoaderDiv>
+  );
+};
 
 export default LoadImage;

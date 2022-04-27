@@ -72,10 +72,10 @@ function Boutique() {
             {ShopCard1.map((boutiques) => (
               <Card
                 key={boutiques._id}
+                id={boutiques._id}
                 titre={boutiques.titre}
                 description={boutiques.description}
                 prix={boutiques.prix}
-            
               />
             ))}
           </div>
@@ -83,6 +83,7 @@ function Boutique() {
             {ShopCard2.map((boutiques) => (
               <Card
                 key={boutiques._id}
+                id={boutiques._id}
                 titre={boutiques.titre}
                 description={boutiques.description}
                 prix={boutiques.prix}

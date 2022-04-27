@@ -48,6 +48,26 @@ function Compte() {
       });
   }
 
+  function delet() {
+    
+    const config = {
+      headers: {
+        Authorization: "Bearer " + usertoken,
+      },
+    };
+
+    axios
+      .delete(apiurl + "/users/" + UserId, config)
+      .then((res) => {
+        localStorage.clear();
+        window.location.assign("/");
+        res.status();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <Section>
       <h1>
@@ -104,6 +124,16 @@ function Compte() {
             text="modifer"
           />
         </form>
+        <Btn
+            onclick={() => delet()}
+            disabled={null}
+            bg={colors.background_black}
+            textcolor={colors.txt_white}
+            bd={colors.background_black}
+            bdhover={colors.btn_blue}
+            bghover={colors.btn_blue}
+            text="Supprimer mon compte"
+          />
       </div>
     </Section>
   );

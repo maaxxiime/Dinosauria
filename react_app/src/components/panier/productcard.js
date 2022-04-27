@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../variables";
 import Btn from "../button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // images
 import musée from "../../assets/img/billet.png";
@@ -10,6 +10,9 @@ import campement from "../../assets/img/feu-de-camp.png";
 import jardin from "../../assets/img/feuille-de-monstera.png";
 
 const Mydiv = styled.div`
+  &.grey {
+    filter: grayscale(1);
+  }
   width: 17rem;
   height: 20rem;
   border: 2px solid ${colors.txt_black};
@@ -71,110 +74,129 @@ const Box = styled.div`
 function Card(props) {
   const [Qte, setQte] = useState(0);
 
-  var panier = JSON.parse(localStorage.getItem("panier"));
+  const getPrice = () => {
+    let p =
+      props.titre === "Ticket d'entrée pour le muséum"
+        ? Qte * 10
+        : props.titre === "Ticket d'entrée pour le film en VR"
+        ? Qte * 5
+        : props.titre === "Ticket d'entrée pour le jardin"
+        ? Qte * 5
+        : props.titre === "Ticket d'entrée pour le campement du jurassique"
+        ? Qte * 15
+        : 0;
+    return p;
+  };
+
+  const getTotal = () => {
+    let p = JSON.parse(localStorage.getItem("panier"));
+    var t = p.cinéma * 5 + p.jardin * 5 + p.musée * 10 + p.campement * 15;
+    props.setTotal(t);
+  };
+
+  const Initialize = () => {
+    var panier1 = JSON.parse(localStorage.getItem("panier"));
+    getTotal();
+    if (props.titre === "Ticket d'entrée pour le muséum") {
+      setQte(panier1.musée);
+    } else if (props.titre === "Ticket d'entrée pour le film en VR") {
+      setQte(panier1.cinéma);
+    } else if (props.titre === "Ticket d'entrée pour le jardin") {
+      setQte(panier1.jardin);
+    } else if (
+      props.titre === "Ticket d'entrée pour le campement du jurassique"
+    ) {
+      setQte(panier1.campement);
+    }
+  };
 
   function addOne() {
+    var panier = JSON.parse(localStorage.getItem("panier"));
     if (props.titre === "Ticket d'entrée pour le muséum") {
       setQte(Qte + 1);
       panier.musée += 1;
       localStorage.setItem("panier", JSON.stringify(panier));
-      window.location.reload();
+      getTotal();
     } else if (props.titre === "Ticket d'entrée pour le film en VR") {
       setQte(Qte + 1);
       panier.cinéma += 1;
       localStorage.setItem("panier", JSON.stringify(panier));
-      window.location.reload();
+      getTotal();
     } else if (props.titre === "Ticket d'entrée pour le jardin") {
       setQte(Qte + 1);
       panier.jardin += 1;
       localStorage.setItem("panier", JSON.stringify(panier));
-      window.location.reload();
+      getTotal();
     } else if (
       props.titre === "Ticket d'entrée pour le campement du jurassique"
     ) {
       setQte(Qte + 1);
       panier.campement += 1;
       localStorage.setItem("panier", JSON.stringify(panier));
-      window.location.reload();
-    } else {
-      console.log(Qte);
+      getTotal();
     }
   }
 
   function removeOne() {
+    var panier = JSON.parse(localStorage.getItem("panier"));
     if (props.titre === "Ticket d'entrée pour le muséum") {
-      setQte(Qte - 1);
-      panier.musée -= 1;
-      localStorage.setItem("panier", JSON.stringify(panier));
-      window.location.reload();
+      if (Qte > 0) {
+        setQte(Qte - 1);
+        panier.musée -= 1;
+        localStorage.setItem("panier", JSON.stringify(panier));
+        getTotal();
+      }
     } else if (props.titre === "Ticket d'entrée pour le film en VR") {
-      setQte(Qte - 1);
-      panier.cinéma -= 1;
-      localStorage.setItem("panier", JSON.stringify(panier));
-      window.location.reload();
+      if (Qte > 0) {
+        setQte(Qte - 1);
+        panier.cinéma -= 1;
+        localStorage.setItem("panier", JSON.stringify(panier));
+        getTotal();
+      }
     } else if (props.titre === "Ticket d'entrée pour le jardin") {
-      setQte(Qte - 1);
-      panier.jardin -= 1;
-      localStorage.setItem("panier", JSON.stringify(panier));
-      window.location.reload();
+      if (Qte > 0) {
+        setQte(Qte - 1);
+        panier.jardin -= 1;
+        localStorage.setItem("panier", JSON.stringify(panier));
+        getTotal();
+      }
     } else if (
       props.titre === "Ticket d'entrée pour le campement du jurassique"
     ) {
-      setQte(Qte - 1);
-      panier.campement -= 1;
-      localStorage.setItem("panier", JSON.stringify(panier));
-      window.location.reload();
-    } else {
-      console.log(Qte);
-    }
-
-    if (props.titre === "Ticket d'entrée pour le muséum" && panier.musée <= 0) {
-      panier.musée = 0;
-      localStorage.setItem("panier", JSON.stringify(panier));
-    } else if (
-      props.titre === "Ticket d'entrée pour le film en VR" &&
-      panier.cinéma <= 0
-    ) {
-      panier.cinéma = 0;
-      localStorage.setItem("panier", JSON.stringify(panier));
-    } else if (
-      props.titre === "Ticket d'entrée pour le jardin" &&
-      panier.jardin <= 0
-    ) {
-      panier.jardin = 0;
-      localStorage.setItem("panier", JSON.stringify(panier));
-    } else if (
-      props.titre === "Ticket d'entrée pour le campement du jurassique" &&
-      panier.campement <= 0
-    ) {
-      panier.campement = 0;
-      localStorage.setItem("panier", JSON.stringify(panier));
+      if (Qte > 0) {
+        setQte(Qte - 1);
+        panier.campement -= 1;
+        localStorage.setItem("panier", JSON.stringify(panier));
+        getTotal();
+      }
     }
   }
 
   function removePanier() {
+    var panier = JSON.parse(localStorage.getItem("panier"));
     switch (props.titre) {
       case "Ticket d'entrée pour le muséum":
         panier.musée = 0;
         localStorage.setItem("panier", JSON.stringify(panier));
+        getTotal();
         break;
 
       case "Ticket d'entrée pour le film en VR":
         panier.cinéma = 0;
         localStorage.setItem("panier", JSON.stringify(panier));
-
+        getTotal();
         break;
 
       case "Ticket d'entrée pour le jardin":
         panier.jardin = 0;
         localStorage.setItem("panier", JSON.stringify(panier));
-
+        getTotal();
         break;
 
       case "Ticket d'entrée pour le campement du jurassique":
         panier.campement = 0;
         localStorage.setItem("panier", JSON.stringify(panier));
-
+        getTotal();
         break;
 
       default:
@@ -184,8 +206,12 @@ function Card(props) {
     window.location.reload();
   }
 
+  useEffect(() => {
+    Initialize();
+  }, []);
+
   return (
-    <Mydiv>
+    <Mydiv className={Qte === 0 && "grey"}>
       <img
         src={
           props.titre === "Ticket d'entrée pour le campement du jurassique"
@@ -213,18 +239,7 @@ function Card(props) {
           text="+"
         />
         <Box>
-          <p>
-            {props.titre === "Ticket d'entrée pour le muséum"
-              ? panier.musée
-              : props.titre === "Ticket d'entrée pour le film en VR"
-              ? panier.cinéma
-              : props.titre === "Ticket d'entrée pour le jardin"
-              ? panier.jardin
-              : props.titre ===
-                "Ticket d'entrée pour le campement du jurassique"
-              ? panier.campement
-              : 0}
-          </p>
+          <p>{Qte}</p>
         </Box>
         <Btn
           onclick={() => removeOne()}
@@ -237,18 +252,7 @@ function Card(props) {
           text="-"
         />
       </Input>
-      <p className="price">
-        {props.titre === "Ticket d'entrée pour le muséum"
-          ? panier.musée * 10
-          : props.titre === "Ticket d'entrée pour le film en VR"
-          ? panier.cinéma * 5
-          : props.titre === "Ticket d'entrée pour le jardin"
-          ? panier.jardin * 5
-          : props.titre === "Ticket d'entrée pour le campement du jurassique"
-          ? panier.campement * 15
-          : 0}
-        € TTC
-      </p>
+      <p className="price">{Qte && getPrice()}€ TTC</p>
 
       <div className="absolute">
         <Btn
@@ -259,7 +263,7 @@ function Card(props) {
           bd={null}
           bdhover={colors.btn_blue}
           bghover={null}
-          text="Supprimer du panier"
+          text="Supprimer ce produit"
         />
       </div>
     </Mydiv>
