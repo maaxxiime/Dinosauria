@@ -24,35 +24,64 @@ const Mydiv = styled.div`
 `;
 
 const Foot = styled.div`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-& p {
+  & p {
     margin: 0 2rem;
     opacity: 0.5;
-}
-
+  }
 `;
 
 function Card(props) {
-    function formatDate(str) {
-        const options = {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
-        const d = new Date(str);
-        const date = d.toLocaleDateString("fr-FR", options);
-        return date;
-      }
+  const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
+
+  function formatDate(str) {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const d = new Date(str);
+    const date = d.toLocaleDateString("fr-FR", options);
+    return date;
+  }
+
+  function delete_commentaire() {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + usertoken,
+      },
+    };
+    axios
+      .delete(apiurl + "/commentaires/" + props.id, config)
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch(function (res) {
+        console.log(res);
+        console.log(props.id);
+      });
+  }
 
   return (
     <Mydiv>
       <div className="DivText">
+        <Btn
+          onclick={() => delete_commentaire()}
+          disabled={null}
+          bg={colors.background_black}
+          textcolor={colors.txt_white}
+          bd={colors.background_black}
+          bdhover={colors.btn_blue}
+          bghover={colors.btn_blue}
+          text="Supprimer le commentaire"
+        />
         <p className="content">{props.texte}</p>
         <Foot>
-        <p> {props.identifiant} </p>
-        <p> {formatDate(props.date)} </p>
+          <p> {props.identifiant} </p>
+          <p> {formatDate(props.date)} </p>
         </Foot>
       </div>
     </Mydiv>

@@ -81,6 +81,8 @@ function Compte() {
       .get(apiurl + "/commentaires/compte/", config)
       .then((res) => {
         setComCard(res.data.commentaire);
+        console.log(ComCard);
+        console.log(res.data.commentaire);
       })
       .catch((err) => {
         console.log(err);
@@ -136,16 +138,7 @@ function Compte() {
             required="false"
           />
 
-          <Btn
-            onclick={() => modifie()}
-            disabled={null}
-            bg={colors.background_black}
-            textcolor={colors.txt_white}
-            bd={colors.background_black}
-            bdhover={colors.btn_blue}
-            bghover={colors.btn_blue}
-            text="modifer"
-          />
+
         </form>
         <Btn
           onclick={() => delet()}
@@ -168,7 +161,7 @@ function Compte() {
               <Card
                 texte={commentaires.texte}
                 date={commentaires.createdAt}
-                identifiant={commentaires.creatorId.identifiant}
+                id={commentaires._id}
               />
             ))}
           </div>

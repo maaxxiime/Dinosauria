@@ -73,8 +73,10 @@ exports.delete_commentaire = (req, res, next) => {
   const TargetId = req.params.TargetId;
 
   Commentaire.findById(TargetId)
+  .populate("creatorId")
     .then((commentaire) => {
-      if (userID === commentaire.creatorId) {
+      console.log(commentaire)
+      if (userID === commentaire.creatorId._id) {
         commentaire
           .deleteOne()
           .then((deleted) => {
