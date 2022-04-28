@@ -5,12 +5,13 @@ import styled from "styled-components";
 import BackOfficeCard from "./backcard";
 import colors from "../variables.js";
 import Btn from "../button";
+import qs from "qs";
 import defautimg from "../../assets/img/billet.png";
 
 function BackOffice() {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
-  const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
+
 
   function getboutiques() {
     axios
@@ -26,28 +27,28 @@ function BackOffice() {
   }
 
   function créer() {
+    const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
+    let titre = document.getElementById("titre");
+    let description = document.getElementById("description");
+    let prix = document.getElementById("prix");
+
+    const body = {
+      titre: titre.value,
+      description: description.value,
+      prix: prix.value,
+    }
     const config = {
       headers: {
         Authorization: "Bearer " + usertoken,
       },
     };
-    let titre = document.getElementById("titre");
-    let description = document.getElementById("titre");
-    let prix = document.getElementById("titre");
-
-    const formData = new FormData();
-    titre.value && formData.append("titre", titre.value);
-    description.value && formData.append("description", description.value);
-    prix.value && formData.append("prix", prix.value);
-    // && (si value est rempli => effectue le code)
-
     axios
-      .post(apiurl + "/boutiques/" + formData, config)
-      .then(function (res) {
+      .post(apiurl + "/boutiques/" + qs.stringify(body) , config )
+      .then((res) => {
         console.log(res);
         window.location.reload();
       })
-      .catch(function (res) {
+      .catch((res) => {
         console.log(res);
       });
   }
@@ -89,7 +90,7 @@ function BackOffice() {
           <label>
             prix
             <input
-              type="number"
+              type="texte"
               id="prix"
               placeholder="prix"
               name="prix"
