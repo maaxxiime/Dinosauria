@@ -3,7 +3,10 @@ import colors from "../variables";
 import Btn from "../button";
 import axios from "axios";
 import { apiurl } from "../variables";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+// import {
+//   faCheck,
+// } from "@fortawesome/free-solid-svg-icons";
 
 const Mydiv = styled.div`
   & .DivText {
