@@ -6,6 +6,8 @@ const colors = {
   txt_white: "#FFFFFF",
   txt_black: "#2A2525",
   btn_gradient: "207deg, rgba(235,72,40,1) 30%, rgba(255,170,0,1) 70%",
+  btn_red: "#9e1717",
+  btn_redhover: "#d51414",
 };
 
 export default colors;

@@ -39,6 +39,10 @@ const Foot = styled.div`
 `;
 
 function Card(props) {
+  const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
+  let url = document.location.href;
+  let urldeux = url.replace(/\/$/, "");
+  let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
 
   function formatDate(str) {
     const options = {
@@ -51,9 +55,39 @@ function Card(props) {
     return date;
   }
 
+  function delete_commentaire() {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + usertoken,
+      },
+    };
+    axios
+      .delete(apiurl + "/commentaires/" + props.id, config)
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch(function (res) {
+        console.log(res);
+        console.log(props.id);
+      });
+  }
+
   return (
     <Mydiv>
       <div className="DivText">
+      {TrueUrl === "readcommentaire" ? false : (
+        <Btn
+        onclick={() => delete_commentaire()}
+        disabled={null}
+        bg={colors.btn_red}
+        textcolor={colors.txt_white}
+        bd={colors.btn_red}
+        bdhover={colors.btn_redhover}
+        bghover={colors.btn_redhover}
+        text="X"
+        />
+        )}
         <p className="content">{props.texte}</p>
         <Foot>
           <p> {props.identifiant} </p>

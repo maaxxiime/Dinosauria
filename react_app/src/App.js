@@ -7,6 +7,7 @@ import Signup from "./components/signup/signup.js";
 import Login from "./components/login/login.js";
 import MonCompte from "./components/compte/compte.js";
 import Boutique from "./components/boutique/boutique.js";
+import BackOffice from "./components/backoffice/backoffice.js";
 import ReadCommentaire from "./components/commentaire/readcommentaire.js";
 import PostCommentaire from "./components/commentaire/postcommentaire.js";
 import Error from "./components/error/error.js";
@@ -49,6 +50,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/boutique" element={<Boutique />} />
+        <Route path="/backoffice" element={<BackOffice />} />
         <Route path="/readcommentaire" element={<ReadCommentaire />} />
         <Route path="/postcommentaire" element={<PostCommentaire />} />
         <Route path="/compte" element={<MonCompte />} />

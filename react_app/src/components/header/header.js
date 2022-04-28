@@ -122,6 +122,17 @@ function Header() {
           bghover={colors.btn_blue}
           text="Boutique"
         />
+
+        <Btn
+          link={"/backoffice"}
+          disabled={false}
+          bg={TrueUrl === "backoffice" ? colors.btn_blue : "none"}
+          textcolor={colors.txt_white}
+          bd="none"
+          bdhover="none"
+          bghover={colors.btn_blue}
+          text="Back-Office"
+        />
       </DivUne>
 
       <DivDeux>

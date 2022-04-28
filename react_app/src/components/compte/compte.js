@@ -5,9 +5,43 @@ import Btn from "../button";
 import axios from "axios";
 import { apiurl } from "../variables";
 import qs from "qs";
-import Card from "../commentaire/ComCard.js";
+import Card from "./comptecard";
+var NombreCommentaires;
 
-const Section = styled.section``;
+const Section = styled.section`
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+`;
+
+const DivInfos = styled.div`
+margin: 2rem 0;
+
+& h1 {
+  margin: 1rem 0;
+}
+
+& h2 {
+  margin: 0 0 1rem 0;
+}
+`;
+const DivModifie = styled.div`
+
+& input {
+  margin: 1rem 0 2rem 0;
+}
+
+& .myBtn {
+  margin: 0 1rem;
+}
+`;
+const DivCommentaires = styled.div`
+
+& h2 {
+  margin: 1rem 0;
+}
+`;
 
 function Compte() {
   const [ComCard, setComCard] = useState(null);
@@ -70,7 +104,6 @@ function Compte() {
   }
 
   function getcommentaire() {
-
     const config = {
       headers: {
         Authorization: "Bearer " + usertoken,
@@ -83,6 +116,11 @@ function Compte() {
         setComCard(res.data.commentaire);
         console.log(ComCard);
         console.log(res.data.commentaire);
+        
+          for (let i = 0; i <= ComCard.length; i++) {
+            NombreCommentaires = i;
+          }
+        
       })
       .catch((err) => {
         console.log(err);
@@ -95,19 +133,14 @@ function Compte() {
 
   return (
     <Section>
-      <h1>
-        {" "}
-        Faire un populate dans api pour récuperer commentaire user (comme pour
-        récuperer le pseudo des commentaires){" "}
-      </h1>
-
-      <div>
+      <DivInfos>
+        <h1> Mon compte </h1>
         <h2> Mes informations </h2>
         <p> {email} </p>
-        <p> Vous avez posté (nombre commentaires) commentaires</p>
-      </div>
+        <p> Vous avez posté {NombreCommentaires} commentaires</p>
+      </DivInfos>
 
-      <div>
+      <DivModifie>
         <h2> Modifier mes informations </h2>
 
         <form>
@@ -137,23 +170,31 @@ function Compte() {
             name="newpassword"
             required="false"
           />
-
-
         </form>
         <Btn
-          onclick={() => delet()}
+          onclick={() => modifie()}
           disabled={null}
           bg={colors.background_black}
           textcolor={colors.txt_white}
           bd={colors.background_black}
           bdhover={colors.btn_blue}
           bghover={colors.btn_blue}
+          text="modifier mon compte"
+        />
+        <Btn
+          onclick={() => delet()}
+          disabled={null}
+          bg={colors.background_black}
+          textcolor={colors.txt_white}
+          bd={colors.background_black}
+          bdhover={colors.btn_redhover}
+          bghover={colors.btn_redhover}
           text="Supprimer mon compte"
         />
-      </div>
+      </DivModifie>
 
-      <div>
-        <h1>Mes commentaires</h1>
+      <DivCommentaires>
+        <h2>Mes commentaires</h2>
 
         {ComCard && (
           <div className="container">
@@ -166,7 +207,7 @@ function Compte() {
             ))}
           </div>
         )}
-      </div>
+      </DivCommentaires>
     </Section>
   );
 }

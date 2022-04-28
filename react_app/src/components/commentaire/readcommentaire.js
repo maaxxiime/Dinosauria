@@ -25,7 +25,6 @@ function ReadCommentaire() {
       .then((res) => {
         console.log(res);
         setComCard(res.data.commentaires);
-        console.log(ComCard);
       })
       .catch((err) => {
         console.log(err);

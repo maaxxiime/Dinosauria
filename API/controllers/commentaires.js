@@ -72,11 +72,12 @@ exports.delete_commentaire = (req, res, next) => {
   const userID = decodedToken.userID;
   const TargetId = req.params.TargetId;
 
+
   Commentaire.findById(TargetId)
   .populate("creatorId")
     .then((commentaire) => {
-      console.log(commentaire)
-      if (userID === commentaire.creatorId._id) {
+      if (userID == commentaire.creatorId._id) {
+      
         commentaire
           .deleteOne()
           .then((deleted) => {
@@ -96,6 +97,6 @@ exports.delete_commentaire = (req, res, next) => {
       }
     })
     .catch((err) =>
-      res.status(404).json({ message: "Commentaire non trouvé", error: err })
+      res.status(404).json({message: "Commentaire non trouvé", error: err })
     );
 };
