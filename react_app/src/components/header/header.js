@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import colors from "../variables";
 import Btn from "../button";
+import { useState, useEffect } from "react";
 
 const Head = styled.header`
   padding: 1.5rem 0;
@@ -36,7 +37,12 @@ function Header() {
   let urldeux = url.replace(/\/$/, "");
   let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
 
+  let admin = false;
   const user = window.localStorage.getItem("user");
+
+  if (user) {
+    admin = JSON.parse(window.localStorage.getItem("user")).admin;
+  }
 
   function deconnexion() {
     localStorage.clear();
@@ -123,16 +129,18 @@ function Header() {
           text="Boutique"
         />
 
-        <Btn
-          link={"/backoffice"}
-          disabled={false}
-          bg={TrueUrl === "backoffice" ? colors.btn_blue : "none"}
-          textcolor={colors.txt_white}
-          bd="none"
-          bdhover="none"
-          bghover={colors.btn_blue}
-          text="Back-Office"
-        />
+        {!admin === true ? null : (
+          <Btn
+            link={"/backoffice"}
+            disabled={false}
+            bg={TrueUrl === "backoffice" ? colors.btn_blue : "none"}
+            textcolor={colors.txt_white}
+            bd="none"
+            bdhover="none"
+            bghover={colors.btn_blue}
+            text="Back-Office"
+          />
+        )}
       </DivUne>
 
       <DivDeux>

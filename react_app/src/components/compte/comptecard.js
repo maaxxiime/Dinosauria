@@ -79,7 +79,6 @@ function Card(props) {
   return (
     <Mydiv>
       <div className="DivText">
-      {TrueUrl === "readcommentaire" ? false : (
         <Btn
         onclick={() => delete_commentaire()}
         disabled={null}
@@ -90,7 +89,6 @@ function Card(props) {
         bghover={colors.btn_redhover}
         text="X"
         />
-        )}
         <p className="content">{props.texte}</p>
         <Foot>
           <p> {props.identifiant} </p>

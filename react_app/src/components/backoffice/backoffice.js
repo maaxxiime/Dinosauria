@@ -12,7 +12,6 @@ function BackOffice() {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
 
-
   function getboutiques() {
     axios
       .get(apiurl + "/boutiques/")
@@ -28,22 +27,25 @@ function BackOffice() {
 
   function créer() {
     const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
-    let titre = document.getElementById("titre");
-    let description = document.getElementById("description");
-    let prix = document.getElementById("prix");
 
-    const body = {
-      titre: titre.value,
-      description: description.value,
-      prix: prix.value,
-    }
+    let titre = document.getElementById("Titre");
+    let description = document.getElementById("Description");
+    let prix = document.getElementById("Prix");
+
+    const bodyFormData = new FormData();
+    titre.value && bodyFormData.append("titre", titre.value);
+    description.value && bodyFormData.append("description", description.value);
+    prix.value && bodyFormData.append("prix", prix.value);
+    // && (si value est rempli => effectue le code)
+
     const config = {
       headers: {
         Authorization: "Bearer " + usertoken,
       },
     };
+
     axios
-      .post(apiurl + "/boutiques/" + qs.stringify(body) , config )
+      .post(apiurl + "/boutiques/" + qs.stringify(bodyFormData) , config)
       .then((res) => {
         console.log(res);
         window.location.reload();
@@ -67,35 +69,29 @@ function BackOffice() {
       <div>
         <h1> Créer un produit </h1>
         <form>
-          <label>
-            titre
+          <label for="titre"> titre </label>
             <input
               type="texte"
-              id="titre"
+              id="Titre"
               placeholder="titre"
               name="titre"
             ></input>
-          </label>
 
-          <label>
-            description
+          <label for="description"> description </label>
             <input
               type="texte"
-              id="description"
+              id="Description"
               placeholder="description"
               name="description"
             ></input>
-          </label>
 
-          <label>
-            prix
+          <label for="prix"> prix </label>
             <input
               type="texte"
-              id="prix"
+              id="Prix"
               placeholder="prix"
               name="prix"
             ></input>
-          </label>
           <Btn
             onclick={() => créer()}
             disabled={false}

@@ -6,7 +6,7 @@ exports.create_product = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
   const userID = decodedToken.userID;
-
+  
   const newproduct = req.file
     ? new Boutique({
         ...req.body,

@@ -45,6 +45,7 @@ exports.login = (req, res, next) => {
               user: user.email,
               userId: user.id,
               token: token,
+              admin: user.admin,
             });
           }
         })

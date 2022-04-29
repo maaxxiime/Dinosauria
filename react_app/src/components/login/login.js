@@ -135,6 +135,7 @@ function Login() {
           userId: res.data.userId,
           token: res.data.token,
           email: res.data.user,
+          admin: res.data.admin,
         };
         window.localStorage.setItem("user", JSON.stringify(user));
         setRes(res.data.message);

@@ -72,7 +72,7 @@ function PostCommentaire() {
       )
       .then((res) => {
         setRes(res.data.message);
-        window.location.assign("/");
+        // window.location.assign("/");
       })
       .catch((err) => {
         setRes(err.message);
