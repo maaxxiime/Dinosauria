@@ -80,9 +80,9 @@ const Form = styled.form`
   }
 
   & div {
-      display: flex;
-      justify-content: center;
-      width: 25rem;
+    display: flex;
+    justify-content: center;
+    width: 25rem;
   }
 `;
 
@@ -122,14 +122,11 @@ function Signup() {
     axios
       .post(apiurl + "/users/signup", qs.stringify(data), config)
       .then((res) => {
-        const user = {
-          userId: res.data.userId,
-          token: res.data.token,
-          email: res.data.user,
-        };
-        window.localStorage.setItem("user", JSON.stringify(user));
         setRes(res.data.message);
-        window.location.assign("/");
+
+        setTimeout(() => {
+          window.location.assign("/login");
+        }, 1500);
       })
       .catch((err) => {
         setRes(err.message);
@@ -138,7 +135,10 @@ function Signup() {
 
   return (
     <MainSection id="main">
-      <Maintitle> Créer votre compte dés maitenant pour pouvoir profiter du site à 100% ! </Maintitle>
+      <Maintitle>
+        {" "}
+        Créer votre compte dés maitenant pour pouvoir profiter du site à 100% !{" "}
+      </Maintitle>
 
       <Form>
         <label for="email"> Email : </label>
@@ -172,17 +172,23 @@ function Signup() {
         />
 
         <div>
-        <Btn
-          onclick={(e) => send(e)}
-          disabled={!Filled}
-          bgGradient={colors.btn_gradient}
-          textcolor={colors.txt_white}
-          bd={colors.blue1}
-          bdhover={colors.blue2}
-          bghover={colors.blue2}
-          text="Créer le compte"
-        />
+          <Btn
+            onclick={(e) => send(e)}
+            disabled={!Filled}
+            bgGradient={colors.btn_gradient}
+            textcolor={colors.txt_white}
+            bd={colors.blue1}
+            bdhover={colors.blue2}
+            bghover={colors.blue2}
+            text="Créer le compte"
+          />
         </div>
+
+        {Res && (
+          <div className="res">
+            <p>{Res}</p>
+          </div>
+        )}
       </Form>
     </MainSection>
   );

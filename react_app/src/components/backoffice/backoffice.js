@@ -5,8 +5,48 @@ import styled from "styled-components";
 import BackOfficeCard from "./backcard";
 import colors from "../variables.js";
 import Btn from "../button";
-import qs from "qs";
-import defautimg from "../../assets/img/billet.png";
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${colors.txt_black};
+  text-align: center;
+`;
+
+const Header = styled.div`
+  margin: 1rem;
+
+  & h1 {
+    margin: 0 0 1rem 0;
+  }
+
+  & p {
+    font-size: 0.9rem;
+  }
+`;
+
+const DivCreate = styled.div`
+  & h2 {
+    margin: 0 0 1rem 0;
+  }
+
+  & form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & input {
+      margin: 0.5rem;
+    }
+
+    & .myBtn {
+      margin: 1rem 0 0 0;
+    }
+  }
+`;
+
+const DivCard = styled.div``;
 
 function BackOffice() {
   const [ShopCard1, setShopCard1] = useState(null);
@@ -41,11 +81,12 @@ function BackOffice() {
     const config = {
       headers: {
         Authorization: "Bearer " + usertoken,
+        "Content-Type": "multipart/form-data",
       },
     };
 
     axios
-      .post(apiurl + "/boutiques/" + qs.stringify(bodyFormData) , config)
+      .post(apiurl + "/boutiques/", bodyFormData, config)
       .then((res) => {
         console.log(res);
         window.location.reload();
@@ -60,38 +101,36 @@ function BackOffice() {
   }, []);
 
   return (
-    <section>
-      <h1> Back-Office </h1>
-      <p className="low-title">
-        Créer, modifier ou supprimer des produits à volonté !
-      </p>
+    <Section>
+      <Header>
+        <h1> Back-Office </h1>
+        <p className="low-title">
+          Créer, modifier ou supprimer des produits à volonté !
+        </p>
+      </Header>
 
-      <div>
-        <h1> Créer un produit </h1>
+      <DivCreate>
+        <h2> Créer un produit </h2>
         <form>
           <label for="titre"> titre </label>
-            <input
-              type="texte"
-              id="Titre"
-              placeholder="titre"
-              name="titre"
-            ></input>
+          <input
+            type="texte"
+            id="Titre"
+            placeholder="titre"
+            name="titre"
+          ></input>
 
           <label for="description"> description </label>
-            <input
-              type="texte"
-              id="Description"
-              placeholder="description"
-              name="description"
-            ></input>
+          <input
+            type="texte"
+            id="Description"
+            placeholder="description"
+            name="description"
+          ></input>
 
           <label for="prix"> prix </label>
-            <input
-              type="texte"
-              id="Prix"
-              placeholder="prix"
-              name="prix"
-            ></input>
+          <input type="texte" id="Prix" placeholder="prix" name="prix"></input>
+
           <Btn
             onclick={() => créer()}
             disabled={false}
@@ -103,35 +142,37 @@ function BackOffice() {
             text="créer le produit"
           />
         </form>
-      </div>
+      </DivCreate>
 
-      {ShopCard2 && (
-        <div className="container">
-          <div className="container-top">
-            {ShopCard1.map((boutiques) => (
-              <BackOfficeCard
-                key={boutiques._id}
-                id={boutiques._id}
-                titre={boutiques.titre}
-                description={boutiques.description}
-                prix={boutiques.prix}
-              />
-            ))}
+      <DivCard>
+        {ShopCard2 && (
+          <div className="container">
+            <div className="container-top">
+              {ShopCard1.map((boutiques) => (
+                <BackOfficeCard
+                  key={boutiques._id}
+                  id={boutiques._id}
+                  titre={boutiques.titre}
+                  description={boutiques.description}
+                  prix={boutiques.prix}
+                />
+              ))}
+            </div>
+            <div className="container-bottom">
+              {ShopCard2.map((boutiques) => (
+                <BackOfficeCard
+                  key={boutiques._id}
+                  id={boutiques._id}
+                  titre={boutiques.titre}
+                  description={boutiques.description}
+                  prix={boutiques.prix}
+                />
+              ))}
+            </div>
           </div>
-          <div className="container-bottom">
-            {ShopCard2.map((boutiques) => (
-              <BackOfficeCard
-                key={boutiques._id}
-                id={boutiques._id}
-                titre={boutiques.titre}
-                description={boutiques.description}
-                prix={boutiques.prix}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-    </section>
+        )}
+      </DivCard>
+    </Section>
   );
 }
 

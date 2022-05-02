@@ -24,7 +24,7 @@ const Mydiv = styled.div`
   margin: 1rem 2rem;
   & img {
     width: 5rem;
-    margin: 0 0 1rem 0;
+    margin: 1rem 0 1rem 0;
   }
 
   & .title {
@@ -43,6 +43,24 @@ const Mydiv = styled.div`
   & .absolute {
     position: absolute;
     bottom: -0.6rem;
+  }
+
+  & .btn {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    & .myBtn {
+      margin: 0.2rem 0;
+    }
+  }
+
+  & .modifieInput {
+    margin: 1rem 0;
+  }
+
+  & .modifieInput input {
+    margin: 1rem 0;
   }
 `;
 
@@ -100,34 +118,34 @@ function BackOfficeCard(props) {
     <Mydiv>
       <div className="btn">
         <Btn
+          onclick={(e) => setEdit(false)}
+          disabled={false}
+          bg={colors.background_black}
+          textcolor={colors.txt_white}
+          bd={colors.background_black}
+          bdhover={"DarkOrange"}
+          bghover={"DarkOrange"}
+          text="annuler"
+        />
+        <Btn
           onclick={() => modifie()}
           disabled={false}
-          bg={Modified ? "green" : "none"}
-          textcolor={colors.textwhite}
-          bd="none"
-          bdhover={colors.blue2}
-          bghover={colors.blue2}
+          bg={Modified ? "green" : colors.background_black}
+          textcolor={colors.txt_white}
+          bd={colors.background_black}
+          bdhover={colors.btn_blue}
+          bghover={colors.btn_blue}
           text="modifier"
         />
         <Btn
           onclick={() => delete_product()}
-          disabled={null}
+          disabled={false}
           bg={colors.btn_red}
           textcolor={colors.txt_white}
           bd={colors.btn_red}
           bdhover={colors.btn_redhover}
           bghover={colors.btn_redhover}
           text="X"
-        />
-        <Btn
-          onclick={(e) => setEdit(false)}
-          disabled={null}
-          bg="none"
-          textcolor={colors.textwhite}
-          bd="none"
-          bdhover={"DarkOrange"}
-          bghover={"DarkOrange"}
-          text="annuler"
         />
       </div>
       <div className="modifieInput">

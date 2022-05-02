@@ -2,6 +2,7 @@ export const apiurl = "http://localhost:8000/api";
 
 const colors = {
   background_black: "#2A2525",
+  background_white: "#FFFFFF",
   btn_blue: "#1453BE",
   txt_white: "#FFFFFF",
   txt_black: "#2A2525",

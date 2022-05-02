@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const userSchema = mongoose.Schema(
   {
     email: { type: String, required: true, unique: true },
-    identifiant: { type: String, required: true, unique: true },
+    identifiant: { type: String, required: true },
     password: { type: String, required: true },
     admin: { type: Boolean, required: false, default: false },
     commentaires: [{ type: Schema.Types.ObjectId, ref: "commentaires" }],

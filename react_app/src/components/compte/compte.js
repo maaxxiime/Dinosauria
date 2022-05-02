@@ -6,41 +6,38 @@ import axios from "axios";
 import { apiurl } from "../variables";
 import qs from "qs";
 import Card from "./comptecard";
-var NombreCommentaires;
 
 const Section = styled.section`
-display: flex;
-flex-direction: column;
-align-items: center;
-text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 `;
 
 const DivInfos = styled.div`
-margin: 2rem 0;
+  margin: 2rem 0;
 
-& h1 {
-  margin: 1rem 0;
-}
+  & h1 {
+    margin: 1rem 0;
+  }
 
-& h2 {
-  margin: 0 0 1rem 0;
-}
+  & h2 {
+    margin: 0 0 1rem 0;
+  }
 `;
 const DivModifie = styled.div`
+  & input {
+    margin: 1rem 0 2rem 0;
+  }
 
-& input {
-  margin: 1rem 0 2rem 0;
-}
-
-& .myBtn {
-  margin: 0 1rem;
-}
+  & .myBtn {
+    margin: 0 1rem;
+  }
 `;
 const DivCommentaires = styled.div`
-
-& h2 {
-  margin: 1rem 0;
-}
+  & h2 {
+    margin: 1rem 0;
+  }
 `;
 
 function Compte() {
@@ -116,11 +113,6 @@ function Compte() {
         setComCard(res.data.commentaire);
         console.log(ComCard);
         console.log(res.data.commentaire);
-        
-          for (let i = 0; i <= ComCard.length; i++) {
-            NombreCommentaires = i;
-          }
-        
       })
       .catch((err) => {
         console.log(err);
@@ -137,7 +129,7 @@ function Compte() {
         <h1> Mon compte </h1>
         <h2> Mes informations </h2>
         <p> {email} </p>
-        <p> Vous avez posté {NombreCommentaires} commentaires</p>
+        <p> Vous avez posté {ComCard && ComCard.length} commentaires</p>
       </DivInfos>
 
       <DivModifie>
