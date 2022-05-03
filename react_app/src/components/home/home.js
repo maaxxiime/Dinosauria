@@ -1,12 +1,8 @@
 import SimpleImageSlider from "react-simple-image-slider";
 import styled from "styled-components";
 import colors from "../variables";
-import { useState, useEffect } from "react";
 import Btn from "../button";
-import axios from "axios";
-import { apiurl } from "../variables";
-import qs from "qs";
-import LoadImage from "../img-loader/loader";
+
 
 // image
 import sliderUn from "../../assets/img/slider_1_ccexpress.jpeg";

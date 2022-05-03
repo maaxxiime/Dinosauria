@@ -81,7 +81,7 @@ function Herbivore() {
     <Section>
       <DivTitle>
         <h1> La salle des Herbivores </h1>
-        <p> découvrez parmi les plus beau squelettes jamais découvert </p>
+        <p> Découvrez parmi les plus beau squelettes jamais découvert </p>
       </DivTitle>
       <div className="Content">
         <div className="texte">

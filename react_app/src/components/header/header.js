@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import colors from "../variables";
 import Btn from "../button";
-import { useState, useEffect } from "react";
+
+
 
 const Head = styled.header`
   padding: 1.5rem 0;
@@ -10,7 +11,33 @@ const Head = styled.header`
   flex-wrap: wrap;
   width: 100%;
   background-color: ${colors.background_black};
-  color: ${colors.txt_white};
+
+  &.appear {
+    display: block;
+  }
+
+  & #close {
+      display: none;
+    }
+
+  @media all and (min-width: 1645px) {
+    font-size: 0.9rem;
+    & #open {
+      display: none;
+    }
+  }
+  @media all and (min-width: 1024px) and (max-width: 1644px) {
+    font-size: 0.8rem;
+    & #open {
+      display: none;
+    }
+  }
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+  }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+  }
+  @media all and (max-width: 479px) {
+  }
 `;
 
 const DivUne = styled.div`
@@ -19,6 +46,27 @@ const DivUne = styled.div`
   margin-left: 2rem;
   .myBtn:not(:last-child) {
     margin: 0 2rem 0 0;
+  }
+  @media all and (min-width: 1645px) {
+
+  }
+  @media all and (min-width: 1024px) and (max-width: 1644px) {
+    margin: 0;
+
+   & .myBtn:not(:last-child) {
+    margin: 0 0.1rem 0 0;
+    padding: 0.1rem 0.4rem;
+
+  }
+  }
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    display: none;
+  }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    display: none;
+  }
+  @media all and (max-width: 479px) {
+    display: none;
   }
 `;
 
@@ -30,18 +78,56 @@ const DivDeux = styled.div`
   .myBtn:not(:first-child) {
     margin: 0 0 0 2rem;
   }
+  @media all and (min-width: 1645px) {
+
+  }
+  @media all and (min-width: 1024px) and (max-width: 1644px) {
+    margin: 0;
+
+    .myBtn:not(:first-child) {
+    margin: 0 0 0 0.1rem;
+    padding: 0.1rem 0.3rem;
+  }
+  }
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    display: none;
+  }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    display: none;
+  }
+  @media all and (max-width: 479px) {
+    display: none;
+  }
+`;
+
+const Burger = styled.div`
+margin: 0 2rem;
+cursor: pointer;
+color: ${colors.txt_white};
+`;
+
+const Close = styled.div`
+margin: 0 2rem;
+cursor: pointer;
+color: ${colors.txt_white};
 `;
 
 function Header() {
   let url = document.location.href;
   let urldeux = url.replace(/\/$/, "");
   let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
+  const close = document.getElementById("close");
+
 
   let admin = false;
   const user = window.localStorage.getItem("user");
 
   if (user) {
     admin = JSON.parse(window.localStorage.getItem("user")).admin;
+  }
+
+  function burger() {
+    close.classList.add("appear");
   }
 
   function deconnexion() {
@@ -51,6 +137,8 @@ function Header() {
 
   return (
     <Head>
+      <Burger onClick={burger} id="open"> ||| </Burger>
+      <Close id="close"> X </Close>
       <DivUne>
         <Btn
           link={"/"}

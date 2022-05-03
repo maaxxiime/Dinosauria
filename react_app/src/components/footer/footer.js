@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import colors from "../variables";
 import Btn from "../button";
-import pinterest from "../../assets/img/pinterest.png"
-import facebook from "../../assets/img/facebook(1).png"
-import intagram from "../../assets/img/instagram(1).png"
-import snapchat from "../../assets/img/snapchat.png"
-
+import pinterest from "../../assets/img/pinterest.png";
+import facebook from "../../assets/img/facebook(1).png";
+import intagram from "../../assets/img/instagram(1).png";
+import snapchat from "../../assets/img/snapchat.png";
 
 const Foote = styled.footer`
   display: flex;
@@ -15,6 +14,19 @@ const Foote = styled.footer`
 
   & h3 {
     margin: 1.5rem 0;
+  }
+
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media all and (max-width: 479px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
   }
 `;
 
@@ -32,13 +44,36 @@ const Contacts = styled.div`
   & p:nth-child(4) {
     margin: 0 0 1.5rem 0;
   }
+
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    width: 100%;
+    align-items: center;
+    margin: 0;
+  }
+
+  @media all and (max-width: 479px) {
+    width: 100%;
+    align-items: center;
+    margin: 0;
+  }
 `;
+
+
 const Horraires = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 16%;
   margin: 0 2rem;
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    width: 100%;
+    margin: 0;
+  }
+
+  @media all and (max-width: 479px) {
+    width: 100%;
+    margin: 0;
+  }
 `;
 const Liens = styled.div`
   display: flex;
@@ -54,6 +89,15 @@ const Liens = styled.div`
   & .myBtn {
     margin: 0.3rem 0;
   }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    width: 100%;
+    margin: 0;
+  }
+
+  @media all and (max-width: 479px) {
+    width: 100%;
+    margin: 0;
+  }
 `;
 const Reseaux = styled.div`
   display: flex;
@@ -66,6 +110,40 @@ const Reseaux = styled.div`
     width: 2rem;
     margin: 0 2rem;
     cursor: pointer;
+  }
+
+  @media all and (min-width: 1024px) and (max-width: 1095px) {
+   & div {
+     display: flex;
+     flex-wrap: nowrap;
+    }
+  }
+
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+   & div {
+     display: flex;
+     flex-wrap: nowrap;
+   }
+   & img {
+     margin: 0 0.4rem;
+   }
+
+  }
+
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    width: 100%;
+    margin: 0;
+    & img {
+    margin: 1rem 1rem;
+    }
+  }
+
+  @media all and (max-width: 479px) {
+    width: 100%;
+    margin: 0;
+    & img {
+    margin: 1rem 1rem;
+    }
   }
 `;
 
@@ -89,34 +167,34 @@ function Footer() {
       <Liens>
         <h3> Liens </h3>
         <Btn
-        link={"/données"}
-        disabled={false}
-        bg={null}
-        textcolor={colors.txt_white}
-        bd="none"
-        bdhover="none"
-        bghover={null}
-        text="Information sur les données"
+          link={"/données"}
+          disabled={false}
+          bg={null}
+          textcolor={colors.txt_white}
+          bd="none"
+          bdhover="none"
+          bghover={null}
+          text="Information sur les données"
         />
         <Btn
-        link={"/cookies"}
-        disabled={false}
-        bg={null}
-        textcolor={colors.txt_white}
-        bd="none"
-        bdhover="none"
-        bghover={null}
-        text="Politique des cookies"
+          link={"/cookies"}
+          disabled={false}
+          bg={null}
+          textcolor={colors.txt_white}
+          bd="none"
+          bdhover="none"
+          bghover={null}
+          text="Politique des cookies"
         />
         <Btn
-        link={"/cgv"}
-        disabled={false}
-        bg={null}
-        textcolor={colors.txt_white}
-        bd="none"
-        bdhover="none"
-        bghover={null}
-        text="CGV & CGU"
+          link={"/cgv"}
+          disabled={false}
+          bg={null}
+          textcolor={colors.txt_white}
+          bd="none"
+          bdhover="none"
+          bghover={null}
+          text="CGV & CGU"
         />
         <p className="opacity"> Dinosauria © 2022 </p>
       </Liens>
@@ -124,10 +202,10 @@ function Footer() {
       <Reseaux>
         <h3> Suivez nous sur nos réseaux sociaux </h3>
         <div>
-        <img src={pinterest} alt="logo-pinterest"></img>
-        <img src={facebook} alt="logo-facebook"></img>
-        <img src={intagram} alt="logo-instagram"></img>
-        <img src={snapchat} alt="logo-snapchat"></img>
+          <img src={pinterest} alt="logo-pinterest"></img>
+          <img src={facebook} alt="logo-facebook"></img>
+          <img src={intagram} alt="logo-instagram"></img>
+          <img src={snapchat} alt="logo-snapchat"></img>
         </div>
       </Reseaux>
     </Foote>
