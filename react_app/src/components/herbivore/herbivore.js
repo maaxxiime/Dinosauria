@@ -1,6 +1,7 @@
 import LoadImage from "../img-loader/loader";
 import styled from "styled-components";
 import colors from "../variables";
+import IsVisible from "react-is-visible";
 
 //images large
 import largeImgHerbivore1 from "../../assets/img/largeherbivore1.jpeg";
@@ -20,6 +21,25 @@ const Section = styled.section`
   width: 100%;
 
   & .Content {
+    @keyframes appear {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    &.visible {
+      & p {
+        animation: appear 3000ms ease-in-out;
+      }
+
+      & h2 {
+        animation: appear 2000ms ease-in-out;
+      }
+    }
+
     display: flex;
     align-items: center;
     width: 100%;
@@ -83,78 +103,95 @@ function Herbivore() {
         <h1> La salle des Herbivores </h1>
         <p> Découvrez parmi les plus beau squelettes jamais découvert </p>
       </DivTitle>
-      <div className="Content">
-        <div className="texte">
-          <h2> Le Tricératops : </h2>
-          <p>
-            Découvert en 1884 par Endy Ford dans les dunes du Sahara, elle se
-            fit par hasard lors de la construction d'un bâtiment. Le temps de
-            fouille et l'archéologie dura huits ans, d'autres os de differentes
-            espèces fut découverte en même temps !
-          </p>
-        </div>
-        <div className="div-img">
-          <LoadImage
-            smallImgSrc={smallImgHerbivore1}
-            largeImgSrc={largeImgHerbivore1}
-          />
-        </div>
-      </div>
 
-      <div className="Content">
-        <div className="texte">
-          <h2> Le Stégosaure : </h2>
-          <p>
-            Stégosaure, le saurien cuirassé, est un dinosaure qui vécut lors du
-            Jurassique, l'âge d'or des dinosaures. Il existait plusieurs
-            espèces, regroupées sous le genre Stegosaurus, pour désigner ces
-            formidables herbivores qui se déplaçaient lentement sur leurs quatre
-            pattes puissantes.
-          </p>
-        </div>
-        <div className="div-img">
-          <LoadImage
-            smallImgSrc={smallImgHerbivore2}
-            largeImgSrc={largeImgHerbivore2}
-          />
-        </div>
-      </div>
+      <IsVisible once offset="10px">
+        {(isVisible) => (
+          <div className={isVisible ? "Content visible" : "Content"}>
+            <div className="texte">
+              <h2> Le Tricératops : </h2>
+              <p>
+                Découvert en 1884 par Endy Ford dans les dunes du Sahara, elle
+                se fit par hasard lors de la construction d'un bâtiment. Le
+                temps de fouille et l'archéologie dura huits ans, d'autres os de
+                differentes espèces fut découverte en même temps !
+              </p>
+            </div>
+            <div className="div-img">
+              <LoadImage
+                smallImgSrc={smallImgHerbivore1}
+                largeImgSrc={largeImgHerbivore1}
+              />
+            </div>
+          </div>
+        )}
+      </IsVisible>
 
-      <div className="Content">
-        <div className="texte">
-          <h2> Le Brontosaurus : </h2>
-          <p>
-            Brontosaurus brontosaure en français est un genre de dinosaures
-            herbivores sauropodes géants de la famille des diplodocidés,
-            découvert en 1879 par Charles Marsh. Il a longtemps été confondu
-            avec l'apatosaure auquel il ressemble.
-          </p>
-        </div>
-        <div className="div-img">
-          <LoadImage
-            smallImgSrc={smallImgHerbivore3}
-            largeImgSrc={largeImgHerbivore3}
-          />
-        </div>
-      </div>
+      <IsVisible once offset="10px">
+        {(isVisible) => (
+          <div className={isVisible ? "Content visible" : "Content"}>
+            <div className="texte">
+              <h2> Le Stégosaure : </h2>
+              <p>
+                Stégosaure, le saurien cuirassé, est un dinosaure qui vécut lors
+                du Jurassique, l'âge d'or des dinosaures. Il existait plusieurs
+                espèces, regroupées sous le genre Stegosaurus, pour désigner ces
+                formidables herbivores qui se déplaçaient lentement sur leurs
+                quatre pattes puissantes.
+              </p>
+            </div>
+            <div className="div-img">
+              <LoadImage
+                smallImgSrc={smallImgHerbivore2}
+                largeImgSrc={largeImgHerbivore2}
+              />
+            </div>
+          </div>
+        )}
+      </IsVisible>
 
-      <div className="Content">
-        <div className="texte">
-          <h2> Le Sauropodes : </h2>
-          <p>
-            Groupe de dinosaures caractérisés par une grande taille, un cou et
-            une queue allongés, une posture quadrupède et un régime herbivore.
-            Ce sont les plus grands de tous les dinosaures et les plus gros
-            animaux terrestres qui aient jamais existé.
-          </p>
-        </div>
-        <div className="div-img">
-          <LoadImage
-            smallImgSrc={smallImgHerbivore4}
-            largeImgSrc={largeImgHerbivore4}
-          />
-        </div>
-      </div>
+      <IsVisible once offset="10px">
+        {(isVisible) => (
+          <div className={isVisible ? "Content visible" : "Content"}>
+            <div className="texte">
+              <h2> Le Brontosaurus : </h2>
+              <p>
+                Brontosaurus brontosaure en français est un genre de dinosaures
+                herbivores sauropodes géants de la famille des diplodocidés,
+                découvert en 1879 par Charles Marsh. Il a longtemps été confondu
+                avec l'apatosaure auquel il ressemble.
+              </p>
+            </div>
+            <div className="div-img">
+              <LoadImage
+                smallImgSrc={smallImgHerbivore3}
+                largeImgSrc={largeImgHerbivore3}
+              />
+            </div>
+          </div>
+        )}
+      </IsVisible>
+
+      <IsVisible once offset="10px">
+        {(isVisible) => (
+          <div className={isVisible ? "Content visible" : "Content"}>
+            <div className="texte">
+              <h2> Le Sauropodes : </h2>
+              <p>
+                Groupe de dinosaures caractérisés par une grande taille, un cou
+                et une queue allongés, une posture quadrupède et un régime
+                herbivore. Ce sont les plus grands de tous les dinosaures et les
+                plus gros animaux terrestres qui aient jamais existé.
+              </p>
+            </div>
+            <div className="div-img">
+              <LoadImage
+                smallImgSrc={smallImgHerbivore4}
+                largeImgSrc={largeImgHerbivore4}
+              />
+            </div>
+          </div>
+        )}
+      </IsVisible>
     </Section>
   );
 }
