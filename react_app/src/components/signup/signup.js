@@ -11,7 +11,7 @@ const MainSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 auto;
+  text-align: center;
   &.success {
     background-color: ${transparentize(0.85, "green")};
   }
@@ -28,7 +28,7 @@ const MainSection = styled.section`
 const Maintitle = styled.h1`
   color: ${colors.background_black};
   margin: 1.5rem auto;
-  width: 100%;
+  width: 90%;
   max-width: 500px;
   position: relative;
   &::after {
@@ -36,37 +36,37 @@ const Maintitle = styled.h1`
     position: absolute;
     bottom: -0.4rem;
     left: 0.2rem;
-    width: 30rem;
+    width: 90%;
+    max-width: 30rem;
     height: 2px;
     background-color: ${colors.background_black};
   }
 `;
 
 const Form = styled.form`
-  margin: 1.5rem auto;
-  width: 100%;
-  max-width: 500px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 1.5rem 0;
+  width: 100%;
 
   & .myBtn {
+    text-align: center;
     margin: 1rem 0 0 0;
   }
 
   & label {
     color: ${colors.background_black};
-    margin: 1rem 0 0 1rem;
+    margin: 1rem 0 0 0;
     font-weight: bold;
   }
 
   & input {
-    display: flex;
-    flex-direction: column;
     margin: 0.5rem 0 1rem 0;
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 0;
     font-size: 1rem;
     height: 1.4rem;
-    width: calc(100% - 2rem);
+    width: 90%;
     max-width: 400px;
     border: 2px solid ${colors.btn_blue};
     border-radius: 20px;
@@ -82,7 +82,8 @@ const Form = styled.form`
   & div {
     display: flex;
     justify-content: center;
-    width: 25rem;
+    width: 90%;
+    max-width: 25rem;
   }
 `;
 

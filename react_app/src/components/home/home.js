@@ -44,6 +44,21 @@ const BoxSlider = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    left: 0;
+    width: 100%;
+    height: 260px;
+  }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    left: 0;
+    width: 100%;
+    height: 260px;
+  }
+  @media all and (max-width: 479px) {
+    left: 0;
+    width: 100%;
+    height: 260px;
+  }
 
   h1 {
     margin: 1rem 0;
@@ -55,9 +70,12 @@ const DivContent = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 
   & p {
     font-weight: 500;
+    width: 90%;
+    max-width: 28rem;
   }
 
   & h1,
@@ -68,7 +86,8 @@ const DivContent = styled.div`
   & h1 {
     margin: 1rem 0 0 0;
     text-transform: uppercase;
-    width: 28rem;
+    width: 90%;
+    max-width: 28rem;
     text-align: center;
   }
 
@@ -78,7 +97,8 @@ const DivContent = styled.div`
 
   & p:nth-child(3) {
     margin: 0 0 1.5rem 0;
-    width: 21rem;
+    width: 90%;
+    max-width: 21rem;
     text-align: center;
   }
 
@@ -94,6 +114,10 @@ const DivContent = styled.div`
 const DivBtn = styled.div`
   display: flex;
   justify-content: center;
+  @media all and (max-width: 479px) {
+    align-items: center;
+    flex-direction: column;
+  }
 
   & .myBtn {
     margin: 1rem 0.5rem;

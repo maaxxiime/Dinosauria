@@ -10,6 +10,7 @@ const MainSection = styled.section`
   align-items: center;
 
   & h1 {
+    text-align: center;
     margin: 1rem 0 1rem 0;
   }
 

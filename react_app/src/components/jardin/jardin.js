@@ -32,16 +32,31 @@ const DivSlider = styled.div`
 
 const BoxSlider = styled.div`
   height: 100%;
-  left: 6%;
+  left: 8%;
   z-index: 1;
   position: absolute;
-  width: 25rem;
+  width: 23rem;
   color: ${colors.txt_white};
   background-color: rgb(0, 0, 0, 0.4);
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    left: 0;
+    width: 100%;
+    height: 260px;
+  }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    left: 0;
+    width: 100%;
+    height: 260px;
+  }
+  @media all and (max-width: 479px) {
+    left: 0;
+    width: 100%;
+    height: 260px;
+  }
 
   h1 {
     margin: 0.5rem 0;
@@ -56,9 +71,12 @@ const DivTitle = styled.div`
   color: ${colors.txt_black};
   & h1 {
     margin: 1rem 0;
-    width: 28rem;
+    width: 90%;
+    max-width: 28rem;
   }
   & p {
+    width: 90%;
+    max-width: 28rem;
     font-size: 1rem;
     margin: 0 0 1rem 0;
   }
@@ -69,18 +87,16 @@ function Jardin() {
     <Section>
       <DivTitle>
         <h1> Prenez le temps de dècouvrir notre jardin d'époque </h1>
-        <p> Visitez parmi la plus belle reconstitution jamais réalisé à ce jours </p>
+        <p>
+          Visitez parmi la plus belle reconstitution jamais réalisé à ce jours
+        </p>
       </DivTitle>
       <DivSlider>
         <BoxSlider>
-           <h1> Visitez le jardin, </h1>
-           <h1> composé de plus </h1>
-           <h1> de 40 figurines </h1>
-           <h1> grandeur nature, </h1>
-           <h1> sur une 
-           superficie </h1>
-           <h1> total de plus </h1>
-           <h1> de 5000m² </h1>
+          <h1>
+            Visitez le jardin, composé de plus de 40 figurines grandeur nature,
+            sur une superficie total de plus de 5000m²
+          </h1>
         </BoxSlider>
         <SimpleImageSlider
           width={"100%"}

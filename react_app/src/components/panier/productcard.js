@@ -23,7 +23,7 @@ const Mydiv = styled.div`
   align-items: center;
   text-align: center;
   position: relative;
-  margin: 1rem 2rem;
+  margin: 1rem 0.5rem;
   & img {
     width: 5rem;
     margin: 0 0 1rem 0;

@@ -12,7 +12,7 @@ const MainSection = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 0;
   &.success {
     background-color: ${transparentize(0.85, "green")};
   }
@@ -33,9 +33,11 @@ const MainSection = styled.section`
 `;
 
 const Maintitle = styled.h1`
+  display: flex;
+  flex-direction: column;
   color: ${colors.background_black};
   margin: 1.5rem auto;
-  width: 100%;
+  width: 90%;
   max-width: 500px;
   position: relative;
   &::after {
@@ -43,7 +45,8 @@ const Maintitle = styled.h1`
     position: absolute;
     bottom: -0.4rem;
     left: 0.2rem;
-    width: 30rem;
+    width: 90%;
+    max-width: 30rem;
     height: 2px;
     background-color: ${colors.background_black};
   }
@@ -55,6 +58,8 @@ const Form = styled.form`
   max-width: 500px;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  align-items: center;
 
   & .myBtn {
     margin: 1rem 0 0 0;
@@ -62,7 +67,7 @@ const Form = styled.form`
 
   & label {
     color: ${colors.background_black};
-    margin: 1rem 0 0 1rem;
+    margin: 1rem 0 0 0;
     font-weight: bold;
   }
 
@@ -70,10 +75,10 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     margin: 0.5rem 0 1rem 0;
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 0;
     font-size: 1rem;
     height: 1.4rem;
-    width: calc(100% - 2rem);
+    width: 90%;
     max-width: 400px;
     border: 2px solid ${colors.btn_blue};
     border-radius: 20px;
@@ -84,6 +89,13 @@ const Form = styled.form`
       color: ${colors.txt_white};
       font-size: 0.8rem;
     }
+  }
+
+  & div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -166,8 +178,10 @@ function Login() {
     </MainSection>
   ) : (
     <MainSection id="main">
-      <Maintitle> Pensez à créer un compte si cela n'est pas deja fait ! </Maintitle>
-      <p> Connectez vous pour profiter du site à 100% </p>
+      <Maintitle>
+        Pensez à créer un compte si cela n'est pas deja fait !
+        <p> Connectez vous pour profiter du site à 100% </p>
+      </Maintitle>
 
       <Form>
         <label for="email">Email :</label>
@@ -190,31 +204,29 @@ function Login() {
           onChange={(e) => checkValues(e)}
         />
 
-      <div>
-        <Btn
-          onclick={(e) => send(e)}
-          disabled={!Filled}
-          bgGradient={colors.btn_gradient}
-          textcolor={colors.txt_white}
-          bd={null}
-          bdhover={colors.btn_blue}
-          bghover={null}
-          text="Se connecter"
-        />
+        <div>
+          <Btn
+            onclick={(e) => send(e)}
+            disabled={!Filled}
+            bgGradient={colors.btn_gradient}
+            textcolor={colors.txt_white}
+            bd={null}
+            bdhover={colors.btn_blue}
+            bghover={null}
+            text="Se connecter"
+          />
 
-      <Btn
-          link="/signup"
-          disabled={false}
-          bgGradient={colors.btn_gradient}
-          textcolor={colors.txt_white}
-          bd={null}
-          bdhover={colors.btn_blue}
-          bghover={null}
-          text="Créer un compte"
-        />
-
-      </div>
-
+          <Btn
+            link="/signup"
+            disabled={false}
+            bgGradient={colors.btn_gradient}
+            textcolor={colors.txt_white}
+            bd={null}
+            bdhover={colors.btn_blue}
+            bghover={null}
+            text="Créer un compte"
+          />
+        </div>
       </Form>
     </MainSection>
   );

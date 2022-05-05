@@ -22,6 +22,12 @@ const Section = styled.section`
     height: auto;
     background-color: ${colors.background_black};
     color: ${colors.txt_white};
+    @media all and (min-width: 480px) and (max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+    @media all and (max-width: 479px) {
+      flex-direction: column-reverse;
+    }
 
     & .texte {
       display: flex;
@@ -36,6 +42,33 @@ const Section = styled.section`
 
       & p {
         margin: 0.3rem;
+      }
+      @media all and (min-width: 768px) and (max-width: 1023px) {
+        margin: 0 5% 0 30%;
+      }
+      @media all and (min-width: 480px) and (max-width: 767px) {
+        width: 100%;
+        margin: 0;
+        align-items: center;
+        & p {
+          width: 90%;
+          margin: 0 0 1rem 0;
+        }
+        & h2 {
+          width: 90%;
+        }
+      }
+      @media all and (max-width: 479px) {
+        width: 100%;
+        margin: 0;
+        align-items: center;
+        & p {
+          width: 90%;
+          margin: 0 0 1rem 0;
+        }
+        & h2 {
+          width: 90%;
+        }
       }
     }
   }
@@ -52,6 +85,41 @@ const Section = styled.section`
       flex-direction: column;
       width: 20%;
       margin: 0 40% 0 10%;
+      @media all and (min-width: 768px) and (max-width: 1023px) {
+        margin: 0 30% 0 5%;
+      }
+      @media all and (min-width: 480px) and (max-width: 767px) {
+        width: 100%;
+        margin: 0;
+        align-items: center;
+
+        & p {
+          width: 90%;
+          margin: 0 0 1rem 0;
+        }
+        & h2 {
+          width: 90%;
+        }
+      }
+      @media all and (max-width: 479px) {
+        width: 100%;
+        margin: 0;
+        align-items: center;
+
+        & p {
+          width: 90%;
+          margin: 0 0 1rem 0;
+        }
+        & h2 {
+          width: 90%;
+        }
+      }
+    }
+    @media all and (min-width: 480px) and (max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+    @media all and (max-width: 479px) {
+      flex-direction: column-reverse;
     }
   }
 
@@ -59,6 +127,12 @@ const Section = styled.section`
     width: 500px;
     height: 350px;
     margin: 1rem 0;
+    @media all and (min-width: 480px) and (max-width: 767px) {
+      width: 25rem;
+    }
+    @media all and (max-width: 479px) {
+      width: 20rem;
+    }
   }
 `;
 
@@ -100,9 +174,20 @@ function Film() {
       <div className="Content">
         <div className="texte">
           <h2> Caractéristique des salles : </h2>
-          <p> Doter de deux salles de 200m², d'un sons dernier cri DOLBY ATMOS et équipées de projecteurs numériques BARCO. </p>
-          <p> Nos salles de cinéma sont accessible aux personnes à mobilitée réduite. </p>
-          <p> Toutes nos salles sont climatisées et équipées de fauteuils KESLO. </p>
+          <p>
+            {" "}
+            Doter de deux salles de 200m², d'un sons dernier cri DOLBY ATMOS et
+            équipées de projecteurs numériques BARCO.{" "}
+          </p>
+          <p>
+            {" "}
+            Nos salles de cinéma sont accessible aux personnes à mobilitée
+            réduite.{" "}
+          </p>
+          <p>
+            {" "}
+            Toutes nos salles sont climatisées et équipées de fauteuils KESLO.{" "}
+          </p>
           <p> Un grand parking gratuit à votre disposition. </p>
         </div>
         <div className="div-img">

@@ -31,10 +31,36 @@ const DivModifie = styled.div`
   }
 
   & .myBtn {
-    margin: 0 1rem;
+    margin: 1rem 1rem;
+  }
+  & form {
+    @media all and (min-width: 480px) and (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      align-items: center;
+    }
+    @media all and (max-width: 479px) {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      align-items: center;
+    }
+  }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+  }
+  @media all and (max-width: 479px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 const DivCommentaires = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+
+  width: 100%;
   & h2 {
     margin: 1rem 0;
   }

@@ -13,13 +13,20 @@ const Section = styled.section`
   flex-direction: column;
   width: 100%;
   position: relative;
-  /* background-color: ${colors.background_black}; */
 
   & .div-img {
     width: 100%;
 
     & img {
       border-radius: 0;
+      height: 100%;
+      min-height: 700px;
+      @media all and (min-width: 480px) and (max-width: 767px) {
+        object-position: -500px 0 ;
+      }
+      @media all and (max-width: 479px) {
+        object-position: -550px 0 ;
+      }
     }
   }
 `;
@@ -37,12 +44,14 @@ const DivTitle = styled.div`
 
   & h1 {
     margin: 0 0 1rem 0;
-    width: 30rem;
+    width: 90%;
+    max-width: 30rem;
   }
 
   & p {
     font-size: 1rem;
-    width: 30rem;
+    width: 90%;
+    max-width: 30rem;
   }
 `;
 

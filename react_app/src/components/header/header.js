@@ -217,6 +217,9 @@ function Header() {
   let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
   const [MenuOpen, setMenuOpen] = useState(false);
   const user = JSON.parse(window.localStorage.getItem("user"));
+  // var admin = JSON.parse(window.localStorage.getItem("user")).admin;
+  // admin = false;
+
 
   function deconnexion() {
     localStorage.clear();
@@ -309,7 +312,7 @@ function Header() {
             text="Boutique"
           />
 
-          {!user.admin === true ? null : (
+          {/* {!admin === true ? null : ( */}
             <Btn
               link={"/backoffice"}
               disabled={false}
@@ -320,7 +323,7 @@ function Header() {
               bghover={colors.btn_blue}
               text="Back-Office"
             />
-          )}
+          {/* )} */}
         </DivUne>
 
         <DivDeux>
@@ -476,7 +479,7 @@ function Header() {
             text="Boutique"
           />
 
-          {!user.admin === true ? null : (
+          {/* {!admin === true ? null : ( */}
             <Btn
               link={"/backoffice"}
               disabled={false}
@@ -487,7 +490,7 @@ function Header() {
               bghover={colors.btn_blue}
               text="Back-Office"
             />
-          )}
+          {/* )} */}
 
           {TrueUrl === "login" ? null : TrueUrl === "signup" ? null : (
             <Btn

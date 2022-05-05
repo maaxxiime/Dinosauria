@@ -9,10 +9,13 @@ import { apiurl } from "../variables";
 // } from "@fortawesome/free-solid-svg-icons";
 
 const Mydiv = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
   & .DivText {
     border: 2px solid ${colors.background_black};
     border-radius: 1.5rem;
-    width: 40rem;
+    width: 90%;
     height: auto;
     margin: 1rem 0;
     text-align: center;
