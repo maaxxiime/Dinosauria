@@ -51,10 +51,10 @@ function PostCommentaire() {
   }
 
   function send(e) {
+
     let commentaire = document.getElementById("commentaire");
-
-
-    const data = {
+    
+    var data = {
       texte: commentaire.value,
     };
 

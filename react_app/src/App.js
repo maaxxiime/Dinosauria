@@ -62,7 +62,7 @@ function App() {
         <Route path="/panier" element={<Panier />} />
         <Route path="/cgv" element={<Cgv />} />
         <Route path="/cookies" element={<Cookies />} />
-        <Route path="/données" element={<Données />} />
+        <Route path="/donnees" element={<Données />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

@@ -12,9 +12,3 @@ const colors = {
 };
 
 export default colors;
-
-// @media all and (min-width: 1600px) {}
-// @media all and (min-width: 1024px) and (max-width: 1599px) {}
-// @media all and (min-width: 768px) and (max-width: 1023px) {}
-// @media all and (min-width: 480px) and (max-width: 767px) {}
-// @media all and (max-width: 479px) {}

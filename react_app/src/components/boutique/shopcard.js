@@ -156,7 +156,6 @@ function Card(props) {
         console.log("défaut");
     }
     console.log(panier);
-    // window.location.reload()
   }
 
   return (

@@ -167,7 +167,7 @@ function Footer() {
       <Liens>
         <h3> Liens </h3>
         <Btn
-          link={"/données"}
+          link={"/donnees"}
           disabled={false}
           bg={null}
           textcolor={colors.txt_white}
