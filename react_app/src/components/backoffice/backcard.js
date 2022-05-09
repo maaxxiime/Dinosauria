@@ -46,12 +46,10 @@ const Mydiv = styled.div`
   }
 
   & .btn {
-    display: flex;
-    flex-direction: column-reverse;
     align-items: center;
 
     & .myBtn {
-      margin: 0.2rem 0;
+      margin: 0.2rem 0.1rem;
     }
   }
 
@@ -60,6 +58,7 @@ const Mydiv = styled.div`
   }
 
   & .modifieInput input {
+    text-align: center;
     margin: 1rem 0;
   }
 `;
@@ -96,11 +95,13 @@ function BackOfficeCard(props) {
     let titre = document.getElementById("titre");
     let description = document.getElementById("description");
     let prix = document.getElementById("prix");
+    let image = document.getElementById("boutiqueImage");
 
     const bodyFormData = new FormData();
     titre.value && bodyFormData.append("titre", titre.value);
     description.value && bodyFormData.append("description", description.value);
     prix.value && bodyFormData.append("prix", prix.value);
+    image.files[0] && bodyFormData.append("boutiqueImage", image.files[0]);
     // && (si value est rempli => effectue le code)
 
     axios
@@ -169,6 +170,12 @@ function BackOfficeCard(props) {
           id="prix"
           placeholder="prix"
           defaultValue={props.prix}
+        ></input>
+        <input
+          type="file"
+          accept="image/jpg, image/jpeg, image/png"
+          name="boutiqueImage"
+          id="boutiqueImage"
         ></input>
       </div>
     </Mydiv>

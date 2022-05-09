@@ -71,11 +71,13 @@ function BackOffice() {
     let titre = document.getElementById("Titre");
     let description = document.getElementById("Description");
     let prix = document.getElementById("Prix");
+    let image = document.getElementById("boutiqueImage");
 
     const bodyFormData = new FormData();
     titre.value && bodyFormData.append("titre", titre.value);
     description.value && bodyFormData.append("description", description.value);
     prix.value && bodyFormData.append("prix", prix.value);
+    image.files[0] && bodyFormData.append("boutiqueImage", image.files[0]);
     // && (si value est rempli => effectue le code)
 
     const config = {
@@ -130,6 +132,14 @@ function BackOffice() {
 
           <label for="prix"> prix </label>
           <input type="texte" id="Prix" placeholder="prix" name="prix"></input>
+
+          <label for="boutiqueImage"> Choisir une image </label>
+          <input
+            type="file"
+            accept="image/jpg, image/jpeg, image/png"
+            name="boutiqueImage"
+            id="boutiqueImage"
+          ></input>
 
           <Btn
             onclick={() => créer()}
