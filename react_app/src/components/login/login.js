@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { transparentize, darken } from "polished";
+import {transparentize} from "polished";
 import colors from "../variables";
 import { useState, useEffect } from "react";
 import Btn from "../button";
@@ -74,20 +74,24 @@ const Form = styled.form`
   & input {
     display: flex;
     flex-direction: column;
+    text-align: center;
     margin: 0.5rem 0 1rem 0;
     padding: 0.2rem 0;
     font-size: 1rem;
     height: 1.4rem;
     width: 90%;
     max-width: 400px;
-    border: 2px solid ${colors.btn_blue};
-    border-radius: 20px;
-    background-color: ${colors.background_black};
-    color: ${colors.txt_white};
+    border: none;
+    border-bottom: 2px solid ${colors.btn_blue};
+    background-color: ${colors.background_white};
+    color: ${colors.txt_black};
     font-size: 0.8rem;
     ::placeholder {
-      color: ${colors.txt_white};
+      color: ${colors.txt_black};
       font-size: 0.8rem;
+    }
+    :focus {
+      outline: none;
     }
   }
 
