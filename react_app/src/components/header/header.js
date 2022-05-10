@@ -49,10 +49,10 @@ const DivUne = styled.div`
   @media all and (min-width: 1645px) {
   }
   @media all and (min-width: 1024px) and (max-width: 1644px) {
-    margin: 0;
+    margin: 0 0 0 1rem;
 
     & .myBtn:not(:last-child) {
-      margin: 0 0.1rem 0 0;
+      margin: 0 0.3rem 0 0;
       padding: 0.1rem 0.4rem;
     }
   }
@@ -78,10 +78,10 @@ const DivDeux = styled.div`
   @media all and (min-width: 1645px) {
   }
   @media all and (min-width: 1024px) and (max-width: 1644px) {
-    margin: 0;
+    margin: 0 1rem 0 0;
 
     .myBtn:not(:first-child) {
-      margin: 0 0 0 0.1rem;
+      margin: 0 0 0 0.3rem;
       padding: 0.1rem 0.3rem;
     }
   }
