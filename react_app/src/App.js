@@ -21,7 +21,8 @@ import Cgv from "./components/cgv/cgv.js";
 import Cookies from "./components/cookies/cookies.js";
 import Données from "./components/données/données.js";
 import Footer from "./components/footer/footer.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
 
 function App() {
   function initializePanier() {

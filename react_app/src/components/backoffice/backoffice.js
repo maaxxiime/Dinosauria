@@ -6,6 +6,7 @@ import BackOfficeCard from "./backcard";
 import colors from "../variables.js";
 import Btn from "../button";
 
+
 const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -96,6 +97,13 @@ function BackOffice() {
       .catch((res) => {
         console.log(res);
       });
+    
+      // var newvalue = {
+      //  newtitre: 0,
+      //  new2: 0,
+      // };
+      // localStorage.setItem("panier", JSON.stringify(newvalue));
+
   }
 
   useEffect(() => {
@@ -131,7 +139,7 @@ function BackOffice() {
           ></input>
 
           <label for="prix"> prix </label>
-          <input type="texte" id="Prix" placeholder="prix" name="prix"></input>
+          <input type="number" id="Prix" placeholder="prix" name="prix"></input>
 
           <label for="boutiqueImage"> Choisir une image </label>
           <input

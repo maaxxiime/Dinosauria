@@ -3,6 +3,7 @@ import colors from "../variables";
 import Btn from "../button";
 import { useEffect, useState } from "react";
 
+
 const Head = styled.header`
   padding: 1.5rem 0;
   display: flex;
@@ -71,6 +72,7 @@ const DivDeux = styled.div`
   flex-wrap: wrap;
   margin-right: 2rem;
   display: flex;
+  position: relative;
 
   .myBtn:not(:first-child) {
     margin: 0 0 0 2rem;
@@ -217,14 +219,23 @@ function Header() {
   let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
   const [MenuOpen, setMenuOpen] = useState(false);
   const user = JSON.parse(window.localStorage.getItem("user"));
-  
+
+
+
+
+  var [QteTicket, setQteTicket] = useState(0);
+  const panier = JSON.parse(window.localStorage.getItem("panier"));
+  setQteTicket = QteTicket += panier.musée + panier.jardin + panier.campement + panier.cinéma;
+
+
+
   if (user) {
     var Admin = JSON.parse(window.localStorage.getItem("user")).admin;
   }
   
 
   function deconnexion() {
-    localStorage.clear();
+    localStorage.removeItem("user");
     window.location.assign("/");
   }
 
@@ -340,7 +351,7 @@ function Header() {
               bd="none"
               bdhover="none"
               bghover={colors.btn_blue}
-              text="Panier"
+              text={"Panier" + " " + QteTicket}
             />
           )}
 
@@ -481,7 +492,7 @@ function Header() {
             text="Boutique"
           />
 
-          {/* {!admin === true ? null : ( */}
+          {!Admin === true ? null : (
             <Btn
               link={"/backoffice"}
               disabled={false}
@@ -492,7 +503,7 @@ function Header() {
               bghover={colors.btn_blue}
               text="Back-Office"
             />
-          {/* )} */}
+           )}
 
           {TrueUrl === "login" ? null : TrueUrl === "signup" ? null : (
             <Btn
@@ -505,7 +516,7 @@ function Header() {
               bd="none"
               bdhover="none"
               bghover={colors.btn_blue}
-              text="Panier"
+              text={"Panier" + " " + QteTicket}
             />
           )}
 

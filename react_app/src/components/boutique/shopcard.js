@@ -7,6 +7,7 @@ import musée from "../../assets/img/billet.png";
 import cinéma from "../../assets/img/billet-de-cinema.png";
 import campement from "../../assets/img/feu-de-camp.png";
 import jardin from "../../assets/img/feuille-de-monstera.png";
+import Header from "../header/header";
 
 const Mydiv = styled.div`
   width: 17rem;
@@ -35,12 +36,31 @@ const Mydiv = styled.div`
   }
 
   & .price {
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.5rem 0;
   }
 
   & .absolute {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    bottom: -0.6rem;
+    bottom: -1rem;
+
+    & .add-invisible {
+      opacity: 0;
+      transition-duration: 0.3s;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: ${colors.txt_white};
+    }
+
+    & .add-visible {
+      opacity: 1;
+      transition-duration: 0.5s;
+      background-color: ${colors.add_panier};
+      color: ${colors.txt_white};
+      border-radius: 0.5rem;
+    }
   }
 `;
 
@@ -99,6 +119,7 @@ const Box = styled.div`
 
 function Card(props) {
   const [Qte, setQte] = useState(0);
+
   let qte = document.getElementById("qte-" + props.id);
 
   function addOne() {
@@ -119,10 +140,17 @@ function Card(props) {
     }
   }
 
-  console.log(Qte);
-
   function addPanier() {
     var panier = JSON.parse(localStorage.getItem("panier"));
+    var add = document.getElementById("add" + props.id);
+    add.classList.add("add-visible");
+
+    setTimeout(() => {
+      add.classList.remove("add-visible");
+      add.classList.add("add-invisible");
+    }, 1800);
+
+    
 
     switch (props.titre) {
       case "Ticket d'entrée pour le muséum":
@@ -135,27 +163,23 @@ function Card(props) {
         panier.cinéma += Qte;
         localStorage.setItem("panier", JSON.stringify(panier));
         Qte = 0;
-
         break;
 
       case "Ticket d'entrée pour le jardin":
         panier.jardin += Qte;
         localStorage.setItem("panier", JSON.stringify(panier));
         Qte = 0;
-
         break;
 
       case "Ticket d'entrée pour le campement du jurassique":
         panier.campement += Qte;
         localStorage.setItem("panier", JSON.stringify(panier));
         Qte = 0;
-
         break;
 
       default:
         console.log("défaut");
     }
-    console.log(panier);
   }
 
   return (
@@ -206,6 +230,10 @@ function Card(props) {
       <p className="price"> {props.prix} € TTC</p>
 
       <div className="absolute">
+        <p id={"add" + props.id} className="add-invisible">
+          {" "}
+          Produit ajouté !{" "}
+        </p>
         <Btn
           onclick={() => addPanier()}
           disabled={false}
