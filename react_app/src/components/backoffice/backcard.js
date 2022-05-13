@@ -93,12 +93,14 @@ function BackOfficeCard(props) {
       },
     };
     let titre = document.getElementById("titre");
+    let Mot_clé = document.getElementById("Mot_clé");
     let description = document.getElementById("description");
     let prix = document.getElementById("prix");
     let image = document.getElementById("boutiqueImage");
 
     const bodyFormData = new FormData();
     titre.value && bodyFormData.append("titre", titre.value);
+    Mot_clé.value && bodyFormData.append("mot_clé", Mot_clé.value);
     description.value && bodyFormData.append("description", description.value);
     prix.value && bodyFormData.append("prix", prix.value);
     image.files[0] && bodyFormData.append("boutiqueImage", image.files[0]);
@@ -157,6 +159,15 @@ function BackOfficeCard(props) {
           placeholder="titre"
           defaultValue={props.titre}
         ></input>
+
+        <input
+          type="text"
+          name="Mot_clé"
+          id="Mot_clé"
+          placeholder="Mot_clé"
+          defaultValue={props.mot_clé}
+        ></input>
+
         <input
           type="text"
           name="description"
@@ -164,6 +175,7 @@ function BackOfficeCard(props) {
           placeholder="description"
           defaultValue={props.description}
         ></input>
+
         <input
           type="text"
           name="prix"
@@ -171,12 +183,14 @@ function BackOfficeCard(props) {
           placeholder="prix"
           defaultValue={props.prix}
         ></input>
+
         <input
           type="file"
           accept="image/jpg, image/jpeg, image/png"
           name="boutiqueImage"
           id="boutiqueImage"
         ></input>
+
       </div>
     </Mydiv>
   ) : (
@@ -194,7 +208,9 @@ function BackOfficeCard(props) {
       />
       <img
         src={
-          props.titre === "Ticket d'entrée pour le campement du jurassique"
+          props.img
+            ? props.img
+            : props.titre === "Ticket d'entrée pour le campement du jurassique"
             ? campement
             : props.titre === "Ticket d'entrée pour le film en VR"
             ? cinéma
@@ -204,6 +220,7 @@ function BackOfficeCard(props) {
             ? musée
             : musée
         }
+        alt={props.titre}
       ></img>
       <p className="title"> {props.titre} </p>
       <p className="description"> {props.description} </p>

@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+import { apiurl } from "./components/variables";
 
 // COMPONENTS
 import Header from "./components/header/header.js";
@@ -23,12 +25,53 @@ import Données from "./components/données/données.js";
 import Footer from "./components/footer/footer.js";
 import { useEffect, useState } from "react";
 
-
 function App() {
+  const [ShopCard1, setShopCard1] = useState(null);
+  const [ShopCard2, setShopCard2] = useState(null);
   function initializePanier() {
     var panier = localStorage.getItem("panier");
 
     if (!panier) {
+      // rajouter ligne nom/mot-clé(model) des items dans la DB == leur nom dans le panier (fait)
+
+      var panier = {
+        items: {
+          // name : {
+          //   qte: 0,
+          //   prix: 10,
+          // },
+        },
+        total: 0,
+      };
+
+      // PR LE TOTAL :  for (i in items) return i.qte * i.prix
+
+      function getboutiques() {
+        axios
+          .get(apiurl + "/boutiques/")
+          .then((res) => {
+            console.log(res);
+            setShopCard1(res.data.product.slice(0, 2));
+            setShopCard2(res.data.product.slice(2));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      // getBoutiques -> items
+      // for item ->
+      // panier = {
+      //   items: {
+      //     ...panier.items,
+      //     [item.name]: {
+      //       qte: 0,
+      //       prix: item.prix,
+      //     },
+      //   },
+      // total : 0,
+      // };
+
       var panier = {
         musée: 0,
         cinéma: 0,
@@ -38,10 +81,13 @@ function App() {
       localStorage.setItem("panier", JSON.stringify(panier));
     }
   }
-
   useEffect(() => {
     initializePanier();
   }, []);
+
+  // useEffect(() => {
+  //   getboutiques();
+  // }, []);
 
   return (
     <BrowserRouter>

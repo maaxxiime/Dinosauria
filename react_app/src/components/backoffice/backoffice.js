@@ -6,7 +6,6 @@ import BackOfficeCard from "./backcard";
 import colors from "../variables.js";
 import Btn from "../button";
 
-
 const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -70,12 +69,14 @@ function BackOffice() {
     const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
 
     let titre = document.getElementById("Titre");
+    let Mot_clé = document.getElementById("Mot_clé");
     let description = document.getElementById("Description");
     let prix = document.getElementById("Prix");
     let image = document.getElementById("boutiqueImage");
 
     const bodyFormData = new FormData();
     titre.value && bodyFormData.append("titre", titre.value);
+    Mot_clé.value && bodyFormData.append("mot_clé", Mot_clé.value);
     description.value && bodyFormData.append("description", description.value);
     prix.value && bodyFormData.append("prix", prix.value);
     image.files[0] && bodyFormData.append("boutiqueImage", image.files[0]);
@@ -97,13 +98,6 @@ function BackOffice() {
       .catch((res) => {
         console.log(res);
       });
-    
-      // var newvalue = {
-      //  newtitre: 0,
-      //  new2: 0,
-      // };
-      // localStorage.setItem("panier", JSON.stringify(newvalue));
-
   }
 
   useEffect(() => {
@@ -126,20 +120,28 @@ function BackOffice() {
           <input
             type="texte"
             id="Titre"
-            placeholder="titre"
-            name="titre"
+            placeholder="Titre"
+            name="Titre"
+          ></input>
+
+          <label for="titre"> mot-clé </label>
+          <input
+            type="texte"
+            id="Mot_clé"
+            placeholder="Mot-clé"
+            name="Mot_clé"
           ></input>
 
           <label for="description"> description </label>
           <input
             type="texte"
             id="Description"
-            placeholder="description"
-            name="description"
+            placeholder="Description"
+            name="Description"
           ></input>
 
           <label for="prix"> prix </label>
-          <input type="number" id="Prix" placeholder="prix" name="prix"></input>
+          <input type="number" id="Prix" placeholder="Prix" name="Prix"></input>
 
           <label for="boutiqueImage"> Choisir une image </label>
           <input
@@ -171,8 +173,10 @@ function BackOffice() {
                   key={boutiques._id}
                   id={boutiques._id}
                   titre={boutiques.titre}
+                  mot_clé={boutiques.mot_clé}
                   description={boutiques.description}
                   prix={boutiques.prix}
+                  img={boutiques.image}
                 />
               ))}
             </div>
@@ -182,8 +186,10 @@ function BackOffice() {
                   key={boutiques._id}
                   id={boutiques._id}
                   titre={boutiques.titre}
+                  mot_clé={boutiques.mot_clé}
                   description={boutiques.description}
                   prix={boutiques.prix}
+                  img={boutiques.image}
                 />
               ))}
             </div>

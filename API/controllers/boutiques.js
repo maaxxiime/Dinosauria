@@ -11,7 +11,7 @@ exports.create_product = (req, res, next) => {
     ? new Boutique({
         ...req.body,
         creatorID: userID,
-        image: `${req.protocol}://${req.get("host")}/images/${
+        image: `${req.protocol}://${req.get("host")}/public/${
           req.file.filename
         }`,
       })
@@ -47,7 +47,7 @@ exports.update_product = (req, res, next) => {
   const newproduct = req.file
     ? {
         ...req.body,
-        image: `${req.protocol}://${req.get("host")}/images/${
+        image: `${req.protocol}://${req.get("host")}/public/${
           req.file.filename
         }`,
       }
@@ -59,8 +59,8 @@ exports.update_product = (req, res, next) => {
     .then((product) => {
       if (userID === product.creatorID) {
         if (product.image) {
-          const filename = product.image.split("/images/")[1];
-          fs.unlink(`./images/${filename}`, (err) => {
+          const filename = product.image.split("/public/")[1];
+          fs.unlink(`./public/${filename}`, (err) => {
             if (err) {
               res.status(400).json({ message: "unlink Error", error: err });
             }

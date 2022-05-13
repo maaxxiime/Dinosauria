@@ -75,16 +75,7 @@ function Card(props) {
   const [Qte, setQte] = useState(0);
 
   const getPrice = () => {
-    let p =
-      props.titre === "Ticket d'entrée pour le muséum"
-        ? Qte * 10
-        : props.titre === "Ticket d'entrée pour le film en VR"
-        ? Qte * 5
-        : props.titre === "Ticket d'entrée pour le jardin"
-        ? Qte * 5
-        : props.titre === "Ticket d'entrée pour le campement du jurassique"
-        ? Qte * 15
-        : 0;
+    let p = Qte * props.prix;
     return p;
   };
 
@@ -95,6 +86,9 @@ function Card(props) {
   };
 
   const Initialize = () => {
+
+    // setQte(panier.items.[props.name].qte)
+
     var panier1 = JSON.parse(localStorage.getItem("panier"));
     getTotal();
     if (props.titre === "Ticket d'entrée pour le muséum") {
@@ -111,6 +105,9 @@ function Card(props) {
   };
 
   function addOne() {
+
+    // panier.items.[props.name].qte += 1
+
     var panier = JSON.parse(localStorage.getItem("panier"));
     if (props.titre === "Ticket d'entrée pour le muséum") {
       setQte(Qte + 1);

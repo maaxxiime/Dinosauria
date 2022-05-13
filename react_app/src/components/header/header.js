@@ -224,8 +224,9 @@ function Header() {
 
 
   var [QteTicket, setQteTicket] = useState(0);
+  //if panier
   const panier = JSON.parse(window.localStorage.getItem("panier"));
-  setQteTicket = QteTicket += panier.musée + panier.jardin + panier.campement + panier.cinéma;
+  // setQteTicket = QteTicket += panier.musée + panier.jardin + panier.campement + panier.cinéma;
 
 
 
@@ -235,13 +236,13 @@ function Header() {
   
 
   function deconnexion() {
-    localStorage.removeItem("user");
+    localStorage.clear();
     window.location.assign("/");
   }
 
   return (
     <>
-      <Head>
+      <Head>      
         <Burger onClick={() => setMenuOpen(!MenuOpen)} id="open">
           <div className={MenuOpen ? "barre-haut open" : "barre-haut"} />
           <div className={MenuOpen ? "barre-milieu open" : "barre-milieu"} />
