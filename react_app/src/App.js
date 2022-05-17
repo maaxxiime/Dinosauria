@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { apiurl } from "./components/variables";
 
@@ -28,7 +28,6 @@ import { useEffect, useState } from "react";
 function App() {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
-
 
   function initializePanier() {
     var panier = localStorage.getItem("panier");
@@ -87,35 +86,31 @@ function App() {
     initializePanier();
   }, []);
 
-  // useEffect(() => {
-  //   getboutiques();
-  // }, []);
-
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/boutique" element={<Boutique />} />
-        <Route path="/backoffice" element={<BackOffice />} />
-        <Route path="/readcommentaire" element={<ReadCommentaire />} />
-        <Route path="/postcommentaire" element={<PostCommentaire />} />
-        <Route path="/compte" element={<MonCompte />} />
-        <Route path="/herbivore" element={<Herbivore />} />
-        <Route path="/carnivore" element={<Carnivore />} />
-        <Route path="/film" element={<Film />} />
-        <Route path="/jardin" element={<Jardin />} />
-        <Route path="/campement" element={<Campement />} />
-        <Route path="/panier" element={<Panier />} />
-        <Route path="/cgv" element={<Cgv />} />
-        <Route path="/cookies" element={<Cookies />} />
-        <Route path="/donnees" element={<Données />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+      <Router>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/boutique" element={<Boutique />} />
+          <Route path="/backoffice" element={<BackOffice />} />
+          <Route path="/readcommentaire" element={<ReadCommentaire />} />
+          <Route path="/postcommentaire" element={<PostCommentaire />} />
+          <Route path="/compte" element={<MonCompte />} />
+          <Route path="/herbivore" element={<Herbivore />} />
+          <Route path="/carnivore" element={<Carnivore />} />
+          <Route path="/film" element={<Film />} />
+          <Route path="/jardin" element={<Jardin />} />
+          <Route path="/campement" element={<Campement />} />
+          <Route path="/panier" element={<Panier />} />
+          <Route path="/cgv" element={<Cgv />} />
+          <Route path="/cookies" element={<Cookies />} />
+          <Route path="/donnees" element={<Données />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+        <Footer />
+      </Router>
   );
 }
 
