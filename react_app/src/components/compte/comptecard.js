@@ -3,10 +3,13 @@ import colors from "../variables";
 import Btn from "../button";
 import axios from "axios";
 import { apiurl } from "../variables";
-// import { useState, useEffect } from "react";
-// import {
-//   faCheck,
-// } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faPen,
+  faTrash,
+  faArrowLeft,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Mydiv = styled.div`
 display: flex;
@@ -90,7 +93,8 @@ function Card(props) {
         bd={colors.btn_red}
         bdhover={colors.btn_redhover}
         bghover={colors.btn_redhover}
-        text="X"
+        icon={faTrash}
+
         />
         <p className="content">{props.texte}</p>
         <Foot>

@@ -4,6 +4,15 @@ import Btn from "../button";
 import axios from "axios";
 import { apiurl } from "../variables";
 import { useState } from "react";
+
+import {
+  faPen,
+  faTrash,
+  faArrowLeft,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
+
+
 // images
 import musée from "../../assets/img/billet.png";
 import cinéma from "../../assets/img/billet-de-cinema.png";
@@ -49,12 +58,12 @@ const Mydiv = styled.div`
     align-items: center;
 
     & .myBtn {
-      margin: 0.2rem 0.1rem;
+      margin: 0.2rem 0.6rem;
     }
   }
 
   & .modifieInput {
-    margin: 1rem 0;
+    margin: 0.5rem;
   }
 
   & .modifieInput input {
@@ -66,7 +75,6 @@ const Mydiv = styled.div`
 function BackOfficeCard(props) {
   const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
   const [Edit, setEdit] = useState(false);
-  const [Modified, setModified] = useState(false);
 
   function delete_product() {
     const config = {
@@ -110,8 +118,7 @@ function BackOfficeCard(props) {
       .put(apiurl + "/boutiques/" + props.id, bodyFormData, config)
       .then((res) => {
         console.log(res);
-        setModified(true);
-        setTimeout(window.location.reload(), 1000);
+        window.location.reload();
       })
       .catch((res) => {
         console.log(res);
@@ -125,30 +132,30 @@ function BackOfficeCard(props) {
           disabled={false}
           bg={colors.background_black}
           textcolor={colors.txt_white}
-          bd={colors.background_black}
-          bdhover={"DarkOrange"}
-          bghover={"DarkOrange"}
-          text="annuler"
+          bd="none"
+          bdhover="none"
+          bghover={colors.btn_blue}
+          icon={faArrowLeft}
         />
         <Btn
           onclick={() => modifie()}
           disabled={false}
-          bg={Modified ? "green" : colors.background_black}
+          bg={colors.background_black}
           textcolor={colors.txt_white}
-          bd={colors.background_black}
-          bdhover={colors.btn_blue}
-          bghover={colors.btn_blue}
-          text="modifier"
+          bd="none"
+          bdhover="none"
+          bghover={colors.add_panier}
+          icon={faCheck}
         />
         <Btn
           onclick={() => delete_product()}
           disabled={false}
-          bg={colors.btn_red}
+          bg={colors.background_black}
           textcolor={colors.txt_white}
-          bd={colors.btn_red}
-          bdhover={colors.btn_redhover}
+          bd="none"
+          bdhover="none"
           bghover={colors.btn_redhover}
-          text="X"
+          icon={faTrash}
         />
       </div>
       <div className="modifieInput">
@@ -201,9 +208,9 @@ function BackOfficeCard(props) {
         bg={colors.background_black}
         textcolor={colors.txt_white}
         bd="none"
-        bdhover={colors.btn_blue}
-        bghover={colors.background_black}
-        text="edit"
+        bdhover="none"
+        bghover={colors.btn_blue}
+        icon={faPen}
         id="modifyBtn"
       />
       <img

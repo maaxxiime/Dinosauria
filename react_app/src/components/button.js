@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../components/variables";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Button(props) {
   const Btn = props.bgGradient
@@ -110,7 +110,7 @@ function Button(props) {
       id={props.id}
     >
       {props.text && props.text}
-      {/* {props.icon && <FontAwesomeIcon icon={props.icon} />} */}
+      {props.icon && <FontAwesomeIcon icon={props.icon} />}
     </Btn>
   ) : props.onclick ? (
     <Btn
@@ -119,7 +119,7 @@ function Button(props) {
       id={props.id}
     >
       {props.text && props.text}
-      {/* {props.icon && <FontAwesomeIcon icon={props.icon} />} */}
+      {props.icon && <FontAwesomeIcon icon={props.icon} />}
     </Btn>
   ) : null;
 }

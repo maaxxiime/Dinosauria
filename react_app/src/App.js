@@ -28,6 +28,8 @@ import { useEffect, useState } from "react";
 function App() {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
+
+
   function initializePanier() {
     var panier = localStorage.getItem("panier");
 
