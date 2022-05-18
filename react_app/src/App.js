@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { apiurl } from "./components/variables";
+import { useEffect, useState } from "react";
+import { updateTotal } from "./components/variables";
+import { totalTicket } from "./components/variables";
 
 // COMPONENTS
 import Header from "./components/header/header.js";
@@ -23,94 +26,79 @@ import Cgv from "./components/cgv/cgv.js";
 import Cookies from "./components/cookies/cookies.js";
 import Données from "./components/données/données.js";
 import Footer from "./components/footer/footer.js";
-import { useEffect, useState } from "react";
 
 function App() {
-  const [ShopCard1, setShopCard1] = useState(null);
-  const [ShopCard2, setShopCard2] = useState(null);
+  const [TotalItems, setTotalItems] = useState(totalTicket());
 
-  function initializePanier() {
-    var panier = localStorage.getItem("panier");
+  let panier = JSON.parse(localStorage.getItem("panier"));
 
+  async function initPanier() {
     if (!panier) {
-      // rajouter ligne nom/mot-clé(model) des items dans la DB == leur nom dans le panier (fait)
-
-      var panier = {
-        items: {
-          // name : {
-          //   qte: 0,
-          //   prix: 10,
-          // },
-        },
+      panier = {
+        items: {},
         total: 0,
       };
 
-      // PR LE TOTAL :  for (i in items) return i.qte * i.prix
+      const res = await axios.get(apiurl + "/boutiques/");
+      const data = res.data;
 
-      function getboutiques() {
-        axios
-          .get(apiurl + "/boutiques/")
-          .then((res) => {
-            console.log(res);
-            setShopCard1(res.data.product.slice(0, 2));
-            setShopCard2(res.data.product.slice(2));
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      for (let i = 0; i < data.product.length; i++) {
+        const items = data.product[i];
+        const mot_clé = items.mot_clé;
+        const prix = items.prix;
+        // console.log(element);
+        // console.log(mot_clé);
+        // console.log(prix);
+
+        panier = {
+          items: {
+            ...panier.items,
+            [mot_clé]: {
+              qte: 0,
+              prix: parseInt(prix),
+            },
+          },
+          total: 0,
+        };
       }
 
-      // getBoutiques -> items
-      // for item ->
-      // panier = {
-      //   items: {
-      //     ...panier.items,
-      //     [item.name]: {
-      //       qte: 0,
-      //       prix: item.prix,
-      //     },
-      //   },
-      // total : 0,
-      // };
-
-      var panier = {
-        musée: 0,
-        cinéma: 0,
-        jardin: 0,
-        campement: 0,
-      };
       localStorage.setItem("panier", JSON.stringify(panier));
     }
   }
+
   useEffect(() => {
-    initializePanier();
+    initPanier();
+    updateTotal();
   }, []);
 
   return (
-      <Router>
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/boutique" element={<Boutique />} />
-          <Route path="/backoffice" element={<BackOffice />} />
-          <Route path="/readcommentaire" element={<ReadCommentaire />} />
-          <Route path="/postcommentaire" element={<PostCommentaire />} />
-          <Route path="/compte" element={<MonCompte />} />
-          <Route path="/herbivore" element={<Herbivore />} />
-          <Route path="/carnivore" element={<Carnivore />} />
-          <Route path="/film" element={<Film />} />
-          <Route path="/jardin" element={<Jardin />} />
-          <Route path="/campement" element={<Campement />} />
-          <Route path="/panier" element={<Panier />} />
-          <Route path="/cgv" element={<Cgv />} />
-          <Route path="/cookies" element={<Cookies />} />
-          <Route path="/donnees" element={<Données />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-        <Footer />
-      </Router>
+    <Router>
+      <Header TotalItems={TotalItems} />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/boutique" element={<Boutique />} />
+        <Route path="/backoffice" element={<BackOffice />} />
+        <Route path="/readcommentaire" element={<ReadCommentaire />} />
+        <Route path="/postcommentaire" element={<PostCommentaire />} />
+        <Route path="/compte" element={<MonCompte />} />
+        <Route path="/herbivore" element={<Herbivore />} />
+        <Route path="/carnivore" element={<Carnivore />} />
+        <Route path="/film" element={<Film />} />
+        <Route path="/jardin" element={<Jardin />} />
+        <Route path="/campement" element={<Campement />} />
+        <Route
+          path="/panier"
+          element={<Panier setTotalItems={setTotalItems} TotalItems={TotalItems} />}
+        />
+        <Route path="/cgv" element={<Cgv />} />
+        <Route path="/cookies" element={<Cookies />} />
+        <Route path="/donnees" element={<Données />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 

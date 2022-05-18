@@ -74,9 +74,11 @@ function Boutique() {
               <Card
                 key={boutiques._id}
                 id={boutiques._id}
+                img={boutiques.image}
                 titre={boutiques.titre}
                 description={boutiques.description}
                 prix={boutiques.prix}
+                mot_clé={boutiques.mot_clé}
               />
             ))}
           </div>
@@ -85,9 +87,11 @@ function Boutique() {
               <Card
                 key={boutiques._id}
                 id={boutiques._id}
+                img={boutiques.image}
                 titre={boutiques.titre}
                 description={boutiques.description}
                 prix={boutiques.prix}
+                mot_clé={boutiques.mot_clé}
               />
             ))}
           </div>

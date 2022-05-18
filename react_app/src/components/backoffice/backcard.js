@@ -12,7 +12,6 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-
 // images
 import musée from "../../assets/img/billet.png";
 import cinéma from "../../assets/img/billet-de-cinema.png";
@@ -197,7 +196,6 @@ function BackOfficeCard(props) {
           name="boutiqueImage"
           id="boutiqueImage"
         ></input>
-
       </div>
     </Mydiv>
   ) : (
@@ -213,22 +211,7 @@ function BackOfficeCard(props) {
         icon={faPen}
         id="modifyBtn"
       />
-      <img
-        src={
-          props.img
-            ? props.img
-            : props.titre === "Ticket d'entrée pour le campement du jurassique"
-            ? campement
-            : props.titre === "Ticket d'entrée pour le film en VR"
-            ? cinéma
-            : props.titre === "Ticket d'entrée pour le jardin"
-            ? jardin
-            : props.titre === "Ticket d'entrée pour le muséum"
-            ? musée
-            : musée
-        }
-        alt={props.titre}
-      ></img>
+      <img src={props.img} alt={props.titre}></img>
       <p className="title"> {props.titre} </p>
       <p className="description"> {props.description} </p>
       <p className="price"> {props.prix} € TTC</p>

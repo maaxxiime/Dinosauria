@@ -12,4 +12,40 @@ const colors = {
   add_panier: "#79d352",
 };
 
+export const updateTotal = () => {
+  let panier = JSON.parse(localStorage.getItem("panier"));
+
+  if (panier) {
+    let t = 0;
+
+    for (const i in panier.items) {
+      t += panier.items[i].qte * panier.items[i].prix;
+    }
+
+    console.log(t);
+    panier.total = t;
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+
+    return t;
+    
+  }
+};
+
+export const totalTicket = () => {
+  let panier = JSON.parse(localStorage.getItem("panier"));
+
+  if (panier) {
+    let t = 0;
+
+    for (const i in panier.items) {
+      t += panier.items[i].qte;
+    }
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+
+    return t;
+  }
+};
+
 export default colors;

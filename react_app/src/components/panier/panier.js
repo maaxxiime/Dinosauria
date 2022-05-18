@@ -5,6 +5,8 @@ import Btn from "../button";
 import axios from "axios";
 import { apiurl } from "../variables";
 import Card from "./productcard";
+import { updateTotal } from "../variables";
+import { totalTicket } from "../variables";
 
 const MainSection = styled.section`
   display: flex;
@@ -56,13 +58,10 @@ const ValidDiv = styled.div`
   }
 `;
 
-function Panier() {
+function Panier(props) {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
-  const [Total, setTotal] = useState(0);
-
-  console.log("iuszybukr");
-  console.log("iuszybukr");
+  const [Total, setTotal] = useState(updateTotal());
 
   function getboutiques() {
     axios
@@ -82,7 +81,6 @@ function Panier() {
   }, []);
 
   function validPanier() {}
-
   return (
     <MainSection>
       <h1> Votre panier </h1>
@@ -94,11 +92,15 @@ function Panier() {
             {ShopCard1.map((boutiques) => (
               <Card
                 key={boutiques._id}
+                img={boutiques.image}
                 titre={boutiques.titre}
                 description={boutiques.description}
                 prix={boutiques.prix}
+                mot_clé={boutiques.mot_clé}
                 Total={Total}
                 setTotal={setTotal}
+                TotalItems={props.TotalItems}
+                setTotalItems={props.setTotalItems}
               />
             ))}
           </div>
@@ -106,11 +108,15 @@ function Panier() {
             {ShopCard2.map((boutiques) => (
               <Card
                 key={boutiques._id}
+                img={boutiques.image}
                 titre={boutiques.titre}
                 description={boutiques.description}
                 prix={boutiques.prix}
+                mot_clé={boutiques.mot_clé}
                 Total={Total}
                 setTotal={setTotal}
+                TotalItems={props.TotalItems}
+                setTotalItems={props.setTotalItems}
               />
             ))}
           </div>
@@ -119,10 +125,10 @@ function Panier() {
 
       <ValidDiv>
         <p> Votre total est de : </p>
-        <p id="total" className="bold">
-          {" "}
-          {Total} € TTC{" "}
-        </p>
+          <p id="total" className="bold">
+            {Total} € TTC
+          </p>
+        
         <Btn
           onclick={() => validPanier()}
           disabled={false}

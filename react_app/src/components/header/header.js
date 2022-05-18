@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import colors from "../variables";
+import colors, { updateTotal } from "../variables";
 import Btn from "../button";
 import { useEffect, useState } from "react";
+import { totalTicket } from "../variables";
+
 
 
 const Head = styled.header`
@@ -213,20 +215,15 @@ const MenuDeroulant = styled.div`
   }
 `;
 
-function Header() {
+function Header(props) {
   let url = document.location.href;
   let urldeux = url.replace(/\/$/, "");
   let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
   const [MenuOpen, setMenuOpen] = useState(false);
   const user = JSON.parse(window.localStorage.getItem("user"));
 
+  
 
-
-
-  var [QteTicket, setQteTicket] = useState(0);
-  //if panier
-  const panier = JSON.parse(window.localStorage.getItem("panier"));
-  // setQteTicket = QteTicket += panier.musée + panier.jardin + panier.campement + panier.cinéma;
 
 
 
@@ -352,7 +349,7 @@ function Header() {
               bd="none"
               bdhover="none"
               bghover={colors.btn_blue}
-              text={"Panier" + " " + QteTicket}
+              text={"Panier" + " " + props.TotalItems}
             />
           )}
 
@@ -517,7 +514,7 @@ function Header() {
               bd="none"
               bdhover="none"
               bghover={colors.btn_blue}
-              text={"Panier" + " " + QteTicket}
+              text={"Panier" + " " + props.TotalItems}
             />
           )}
 

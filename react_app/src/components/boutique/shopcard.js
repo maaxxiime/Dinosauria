@@ -2,12 +2,7 @@ import styled from "styled-components";
 import colors from "../variables";
 import Btn from "../button";
 import { useState } from "react";
-// images
-import musée from "../../assets/img/billet.png";
-import cinéma from "../../assets/img/billet-de-cinema.png";
-import campement from "../../assets/img/feu-de-camp.png";
-import jardin from "../../assets/img/feuille-de-monstera.png";
-import Header from "../header/header";
+import { updateTotal } from "../variables";
 
 const Mydiv = styled.div`
   width: 17rem;
@@ -118,7 +113,7 @@ const Box = styled.div`
 `;
 
 function Card(props) {
-  const [Qte, setQte] = useState(0);
+  var [Qte, setQte] = useState(0);
 
   let qte = document.getElementById("qte-" + props.id);
 
@@ -150,53 +145,17 @@ function Card(props) {
       add.classList.add("add-invisible");
     }, 1800);
 
-    
-
-    switch (props.titre) {
-      case "Ticket d'entrée pour le muséum":
-        panier.musée += Qte;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        Qte = 0;
-        break;
-
-      case "Ticket d'entrée pour le film en VR":
-        panier.cinéma += Qte;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        Qte = 0;
-        break;
-
-      case "Ticket d'entrée pour le jardin":
-        panier.jardin += Qte;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        Qte = 0;
-        break;
-
-      case "Ticket d'entrée pour le campement du jurassique":
-        panier.campement += Qte;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        Qte = 0;
-        break;
-
-      default:
-        console.log("défaut");
+    if (props.mot_clé) {
+      panier.items[props.mot_clé].qte += Qte;
+      localStorage.setItem("panier", JSON.stringify(panier));
+      Qte = 0;
     }
+    updateTotal()
   }
 
   return (
     <Mydiv>
-      <img
-        src={
-          props.titre === "Ticket d'entrée pour le campement du jurassique"
-            ? campement
-            : props.titre === "Ticket d'entrée pour le film en VR"
-            ? cinéma
-            : props.titre === "Ticket d'entrée pour le jardin"
-            ? jardin
-            : props.titre === "Ticket d'entrée pour le muséum"
-            ? musée
-            : musée
-        }
-      ></img>
+      <img src={props.img} alt={props.titre}></img>
       <p className="title"> {props.titre} </p>
       <p className="description"> {props.description} </p>
       <Input>

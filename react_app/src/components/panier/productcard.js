@@ -1,13 +1,8 @@
 import styled from "styled-components";
-import colors from "../variables";
+import colors, { totalTicket } from "../variables";
 import Btn from "../button";
 import { useState, useEffect } from "react";
-
-// images
-import musée from "../../assets/img/billet.png";
-import cinéma from "../../assets/img/billet-de-cinema.png";
-import campement from "../../assets/img/feu-de-camp.png";
-import jardin from "../../assets/img/feuille-de-monstera.png";
+import { updateTotal } from "../variables";
 
 const Mydiv = styled.div`
   &.grey {
@@ -72,135 +67,49 @@ const Box = styled.div`
 `;
 
 function Card(props) {
-  const [Qte, setQte] = useState(0);
-
-  const getPrice = () => {
-    let p = Qte * props.prix;
-    return p;
-  };
-
-  const getTotal = () => {
-    let p = JSON.parse(localStorage.getItem("panier"));
-    var t = p.cinéma * 5 + p.jardin * 5 + p.musée * 10 + p.campement * 15;
-    props.setTotal(t);
-  };
+  var [Qte, setQte] = useState(0);
+  var panier = JSON.parse(localStorage.getItem("panier"));
 
   const Initialize = () => {
-
-    // setQte(panier.items.[props.name].qte)
-
-    var panier1 = JSON.parse(localStorage.getItem("panier"));
-    getTotal();
-    if (props.titre === "Ticket d'entrée pour le muséum") {
-      setQte(panier1.musée);
-    } else if (props.titre === "Ticket d'entrée pour le film en VR") {
-      setQte(panier1.cinéma);
-    } else if (props.titre === "Ticket d'entrée pour le jardin") {
-      setQte(panier1.jardin);
-    } else if (
-      props.titre === "Ticket d'entrée pour le campement du jurassique"
-    ) {
-      setQte(panier1.campement);
+    if (props.titre) {
+      setQte(panier.items[props.mot_clé].qte);
     }
   };
 
   function addOne() {
-
-    // panier.items.[props.name].qte += 1
-
     var panier = JSON.parse(localStorage.getItem("panier"));
-    if (props.titre === "Ticket d'entrée pour le muséum") {
+    if (props.mot_clé) {
       setQte(Qte + 1);
-      panier.musée += 1;
+      panier.items[props.mot_clé].qte += 1;
       localStorage.setItem("panier", JSON.stringify(panier));
-      getTotal();
-    } else if (props.titre === "Ticket d'entrée pour le film en VR") {
-      setQte(Qte + 1);
-      panier.cinéma += 1;
-      localStorage.setItem("panier", JSON.stringify(panier));
-      getTotal();
-    } else if (props.titre === "Ticket d'entrée pour le jardin") {
-      setQte(Qte + 1);
-      panier.jardin += 1;
-      localStorage.setItem("panier", JSON.stringify(panier));
-      getTotal();
-    } else if (
-      props.titre === "Ticket d'entrée pour le campement du jurassique"
-    ) {
-      setQte(Qte + 1);
-      panier.campement += 1;
-      localStorage.setItem("panier", JSON.stringify(panier));
-      getTotal();
     }
+    props.setTotal(updateTotal())
+    props.setTotalItems(totalTicket())
   }
 
   function removeOne() {
     var panier = JSON.parse(localStorage.getItem("panier"));
-    if (props.titre === "Ticket d'entrée pour le muséum") {
+    if (props.mot_clé) {
       if (Qte > 0) {
         setQte(Qte - 1);
-        panier.musée -= 1;
+        panier.items[props.mot_clé].qte -= 1;
         localStorage.setItem("panier", JSON.stringify(panier));
-        getTotal();
-      }
-    } else if (props.titre === "Ticket d'entrée pour le film en VR") {
-      if (Qte > 0) {
-        setQte(Qte - 1);
-        panier.cinéma -= 1;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        getTotal();
-      }
-    } else if (props.titre === "Ticket d'entrée pour le jardin") {
-      if (Qte > 0) {
-        setQte(Qte - 1);
-        panier.jardin -= 1;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        getTotal();
-      }
-    } else if (
-      props.titre === "Ticket d'entrée pour le campement du jurassique"
-    ) {
-      if (Qte > 0) {
-        setQte(Qte - 1);
-        panier.campement -= 1;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        getTotal();
       }
     }
+    props.setTotal(updateTotal())
+    props.setTotalItems(totalTicket())
+
   }
 
   function removePanier() {
     var panier = JSON.parse(localStorage.getItem("panier"));
-    switch (props.titre) {
-      case "Ticket d'entrée pour le muséum":
-        panier.musée = 0;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        getTotal();
-        break;
-
-      case "Ticket d'entrée pour le film en VR":
-        panier.cinéma = 0;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        getTotal();
-        break;
-
-      case "Ticket d'entrée pour le jardin":
-        panier.jardin = 0;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        getTotal();
-        break;
-
-      case "Ticket d'entrée pour le campement du jurassique":
-        panier.campement = 0;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        getTotal();
-        break;
-
-      default:
-        console.log("défaut");
+    if (props.mot_clé) {
+      setQte(Qte = 0);
+      panier.items[props.mot_clé].qte = 0;
+      localStorage.setItem("panier", JSON.stringify(panier));
     }
-    console.log(panier);
-    window.location.reload();
+    props.setTotal(updateTotal())
+    props.setTotalItems(totalTicket())
   }
 
   useEffect(() => {
@@ -209,19 +118,7 @@ function Card(props) {
 
   return (
     <Mydiv className={Qte === 0 && "grey"}>
-      <img
-        src={
-          props.titre === "Ticket d'entrée pour le campement du jurassique"
-            ? campement
-            : props.titre === "Ticket d'entrée pour le film en VR"
-            ? cinéma
-            : props.titre === "Ticket d'entrée pour le jardin"
-            ? jardin
-            : props.titre === "Ticket d'entrée pour le muséum"
-            ? musée
-            : musée
-        }
-      ></img>
+      <img src={props.img} alt={props.titre}></img>
       <p className="title"> {props.titre} </p>
       <p className="description"> {props.description} </p>
       <Input>
@@ -249,7 +146,7 @@ function Card(props) {
           text="-"
         />
       </Input>
-      <p className="price">{Qte && getPrice()}€ TTC</p>
+      <p className="price">{panier.items[props.mot_clé].prix * Qte}€ TTC</p>
 
       <div className="absolute">
         <Btn
