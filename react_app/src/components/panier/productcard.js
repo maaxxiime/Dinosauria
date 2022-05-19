@@ -70,15 +70,19 @@ function Card(props) {
   var [Qte, setQte] = useState(0);
   var panier = JSON.parse(localStorage.getItem("panier"));
 
+  // affiche la quantité que l'user à ajouter au panier
   const Initialize = () => {
     if (props.titre) {
       setQte(panier.items[props.mot_clé].qte);
     }
   };
 
+  
   function addOne() {
+    //récupére la valeur du panier
     var panier = JSON.parse(localStorage.getItem("panier"));
     if (props.mot_clé) {
+      //ajoute +1 et setItem pour "valider"
       setQte(Qte + 1);
       panier.items[props.mot_clé].qte += 1;
       localStorage.setItem("panier", JSON.stringify(panier));
@@ -88,9 +92,12 @@ function Card(props) {
   }
 
   function removeOne() {
+    //récupére la valeur du panier
     var panier = JSON.parse(localStorage.getItem("panier"));
     if (props.mot_clé) {
+      // permet de ne pas aller en dessous de 0
       if (Qte > 0) {
+      //ajoute -1 et setItem pour "valider"
         setQte(Qte - 1);
         panier.items[props.mot_clé].qte -= 1;
         localStorage.setItem("panier", JSON.stringify(panier));
@@ -102,8 +109,10 @@ function Card(props) {
   }
 
   function removePanier() {
+    //récupére la valeur du panier
     var panier = JSON.parse(localStorage.getItem("panier"));
     if (props.mot_clé) {
+      // met le compteur à 0 et la valeur du panier à 0
       setQte(Qte = 0);
       panier.items[props.mot_clé].qte = 0;
       localStorage.setItem("panier", JSON.stringify(panier));

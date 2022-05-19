@@ -219,14 +219,11 @@ function Header(props) {
   let url = document.location.href;
   let urldeux = url.replace(/\/$/, "");
   let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
+  // state pour le menu burger
   const [MenuOpen, setMenuOpen] = useState(false);
   const user = JSON.parse(window.localStorage.getItem("user"));
 
-  
-
-
-
-
+  // si admin est true alors la page back-office se débloque
   if (user) {
     var Admin = JSON.parse(window.localStorage.getItem("user")).admin;
   }
@@ -349,7 +346,7 @@ function Header(props) {
               bd="none"
               bdhover="none"
               bghover={colors.btn_blue}
-              text={"Panier" + " " + props.TotalItems}
+              text={props.TotalItems ? "Panier" + " " + props.TotalItems : "Panier" + " " + 0}
             />
           )}
 
@@ -514,7 +511,7 @@ function Header(props) {
               bd="none"
               bdhover="none"
               bghover={colors.btn_blue}
-              text={"Panier" + " " + props.TotalItems}
+              text={props.TotalItems ? "Panier" + " " + props.TotalItems : "Panier" + " " + 0}
             />
           )}
 

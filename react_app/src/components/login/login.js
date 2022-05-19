@@ -108,6 +108,7 @@ function Login() {
   const [Res, setRes] = useState(undefined);
   const [Log, setLog] = useState(false);
 
+  // si user est deja connecté, alors affiche une page pour lui dire qu'il est deja connecté
   useEffect(() => {
     function checkLogin() {
       const user = window.localStorage.getItem("user");
@@ -118,7 +119,8 @@ function Login() {
     checkLogin();
   }, [Log]);
 
-  function checkValues(e) {
+  // si champ vide, desactive le bouton de connexion, sinon ça l'active
+  function checkValues() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
@@ -129,7 +131,7 @@ function Login() {
     }
   }
 
-  function send(e) {
+  function send() {
     let email = document.getElementById("email");
     let password = document.getElementById("password");
 
@@ -153,6 +155,7 @@ function Login() {
           email: res.data.user,
           admin: res.data.admin,
         };
+        // assign l'userId, le token, l'email et admin(true/false) dans le local storage sous la clé "user"
         window.localStorage.setItem("user", JSON.stringify(user));
         setRes(res.data.message);
         document.querySelector("#main").classList.remove("error");
@@ -195,7 +198,7 @@ function Login() {
           placeholder="monemail@gmail.com"
           name="email"
           required
-          onChange={(e) => checkValues(e)}
+          onChange={() => checkValues()}
         />
 
         <label for="password">Mot de passe :</label>
@@ -205,7 +208,7 @@ function Login() {
           placeholder="monSuperMdp@54"
           name="password"
           required
-          onChange={(e) => checkValues(e)}
+          onChange={() => checkValues()}
         />
 
         <div>

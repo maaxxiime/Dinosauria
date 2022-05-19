@@ -57,6 +57,7 @@ function BackOffice() {
       .get(apiurl + "/boutiques/")
       .then((res) => {
         console.log(res);
+        //slice sert à séparer les élément, ShopCard1 affiche les 2 premier élément du tableau et ShopCard2 affiche les suivant
         setShopCard1(res.data.product.slice(0, 2));
         setShopCard2(res.data.product.slice(2));
       })
@@ -67,6 +68,7 @@ function BackOffice() {
 
   function créer() {
     const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
+    
 
     let titre = document.getElementById("Titre");
     let Mot_clé = document.getElementById("Mot_clé");
@@ -75,14 +77,15 @@ function BackOffice() {
     let image = document.getElementById("boutiqueImage");
 
     const bodyFormData = new FormData();
+    // && (si value est rempli => effectue le code)
     titre.value && bodyFormData.append("titre", titre.value);
     Mot_clé.value && bodyFormData.append("mot_clé", Mot_clé.value);
     description.value && bodyFormData.append("description", description.value);
     prix.value && bodyFormData.append("prix", prix.value);
     image.files[0] && bodyFormData.append("boutiqueImage", image.files[0]);
-    // && (si value est rempli => effectue le code)
 
     const config = {
+      // Content-Type: "multipart/form-data" parce qu'il y a des images
       headers: {
         Authorization: "Bearer " + usertoken,
         "Content-Type": "multipart/form-data",
@@ -98,6 +101,7 @@ function BackOffice() {
       .catch((res) => {
         console.log(res);
       });
+      localStorage.removeItem("panier")
   }
 
   useEffect(() => {

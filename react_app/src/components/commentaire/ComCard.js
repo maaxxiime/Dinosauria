@@ -40,6 +40,7 @@ const Foot = styled.div`
 
 function Card(props) {
 
+  // ajoute la date de création du commentaire
   function formatDate(str) {
     const options = {
       year: "numeric",

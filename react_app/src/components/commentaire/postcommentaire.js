@@ -40,7 +40,8 @@ function PostCommentaire() {
   const [Res, setRes] = useState(undefined);
   const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
 
-  function checkValues(e) {
+  // si champ vide, desactive le bouton d'envoie du commentaire, sinon ça l'active
+  function checkValues() {
     let commentaire = document.getElementById("commentaire").value;
 
     if (commentaire) {
@@ -50,7 +51,7 @@ function PostCommentaire() {
     }
   }
 
-  function send(e) {
+  function send() {
 
     let commentaire = document.getElementById("commentaire");
     
@@ -72,7 +73,7 @@ function PostCommentaire() {
       )
       .then((res) => {
         setRes(res.data.message);
-        // window.location.assign("/");
+        window.location.assign("/");
       })
       .catch((err) => {
         setRes(err.message);
@@ -87,7 +88,7 @@ function PostCommentaire() {
         <label for="commentaire"> Votre commentaire : </label>
         <textarea
           id="commentaire"
-          onChange={(e) => checkValues(e)}
+          onChange={() => checkValues()}
           placeholder="Ecrivez votre texte ici"
           rows={15}
           cols={60}
@@ -96,7 +97,7 @@ function PostCommentaire() {
       </Form>
 
       <Btn
-        onclick={(e) => send(e)}
+        onclick={() => send()}
         disabled={!Filled}
         bgGradient={colors.btn_gradient}
         textcolor={colors.txt_white}

@@ -12,12 +12,6 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-// images
-import musée from "../../assets/img/billet.png";
-import cinéma from "../../assets/img/billet-de-cinema.png";
-import campement from "../../assets/img/feu-de-camp.png";
-import jardin from "../../assets/img/feuille-de-monstera.png";
-
 const Mydiv = styled.div`
   width: 17rem;
   height: 20rem;
@@ -73,6 +67,7 @@ const Mydiv = styled.div`
 
 function BackOfficeCard(props) {
   const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
+  //state pour passer en mode edit ou non
   const [Edit, setEdit] = useState(false);
 
   function delete_product() {
@@ -82,6 +77,7 @@ function BackOfficeCard(props) {
       },
     };
     axios
+      // récupére l'id de la card et le token via la config
       .delete(apiurl + "/boutiques/" + props.id, config)
       .then((res) => {
         console.log(res);
@@ -91,6 +87,8 @@ function BackOfficeCard(props) {
         console.log(res);
         console.log(props.id);
       });
+      localStorage.removeItem("panier")
+
   }
 
   function modifie() {
@@ -99,6 +97,7 @@ function BackOfficeCard(props) {
         Authorization: "Bearer " + usertoken,
       },
     };
+
     let titre = document.getElementById("titre");
     let Mot_clé = document.getElementById("Mot_clé");
     let description = document.getElementById("description");
@@ -106,14 +105,15 @@ function BackOfficeCard(props) {
     let image = document.getElementById("boutiqueImage");
 
     const bodyFormData = new FormData();
+    // && (si la value est rempli => effectue le code)
     titre.value && bodyFormData.append("titre", titre.value);
     Mot_clé.value && bodyFormData.append("mot_clé", Mot_clé.value);
     description.value && bodyFormData.append("description", description.value);
     prix.value && bodyFormData.append("prix", prix.value);
     image.files[0] && bodyFormData.append("boutiqueImage", image.files[0]);
-    // && (si value est rempli => effectue le code)
 
     axios
+      // récupére l'id de la card, le token via la config et les informations rentré dans chaque input
       .put(apiurl + "/boutiques/" + props.id, bodyFormData, config)
       .then((res) => {
         console.log(res);
@@ -123,6 +123,7 @@ function BackOfficeCard(props) {
         console.log(res);
       });
   }
+  // si en mode edit affiche le code si après
   return Edit ? (
     <Mydiv>
       <div className="btn">
@@ -199,6 +200,7 @@ function BackOfficeCard(props) {
       </div>
     </Mydiv>
   ) : (
+    // sinon affiche ce code
     <Mydiv>
       <Btn
         onclick={() => setEdit(true)}

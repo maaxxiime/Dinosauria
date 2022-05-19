@@ -3,6 +3,8 @@ import colors from "../variables";
 import Btn from "../button";
 import { useState } from "react";
 import { updateTotal } from "../variables";
+import { totalTicket } from "../variables";
+
 
 const Mydiv = styled.div`
   width: 17rem;
@@ -113,6 +115,8 @@ const Box = styled.div`
 `;
 
 function Card(props) {
+
+  // state pour definir les quantité ajouté ou enlevé d'un produit
   var [Qte, setQte] = useState(0);
 
   let qte = document.getElementById("qte-" + props.id);
@@ -120,15 +124,19 @@ function Card(props) {
   function addOne() {
     qte.classList.add("disappear");
     setTimeout(() => {
+      // defini la quantité +1
       setQte(Qte + 1);
       qte.classList.remove("disappear");
     }, 100);
   }
 
   function removeOne() {
+    // permet de ne pas aller en dessous de 0
     if (Qte > 0) {
       qte.classList.add("disappear");
       setTimeout(() => {
+      // defini la quantité -1
+
         setQte(Qte - 1);
         qte.classList.remove("disappear");
       }, 100);
@@ -146,11 +154,14 @@ function Card(props) {
     }, 1800);
 
     if (props.mot_clé) {
+      //ajoute la quantité selectionné au panier
       panier.items[props.mot_clé].qte += Qte;
       localStorage.setItem("panier", JSON.stringify(panier));
       Qte = 0;
     }
     updateTotal()
+    props.setTotalItems(totalTicket())
+
   }
 
   return (

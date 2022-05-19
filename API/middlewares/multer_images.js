@@ -1,5 +1,6 @@
 const multer = require("multer");
 
+// defini les fichiers autorisés
 const MIME_TYPES = {
   "image/jpg": "jpg",
   "image/jpeg": "jpg",
@@ -8,6 +9,7 @@ const MIME_TYPES = {
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
+    // dossier de destination des images
     callback(null, "./images");
   },
   filename: (req, file, callback) => {

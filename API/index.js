@@ -1,10 +1,10 @@
 const express = require("express");
-const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 const compression = require("compression");
+
 // ROUTES
 const usersRoutes = require("./routes/users.js");
 const boutiquesRoutes = require("./routes/boutiques.js");
@@ -12,8 +12,10 @@ const commentairesRoutes = require("./routes/commentaires.js");
 
 require("dotenv").config();
 
+// port de l'API
 const port = 8000;
 
+// connexion entre l'API et la base de donnée
 mongoose
   .connect(process.env.DB_ACCESS, {
     useNewUrlParser: true,
@@ -50,6 +52,7 @@ app.use(compression());
 
 app.use("/public", express.static(path.join(__dirname, "/images")));
 
+// defini les routes que doit prendre une requette selon l'url
 app.use("/api/users", usersRoutes);
 app.use("/api/boutiques", boutiquesRoutes);
 app.use("/api/commentaires", commentairesRoutes);

@@ -1,5 +1,6 @@
 export const apiurl = "http://localhost:8000/api";
 
+// pattern des couleurs qui sont utilisé pour l'app pour que ça soit entretenable dans le temps
 const colors = {
   background_black: "#2A2525",
   background_white: "#FFFFFF",
@@ -12,6 +13,7 @@ const colors = {
   add_panier: "#79d352",
 };
 
+// fonction qui calcule le total du panier
 export const updateTotal = () => {
   let panier = JSON.parse(localStorage.getItem("panier"));
 
@@ -32,6 +34,7 @@ export const updateTotal = () => {
   }
 };
 
+// fonction qui calcule le total des produit du panier
 export const totalTicket = () => {
   let panier = JSON.parse(localStorage.getItem("panier"));
 

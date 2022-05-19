@@ -28,6 +28,7 @@ import Données from "./components/données/données.js";
 import Footer from "./components/footer/footer.js";
 
 function App() {
+  // initialisation du panier, compteur item dans panier et total du panier
   const [TotalItems, setTotalItems] = useState(totalTicket());
 
   let panier = JSON.parse(localStorage.getItem("panier"));
@@ -39,6 +40,7 @@ function App() {
         total: 0,
       };
 
+      // requette get de la boutique pour "importer" tous les produits
       const res = await axios.get(apiurl + "/boutiques/");
       const data = res.data;
 
@@ -50,6 +52,7 @@ function App() {
         // console.log(mot_clé);
         // console.log(prix);
 
+        //pour chaque produits, les ajoutes au panier en gardant leur mot clé et le prix
         panier = {
           items: {
             ...panier.items,
@@ -71,6 +74,7 @@ function App() {
     updateTotal();
   }, []);
 
+  // route de l'app
   return (
     <Router>
       <Header TotalItems={TotalItems} />
@@ -78,7 +82,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/boutique" element={<Boutique />} />
+        <Route path="/boutique" element={<Boutique setTotalItems={setTotalItems} TotalItems={TotalItems} />} />
         <Route path="/backoffice" element={<BackOffice />} />
         <Route path="/readcommentaire" element={<ReadCommentaire />} />
         <Route path="/postcommentaire" element={<PostCommentaire />} />
@@ -90,7 +94,9 @@ function App() {
         <Route path="/campement" element={<Campement />} />
         <Route
           path="/panier"
-          element={<Panier setTotalItems={setTotalItems} TotalItems={TotalItems} />}
+          element={
+            <Panier setTotalItems={setTotalItems} TotalItems={TotalItems} />
+          }
         />
         <Route path="/cgv" element={<Cgv />} />
         <Route path="/cookies" element={<Cookies />} />

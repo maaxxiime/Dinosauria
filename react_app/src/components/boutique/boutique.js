@@ -38,7 +38,7 @@ const MainSection = styled.section`
   }
 `;
 
-function Boutique() {
+function Boutique(props) {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
 
@@ -47,6 +47,7 @@ function Boutique() {
       .get(apiurl + "/boutiques/")
       .then((res) => {
         console.log(res);
+        //slice sert à séparer les élément, ShopCard1 affiche les 2 premier élément du tableau et ShopCard2 affiche les suivant
         setShopCard1(res.data.product.slice(0, 2));
         setShopCard2(res.data.product.slice(2));
       })
@@ -79,6 +80,8 @@ function Boutique() {
                 description={boutiques.description}
                 prix={boutiques.prix}
                 mot_clé={boutiques.mot_clé}
+                TotalItems={props.TotalItems}
+                setTotalItems={props.setTotalItems}
               />
             ))}
           </div>
@@ -92,6 +95,8 @@ function Boutique() {
                 description={boutiques.description}
                 prix={boutiques.prix}
                 mot_clé={boutiques.mot_clé}
+                TotalItems={props.TotalItems}
+                setTotalItems={props.setTotalItems}
               />
             ))}
           </div>

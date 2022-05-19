@@ -92,6 +92,7 @@ function Compte() {
     };
 
     axios
+    // envoi l'userId, la data et le usertoken pour pouvoir comparer l'id du token et l'userId
       .put(apiurl + "/users/" + UserId, qs.stringify(data), config)
       .then((res) => {
         const user = {
@@ -115,6 +116,8 @@ function Compte() {
     };
 
     axios
+    // envoi l'userId et le usertoken pour pouvoir comparer l'id du token et l'userId
+
       .delete(apiurl + "/users/" + UserId, config)
       .then((res) => {
         localStorage.clear();
@@ -134,6 +137,7 @@ function Compte() {
     };
 
     axios
+    // envoi le usertoken pour pouvoir récupérer les commentaires de l'id correspondant au token
       .get(apiurl + "/commentaires/compte/", config)
       .then((res) => {
         setComCard(res.data.commentaire);

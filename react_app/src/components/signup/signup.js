@@ -95,7 +95,8 @@ function Signup() {
   const [Filled, setFilled] = useState(false);
   const [Res, setRes] = useState(undefined);
 
-  function checkValues(e) {
+  // si champ vide, desactive le bouton de création de compte, sinon ça l'active
+  function checkValues() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let identifiant = document.getElementById("identifiant").value;
@@ -107,7 +108,7 @@ function Signup() {
     }
   }
 
-  function send(e) {
+  function send() {
     let email = document.getElementById("email");
     let password = document.getElementById("password");
     let identifiant = document.getElementById("identifiant");
@@ -153,7 +154,7 @@ function Signup() {
           placeholder="monemail@gmail.com"
           name="email"
           required
-          onChange={(e) => checkValues(e)}
+          onChange={() => checkValues()}
         />
 
         <label for="identifiant"> Identifiant : </label>
@@ -163,7 +164,7 @@ function Signup() {
           placeholder="Patrickdu33"
           name="identifiant"
           required
-          onChange={(e) => checkValues(e)}
+          onChange={() => checkValues()}
         />
 
         <label for="password"> Mot de passe : </label>
@@ -173,12 +174,12 @@ function Signup() {
           placeholder="monSuperMdp@54"
           name="password"
           required
-          onChange={(e) => checkValues(e)}
+          onChange={() => checkValues()}
         />
 
         <div>
           <Btn
-            onclick={(e) => send(e)}
+            onclick={() => send()}
             disabled={!Filled}
             bgGradient={colors.btn_gradient}
             textcolor={colors.txt_white}

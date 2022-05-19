@@ -61,6 +61,7 @@ const ValidDiv = styled.div`
 function Panier(props) {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
+  // state pour calculer le total du panier
   const [Total, setTotal] = useState(updateTotal());
 
   function getboutiques() {

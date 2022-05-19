@@ -49,9 +49,6 @@ const Foot = styled.div`
 
 function Card(props) {
   const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
-  let url = document.location.href;
-  let urldeux = url.replace(/\/$/, "");
-  let TrueUrl = urldeux.substring(urldeux.lastIndexOf("/") + 1);
 
   function formatDate(str) {
     const options = {
@@ -71,6 +68,7 @@ function Card(props) {
       },
     };
     axios
+    //envoi l'id du commentaire et le token pour comparer l'id du createur du commentaire et celui du token
       .delete(apiurl + "/commentaires/" + props.id, config)
       .then((res) => {
         console.log(res);
