@@ -177,9 +177,11 @@ const Section = styled.section`
     margin: 1rem 0;
     @media all and (min-width: 480px) and (max-width: 767px) {
       width: 25rem;
+      height: 18rem;
     }
     @media all and (max-width: 479px) {
       width: 20rem;
+      height: 14rem;
     }
   }
 `;
@@ -212,7 +214,7 @@ function Carnivore() {
             <div className="texte">
               <h2> Le Tyrannosaure-Rex : </h2>
               <p>
-                Le Tyrannosaurus-rex ou T-rex était un dinosaure superprédateur
+                Le Tyrannosaurus-rex ou T-rex était un dinosaure super prédateur
                 au sommet de la chaîne alimentaire, chassant notamment des
                 herbivores de grande taille comme les Hadrosaures ou les
                 Cératopsiens, famille du célèbre Triceratops. Le nom

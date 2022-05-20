@@ -9,7 +9,7 @@ text-align: center;
 color: ${colors.txt_black};
 
 & h1 {
-    width: 30%;
+    width: 25%;
     margin: 2rem 0;
 }
 

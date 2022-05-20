@@ -9,7 +9,7 @@ const MainSection = styled.section`
   color: ${colors.txt_black};
 
   & h1 {
-    width: 30%;
+    width: 20%;
     margin: 2rem 0;
   }
 
