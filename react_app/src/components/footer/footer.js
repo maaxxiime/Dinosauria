@@ -81,6 +81,7 @@ const Liens = styled.div`
   align-items: center;
   width: 15%;
   margin: 0 2rem;
+  text-align: center;
 
   & p {
     margin: 4rem 0 1rem 0;
@@ -152,7 +153,7 @@ function Footer() {
     <Foote>
       <Contacts>
         <h3> Contacts </h3>
-        <p> 30 chemin du jurassique </p>
+        <p> 30 chemin du Jurassique </p>
         <p> 41230 Mur-de-Sologne </p>
         <p> Dinosauria@orange.fr </p>
         <p> Accueil : 05-51-48-97-84 </p>
@@ -160,7 +161,7 @@ function Footer() {
       </Contacts>
 
       <Horraires>
-        <h3> Horraires </h3>
+        <h3> Horaires </h3>
         <p> Ouvert du lundi au dimanche de 10h à 18h </p>
       </Horraires>
 

@@ -76,7 +76,7 @@ const DivTitle = styled.div`
   }
   & p {
     width: 90%;
-    max-width: 28rem;
+    max-width: 30rem;
     font-size: 1rem;
     margin: 0 0 1rem 0;
   }
@@ -86,9 +86,9 @@ function Jardin() {
   return (
     <Section>
       <DivTitle>
-        <h1> Prenez le temps de dècouvrir notre jardin d'époque </h1>
+        <h1> Prenez le temps de découvrir notre jardin d'époque </h1>
         <p>
-          Visitez parmi la plus belle reconstitution jamais réalisé à ce jours
+          Visitez une des plus belles reconstitutions jamais réalisées à ce jour
         </p>
       </DivTitle>
       <DivSlider>

@@ -143,7 +143,7 @@ function Signup() {
     <MainSection id="main">
       <Maintitle>
         {" "}
-        Créer votre compte dés maitenant pour pouvoir profiter du site à 100% !{" "}
+        Créer votre compte dès maintenant pour pouvoir profiter du site à 100% !{" "}
       </Maintitle>
 
       <Form>

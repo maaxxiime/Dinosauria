@@ -127,6 +127,9 @@ const Section = styled.section`
     width: 500px;
     height: 350px;
     margin: 1rem 0;
+{
+
+
     @media all and (min-width: 480px) and (max-width: 767px) {
       width: 25rem;
     }
@@ -155,7 +158,7 @@ function Film() {
       </DivTitle>
       <div className="Content">
         <div className="texte">
-          <h2> Caractéristique du film : </h2>
+          <h2> Caractéristiques du film : </h2>
           <p>
             Le film retrace l'histoire des dinosaures sur les trois éres
             majeures :
@@ -173,15 +176,15 @@ function Film() {
 
       <div className="Content">
         <div className="texte">
-          <h2> Caractéristique des salles : </h2>
+          <h2> Caractéristiques des salles : </h2>
           <p>
             {" "}
-            Doter de deux salles de 200m², d'un sons dernier cri DOLBY ATMOS et
+            Doté de deux salles de 200m², d'un son dernier cri DOLBY ATMOS et
             équipées de projecteurs numériques BARCO.{" "}
           </p>
           <p>
             {" "}
-            Nos salles de cinéma sont accessible aux personnes à mobilitée
+            Nos salles de cinéma sont accessibles aux personnes à mobilité
             réduite.{" "}
           </p>
           <p>

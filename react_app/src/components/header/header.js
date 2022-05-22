@@ -262,7 +262,7 @@ function Header(props) {
             bd="none"
             bdhover="none"
             bghover={colors.btn_blue}
-            text="Salle des herbivores"
+            text="Salle des Herbivores"
           />
 
           <Btn
@@ -273,7 +273,7 @@ function Header(props) {
             bd="none"
             bdhover="none"
             bghover={colors.btn_blue}
-            text="Salle des carnivores"
+            text="Salle des Carnivores"
           />
 
           <Btn
@@ -306,7 +306,7 @@ function Header(props) {
             bd="none"
             bdhover="none"
             bghover={colors.btn_blue}
-            text="Campement du jurassique"
+            text="Campement du Jurassique"
           />
 
           <Btn
@@ -402,7 +402,7 @@ function Header(props) {
               bd="none"
               bdhover="none"
               bghover={colors.btn_blue}
-              text="Deconnexion"
+              text="Déconnexion"
             />
           )}
         </DivDeux>
@@ -567,7 +567,7 @@ function Header(props) {
               bd="none"
               bdhover="none"
               bghover={colors.btn_blue}
-              text="Deconnexion"
+              text="Déconnexion"
             />
           )}
 

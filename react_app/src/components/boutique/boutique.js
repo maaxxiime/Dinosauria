@@ -65,7 +65,7 @@ function Boutique(props) {
       <h1> Boutique de Dinosauria </h1>
       <p className="low-title">
         {" "}
-        Choisissez les produits qui vous intéresse !{" "}
+        Choisissez les produits qui vous intéressent !{" "}
       </p>
 
       {ShopCard2 && (

@@ -186,8 +186,8 @@ function Login() {
   ) : (
     <MainSection id="main">
       <Maintitle>
-        Pensez à créer un compte si cela n'est pas deja fait !
-        <p> Connectez vous pour profiter du site à 100% </p>
+        Pensez à créer un compte si cela n'est pas déjà fait !
+        <p> Connectez-vous pour profiter du site à 100% </p>
       </Maintitle>
 
       <Form>

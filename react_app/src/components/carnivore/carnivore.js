@@ -205,7 +205,7 @@ function Carnivore() {
     <Section>
       <DivTitle>
         <h1> La salle des Carnivores </h1>
-        <p> Découvrez parmi les plus beau squelettes jamais découvert </p>
+        <p> Découvrez parmi les plus beaux squelettes jamais découverts </p>
       </DivTitle>
 
       <IsVisible>

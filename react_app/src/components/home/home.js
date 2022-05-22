@@ -156,10 +156,10 @@ function Home() {
         </p>
         <p>
           {" "}
-          Nos galeries retrace l'histoire sur plus de 165 millions d'années au
-          sein de ses différentes salles{" "}
+          Nos galeries retracent l'histoire sur plus de 165 millions d'années au
+          sein de leurs différentes salles{" "}
         </p>
-        <p> Elle comprennes trois éres majeures </p>
+        <p> Elles comprennent trois éres majeures </p>
         <p> Le Trias : -245 à -200 millions d'années </p>
         <p> Le Jurassique : -200 à -145 millions d'années </p>
         <p> Le Crétacé : -145 à -65 millions d'années </p>

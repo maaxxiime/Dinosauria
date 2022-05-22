@@ -204,7 +204,7 @@ function Herbivore() {
     <Section>
       <DivTitle>
         <h1> La salle des Herbivores </h1>
-        <p> Découvrez parmi les plus beau squelettes jamais découvert </p>
+        <p> Découvrez parmi les plus beaux squelettes jamais découverts </p>
       </DivTitle>
 
       <IsVisible>
@@ -215,8 +215,8 @@ function Herbivore() {
               <p>
                 Découvert en 1884 par Endy Ford dans les dunes du Sahara, elle
                 se fit par hasard lors de la construction d'un bâtiment. Le
-                temps de fouille et l'archéologie dura huits ans, d'autres os de
-                differentes espèces fut découverte en même temps !
+                temps de fouille et l'archéologie dura huit ans, d'autres os de
+                différentes espèces furent découverts en même temps !
               </p>
             </div>
             <div className="div-img">
@@ -278,7 +278,7 @@ function Herbivore() {
         {(isVisible) => (
           <div className={isVisible ? "Content visible" : "Content"}>
             <div className="texte">
-              <h2> Le Sauropodes : </h2>
+              <h2> Le Sauropode : </h2>
               <p>
                 Groupe de dinosaures caractérisés par une grande taille, un cou
                 et une queue allongés, une posture quadrupède et un régime

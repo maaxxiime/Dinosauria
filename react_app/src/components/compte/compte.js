@@ -188,7 +188,7 @@ function Compte() {
           <input
             id="newpassword"
             type="password"
-            placeholder="monSuperMdp@54"
+            placeholder="monSuperNouveauMdp@54"
             name="newpassword"
             required="false"
           />

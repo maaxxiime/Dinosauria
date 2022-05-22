@@ -61,7 +61,7 @@ function Campement() {
       <DivTitle>
         <h1>
           Oseriez-vous relever le défi de passer une nuit dans le campement du
-          jurassique ?
+          Jurassique ?
         </h1>
         <p>
           Un terrain de 2000m² mis à disposition pour y passer la nuit, le tout
