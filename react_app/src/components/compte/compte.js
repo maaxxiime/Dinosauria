@@ -163,7 +163,7 @@ function Compte() {
       </DivInfos>
 
       <DivModifie>
-        <h2> Modifier mes informations </h2>
+        <h2> Modifier mon compte </h2>
 
         <form>
           <label for="email"> Email : </label>
