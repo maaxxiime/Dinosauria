@@ -24,12 +24,21 @@ const SliderOptions = {
   duration: 1.5,
 };
 
-const Section = styled.section``;
+const Section = styled.section`
+`;
 
 const DivSlider = styled.div`
   position: relative;
   width: 100%;
   height: 600px;
+
+  & .rsis-container :nth-child(1) {
+    background-position: center;
+  
+  }
+  & .rsis-container :nth-child(2) {
+    background-position: center;
+  }
 `;
 
 const BoxSlider = styled.div`
@@ -124,6 +133,8 @@ const DivBtn = styled.div`
   }
 `;
 
+
+
 function Home() {
   const user = window.localStorage.getItem("user");
 
@@ -136,6 +147,7 @@ function Home() {
           <h1> Un jardin et un campement ! </h1>
         </BoxSlider>
         <SimpleImageSlider
+          style={{  }}
           width={"100%"}
           height={600}
           images={images}
