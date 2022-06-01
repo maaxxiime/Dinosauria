@@ -28,6 +28,13 @@ const DivSlider = styled.div`
   position: relative;
   width: 100%;
   height: 600px;
+
+  & .rsis-container :nth-child(1) {
+    background-position: 25%;
+  }
+  & .rsis-container :nth-child(2) {
+    background-position: 25%;
+  }
 `;
 
 const BoxSlider = styled.div`

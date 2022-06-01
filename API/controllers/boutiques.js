@@ -50,6 +50,7 @@ exports.update_product = (req, res, next) => {
   const userID = decodedToken.userID;
   // id du produit qui est envoyé dans la requette axios
   const TargetId = req.params.TargetId;
+  const file = req.file;
 
   const newproduct = req.file
     ? {
@@ -67,9 +68,9 @@ exports.update_product = (req, res, next) => {
     .then((product) => {
       // compare l'userID et le creatorID du produit
       if (userID === product.creatorID) {
-        if (product.image) {
+        if (req.file && product.image) {
           const filename = product.image.split("/public/")[1];
-          fs.unlink(`./public/${filename}`, (err) => {
+          fs.unlink(`./images/${filename}`, (err) => {
             if (err) {
               res.status(400).json({ message: "unlink Error", error: err });
             }
@@ -116,9 +117,17 @@ exports.delete_product = (req, res, next) => {
   Boutique.findById(TargetId)
     .then((product) => {
       if (userID === product.creatorID) {
-        product
+        if (req.file && product.image) {
+          const filename = product.image.split("/public/")[1];
+          fs.unlink(`./images/${filename}`, (err) => {
+            if (err) {
+              res.status(400).json({ message: "unlink Error", error: err });
+            }
+          });
+        }
 
-          //supprime le produit si il est trouvé et si l'id du token est identique à celui du creatorID
+        //supprime le produit si il est trouvé et si l'id du token est identique à celui du creatorID
+        product
           .deleteOne()
           .then((deleted) => {
             res.status(200).json({

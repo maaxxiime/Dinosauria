@@ -30,6 +30,7 @@ const app = express();
 
 app.use(helmet());
 
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -54,7 +55,7 @@ app.use(compression());
 
 app.use("/public", express.static(path.join(__dirname, "/images")));
 
-// defini les routes que doit prendre une requette selon l'url
+// defini les routes que doit prendre une requêtte selon l'url
 app.use("/api/users", usersRoutes);
 app.use("/api/boutiques", boutiquesRoutes);
 app.use("/api/commentaires", commentairesRoutes);
