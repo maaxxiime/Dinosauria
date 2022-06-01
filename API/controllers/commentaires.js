@@ -58,20 +58,6 @@ exports.read_all_by_userId = (req, res, next) => {
     .catch((err) => res.status(404).json({ err }));
 };
 
-// exports.upvote_commentaire = (req, res, next) => {
-//   const token = req.headers.authorization.split(" ")[1];
-//   const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
-//   const userID = decodedToken.userID;
-//   const TargetId = req.params.TargetId;
-// };
-
-// exports.downvote_commentaire = (req, res, next) => {
-//   const token = req.headers.authorization.split(" ")[1];
-//   const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
-//   const userID = decodedToken.userID;
-//   const TargetId = req.params.TargetId;
-// };
-
 exports.delete_commentaire = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
