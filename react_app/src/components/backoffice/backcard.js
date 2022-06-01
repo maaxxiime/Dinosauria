@@ -87,22 +87,22 @@ function BackOfficeCard(props) {
         console.log(res);
         console.log(props.id);
       });
-      localStorage.removeItem("panier")
-
+    localStorage.removeItem("panier");
   }
 
   function modifie() {
     const config = {
       headers: {
         Authorization: "Bearer " + usertoken,
+        "Content-Type": "multipart/form-data",
       },
     };
 
-    let titre = document.getElementById("titre");
-    let Mot_clé = document.getElementById("Mot_clé");
-    let description = document.getElementById("description");
-    let prix = document.getElementById("prix");
-    let image = document.getElementById("boutiqueImage");
+    let titre = document.getElementById("titre" + props.id);
+    let Mot_clé = document.getElementById("Mot_clé" + props.id);
+    let description = document.getElementById("description" + props.id);
+    let prix = document.getElementById("prix" + props.id);
+    let image = document.getElementById("boutiqueImage" + props.id);
 
     const bodyFormData = new FormData();
     // && (si la value est rempli => effectue le code)
@@ -162,7 +162,7 @@ function BackOfficeCard(props) {
         <input
           type="text"
           name="titre"
-          id="titre"
+          id={"titre" + props.id}
           placeholder="titre"
           defaultValue={props.titre}
         ></input>
@@ -170,7 +170,7 @@ function BackOfficeCard(props) {
         <input
           type="text"
           name="Mot_clé"
-          id="Mot_clé"
+          id={"Mot_clé" + props.id}
           placeholder="Mot_clé"
           defaultValue={props.mot_clé}
         ></input>
@@ -178,7 +178,7 @@ function BackOfficeCard(props) {
         <input
           type="text"
           name="description"
-          id="description"
+          id={"description" + props.id}
           placeholder="description"
           defaultValue={props.description}
         ></input>
@@ -186,7 +186,7 @@ function BackOfficeCard(props) {
         <input
           type="text"
           name="prix"
-          id="prix"
+          id={"prix" + props.id}
           placeholder="prix"
           defaultValue={props.prix}
         ></input>
@@ -195,7 +195,7 @@ function BackOfficeCard(props) {
           type="file"
           accept="image/jpg, image/jpeg, image/png"
           name="boutiqueImage"
-          id="boutiqueImage"
+          id={"boutiqueImage" + props.id}
         ></input>
       </div>
     </Mydiv>

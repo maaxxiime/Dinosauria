@@ -51,6 +51,9 @@ const DivCard = styled.div``;
 function BackOffice() {
   const [ShopCard1, setShopCard1] = useState(null);
   const [ShopCard2, setShopCard2] = useState(null);
+  const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
+  const userAdmin = JSON.parse(window.localStorage.getItem("user")).admin;
+
 
   function getboutiques() {
     axios
@@ -67,7 +70,6 @@ function BackOffice() {
   }
 
   function créer() {
-    const usertoken = JSON.parse(window.localStorage.getItem("user")).token;
     
 
     let titre = document.getElementById("Titre");
@@ -108,7 +110,7 @@ function BackOffice() {
     getboutiques();
   }, []);
 
-  return (
+  return userAdmin ? (
     <Section>
       <Header>
         <h1> Back-Office </h1>
@@ -201,6 +203,8 @@ function BackOffice() {
         )}
       </DivCard>
     </Section>
+  ) : (
+    <h1> pas admin</h1>
   );
 }
 
