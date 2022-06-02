@@ -94,12 +94,12 @@ const Modale = styled.div`
 transition: 0.5s;
 position: absolute;
 transform: translate(0%,-20%);
-color: ${colors.txt_black};
+color: ${colors.txt_white};
 border: 1px solid ${colors.background_black};
 border-radius: 1.2rem;
 width: 25rem;
 height: 20rem;
-background-color: ${colors.background_modale};
+background-color: ${colors.background_black};
 box-shadow: 0 0 10px ${colors.background_black};
 
 & h2 {
@@ -242,9 +242,9 @@ function Compte() {
         <Btn
           onclick={() => delet()}
           disabled={null}
-          bg={colors.background_black}
+          bg={colors.btn_blue}
           textcolor={colors.txt_white}
-          bd={colors.background_black}
+          bd={colors.btn_blue}
           bdhover={colors.btn_redhover}
           bghover={colors.btn_redhover}
           text="Supprimer mon compte"
