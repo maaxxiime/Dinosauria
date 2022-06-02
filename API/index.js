@@ -55,7 +55,7 @@ app.use(compression());
 
 app.use("/public", express.static(path.join(__dirname, "/images")));
 
-// defini les routes que doit prendre une requêtte selon l'url
+// defini les routes que doit prendre une requête selon l'url
 app.use("/api/users", usersRoutes);
 app.use("/api/boutiques", boutiquesRoutes);
 app.use("/api/commentaires", commentairesRoutes);
