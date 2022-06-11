@@ -7,7 +7,7 @@ import { totalTicket } from "./components/variables";
 
 // COMPONENTS
 import Header from "./components/header/header.js";
-import Home from "./components/home/home";
+import Home from "./components/home/home.js";
 import Signup from "./components/signup/signup.js";
 import Login from "./components/login/login.js";
 import MonCompte from "./components/compte/compte.js";
@@ -82,7 +82,12 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/boutique" element={<Boutique setTotalItems={setTotalItems} TotalItems={TotalItems} />} />
+        <Route
+          path="/boutique"
+          element={
+            <Boutique setTotalItems={setTotalItems} TotalItems={TotalItems} />
+          }
+        />
         <Route path="/backoffice" element={<BackOffice />} />
         <Route path="/readcommentaire" element={<ReadCommentaire />} />
         <Route path="/postcommentaire" element={<PostCommentaire />} />

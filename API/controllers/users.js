@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 exports.signup = (req, res, next) => {
   bcrypt
-    // hash le mot de passe qui passe dans la requette axios
+    // hash le mot de passe qui passe dans la requête axios
     .hash(req.body.password, 10)
     .then((hash) => {
       // enregistre newuser et passe admin à false
