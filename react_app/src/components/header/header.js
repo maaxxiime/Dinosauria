@@ -2,7 +2,6 @@ import styled from "styled-components";
 import colors, { updateTotal } from "../variables";
 import Btn from "../button";
 import { useEffect, useState } from "react";
-import { totalTicket } from "../variables";
 
 
 
@@ -28,17 +27,11 @@ const Head = styled.header`
       display: none;
     }
   }
-  @media all and (min-width: 1024px) and (max-width: 1644px) {
+  @media all and (min-width: 1023px) and (max-width: 1644px) {
     font-size: 0.8rem;
     & #open {
       display: none;
     }
-  }
-  @media all and (min-width: 768px) and (max-width: 1023px) {
-  }
-  @media all and (min-width: 480px) and (max-width: 767px) {
-  }
-  @media all and (max-width: 479px) {
   }
 `;
 
@@ -49,9 +42,7 @@ const DivUne = styled.div`
   .myBtn:not(:last-child) {
     margin: 0 2rem 0 0;
   }
-  @media all and (min-width: 1645px) {
-  }
-  @media all and (min-width: 1024px) and (max-width: 1644px) {
+  @media all and (min-width: 1023px) and (max-width: 1644px) {
     margin: 0 0 0 1rem;
 
     & .myBtn:not(:last-child) {
@@ -59,10 +50,10 @@ const DivUne = styled.div`
       padding: 0.1rem 0.4rem;
     }
   }
-  @media all and (min-width: 768px) and (max-width: 1023px) {
+  @media all and (min-width: 767px) and (max-width: 1023px) {
     display: none;
   }
-  @media all and (min-width: 480px) and (max-width: 767px) {
+  @media all and (min-width: 479px) and (max-width: 767px) {
     display: none;
   }
   @media all and (max-width: 479px) {
@@ -79,9 +70,7 @@ const DivDeux = styled.div`
   .myBtn:not(:first-child) {
     margin: 0 0 0 2rem;
   }
-  @media all and (min-width: 1645px) {
-  }
-  @media all and (min-width: 1024px) and (max-width: 1644px) {
+  @media all and (min-width: 1023px) and (max-width: 1644px) {
     margin: 0 1rem 0 0;
 
     .myBtn:not(:first-child) {
@@ -89,10 +78,10 @@ const DivDeux = styled.div`
       padding: 0.1rem 0.3rem;
     }
   }
-  @media all and (min-width: 768px) and (max-width: 1023px) {
+  @media all and (min-width: 767px) and (max-width: 1023px) {
     display: none;
   }
-  @media all and (min-width: 480px) and (max-width: 767px) {
+  @media all and (min-width: 479px) and (max-width: 767px) {
     display: none;
   }
   @media all and (max-width: 479px) {

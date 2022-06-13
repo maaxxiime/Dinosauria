@@ -18,7 +18,7 @@ exports.signup = (req, res, next) => {
       newuser
         .save()
         .then(() => res.status(201).json({ message: "User created ! 👌" }))
-        .catch((err) => res.status(401).json({ err }));
+        .catch((err) => res.status(401).json({ message : "impossible de créer le compte", error : err }));
     })
     .catch((err) => res.status(500).json({ err }));
 };

@@ -5,10 +5,7 @@ import axios from "axios";
 import { apiurl } from "../variables";
 
 import {
-  faPen,
   faTrash,
-  faArrowLeft,
-  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Mydiv = styled.div`

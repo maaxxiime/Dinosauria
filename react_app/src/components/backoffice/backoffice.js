@@ -26,6 +26,8 @@ const Header = styled.div`
   }
 `;
 
+const DivCard = styled.div``
+
 const DivCreate = styled.div`
   & h2 {
     margin: 0 0 1rem 0;
@@ -46,7 +48,11 @@ const DivCreate = styled.div`
   }
 `;
 
-const DivCard = styled.div``;
+const H1 = styled.h1`
+display: flex;
+justify-content: center;
+margin: 4rem 0 0 0;
+`
 
 function BackOffice() {
   const [ShopCard1, setShopCard1] = useState(null);
@@ -204,7 +210,9 @@ function BackOffice() {
       </DivCard>
     </Section>
   ) : (
-    <h1> pas admin</h1>
+    <section> 
+      <H1> Vous avez pas les droits pour voir cette page </H1>
+    </section>
   );
 }
 

@@ -22,7 +22,7 @@ const Foote = styled.footer`
     align-items: center;
   }
 
-  @media all and (max-width: 479px) {
+  @media all and (max-width: 480px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,7 +51,7 @@ const Contacts = styled.div`
     margin: 0;
   }
 
-  @media all and (max-width: 479px) {
+  @media all and (max-width: 480px) {
     width: 100%;
     align-items: center;
     margin: 0;
@@ -70,7 +70,7 @@ const Horraires = styled.div`
     margin: 0;
   }
 
-  @media all and (max-width: 479px) {
+  @media all and (max-width: 480px) {
     width: 100%;
     margin: 0;
   }
@@ -95,7 +95,7 @@ const Liens = styled.div`
     margin: 0;
   }
 
-  @media all and (max-width: 479px) {
+  @media all and (max-width: 480px) {
     width: 100%;
     margin: 0;
   }
@@ -139,7 +139,7 @@ const Reseaux = styled.div`
     }
   }
 
-  @media all and (max-width: 479px) {
+  @media all and (max-width: 480px) {
     width: 100%;
     margin: 0;
     & img {

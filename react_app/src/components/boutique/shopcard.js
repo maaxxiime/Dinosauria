@@ -67,6 +67,10 @@ const Input = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin: 0 0 1rem 0;
+
+  & .myBtn {
+
+  }
 `;
 
 const Box = styled.div`
@@ -201,8 +205,7 @@ function Card(props) {
 
       <div className="absolute">
         <p id={"add" + props.id} className="add-invisible">
-          {" "}
-          Produit ajouté !{" "}
+          Produit ajouté !
         </p>
         <Btn
           onclick={() => addPanier()}

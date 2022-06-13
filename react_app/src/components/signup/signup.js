@@ -199,5 +199,4 @@ function Signup() {
     </MainSection>
   );
 }
-
 export default Signup;
