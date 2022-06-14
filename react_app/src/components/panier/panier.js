@@ -63,6 +63,7 @@ function Panier(props) {
   const [ShopCard2, setShopCard2] = useState(null);
   // state pour calculer le total du panier
   const [Total, setTotal] = useState(updateTotal());
+  const user = JSON.parse(window.localStorage.getItem("user"));
 
   function getboutiques() {
     axios
@@ -81,7 +82,6 @@ function Panier(props) {
     getboutiques();
   }, []);
 
-  function validPanier() {}
   return (
     <MainSection>
       <h1> Votre panier </h1>
@@ -126,20 +126,33 @@ function Panier(props) {
 
       <ValidDiv>
         <p> Votre total est de : </p>
-          <p id="total" className="bold">
-            {Total} € TTC
-          </p>
-        
-        <Btn
-          onclick={() => validPanier()}
-          disabled={false}
-          bgGradient={colors.btn_gradient}
-          textcolor={colors.txt_white}
-          bd={null}
-          bdhover={colors.btn_blue}
-          bghover={null}
-          text="Valider le panier"
-        />
+        <p id="total" className="bold">
+          {Total} € TTC
+        </p>
+
+        {!user === true ? (
+          <Btn
+            link={"/login"}
+            disabled={false}
+            bgGradient={colors.btn_gradient}
+            textcolor={colors.txt_white}
+            bd={null}
+            bdhover={colors.btn_blue}
+            bghover={null}
+            text="Valider le panier"
+          />
+        ) : (
+          <Btn
+            link={"/paiement"}
+            disabled={false}
+            bgGradient={colors.btn_gradient}
+            textcolor={colors.txt_white}
+            bd={null}
+            bdhover={colors.btn_blue}
+            bghover={null}
+            text="Valider le panier"
+          />
+        )}
       </ValidDiv>
     </MainSection>
   );

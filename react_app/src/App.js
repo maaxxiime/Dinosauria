@@ -26,6 +26,7 @@ import Cgv from "./components/cgv/cgv.js";
 import Cookies from "./components/cookies/cookies.js";
 import Données from "./components/données/données.js";
 import Footer from "./components/footer/footer.js";
+import Paiement from "./components/paiement/paiement.js"
 
 function App() {
   // initialisation du panier, compteur item dans panier et total du panier
@@ -103,6 +104,7 @@ function App() {
             <Panier setTotalItems={setTotalItems} TotalItems={TotalItems} />
           }
         />
+        <Route path="/paiement" element={<Paiement />} />
         <Route path="/cgv" element={<Cgv />} />
         <Route path="/cookies" element={<Cookies />} />
         <Route path="/donnees" element={<Données />} />
