@@ -11,6 +11,7 @@ const colors = {
   btn_red: "#9e1717",
   btn_redhover: "#d51414",
   add_panier: "#79d352",
+  border_paiement: "#79d352",
 };
 
 // fonction qui calcule le total du panier
