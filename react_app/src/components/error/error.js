@@ -28,7 +28,7 @@ function Error() {
     return (
         <MainSection>
             <h1> Page introuvable </h1>
-            <p> Oups, il semblerait que vous esseyez de naviguer sur une page qui n'existe pas ! </p>
+            <p> Oups, il semblerait que vous essayez de naviguer sur une page qui n'existe pas ! </p>
             <Btn
           link={"/"}
           disabled={false}

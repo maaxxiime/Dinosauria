@@ -17,10 +17,6 @@ const Head = styled.header`
     display: block;
   }
 
-  & #close {
-    display: none;
-  }
-
   @media all and (min-width: 1645px) {
     font-size: 0.9rem;
     & #open {
@@ -559,10 +555,6 @@ function Header(props) {
               text="Déconnexion"
             />
           )}
-
-          <Close onClick={() => setMenuOpen(!MenuOpen)} id="close">
-            <p> X </p>{" "}
-          </Close>
         </div>
       </MenuDeroulant>
     </>

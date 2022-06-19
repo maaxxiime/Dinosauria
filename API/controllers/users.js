@@ -75,10 +75,10 @@ exports.delete = (req, res, next) => {
   const userID = decodedToken.userID;
   const TargetId = req.params.TargetId;
 
-  // compare l'id du token et l'id de la requette axios
+  // compare l'id du token et l'id de la requête axios
   if (userID === TargetId) {
     User.findByIdAndDelete(TargetId)
-      // si les deux corresponde, supprime l'user
+      // si les deux correspondent, supprime l'user
       .then((user) => {
         res.status(200).json({ message: `utilisateur ${user.email} supprimé` });
       })
@@ -87,7 +87,7 @@ exports.delete = (req, res, next) => {
         res.status(404).json({ message: "utilisateur non trouvé", error: err })
       );
   } else {
-    // si les id ne corresponde pas
+    // si les id ne correspondent pas
     res.status(403).json({
       error: "Vous n'avez pas les droit pour supprimer cet utilisateur",
     });

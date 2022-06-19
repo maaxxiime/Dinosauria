@@ -203,7 +203,7 @@ function Compte() {
       .then((res) => {
         localStorage.clear();
         window.location.assign("/");
-        res.status();
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
