@@ -6,12 +6,12 @@ import axios from "axios";
 import { apiurl } from "../variables";
 import Card from "./productcard";
 import { updateTotal } from "../variables";
-import { totalTicket } from "../variables";
 
 const MainSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 1.3rem;
 
   & h1 {
     margin: 1rem 0 1rem 0;

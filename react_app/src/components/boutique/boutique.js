@@ -25,6 +25,7 @@ const MainSection = styled.section`
     width: 90%;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1.3rem;
     &-top {
       display: flex;
       flex-wrap: wrap;
