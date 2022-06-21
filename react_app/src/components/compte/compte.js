@@ -136,10 +136,10 @@ box-shadow: 0 0 10px ${colors.background_black};
 function Compte() {
   const [ComCard, setComCard] = useState(null);
   const user = window.localStorage.getItem("user");
-  let userJson = JSON.parse(user);
-  let email = userJson.email;
-  let UserId = userJson.userId;
-  let usertoken = userJson.token;
+  const userJson = JSON.parse(user);
+  const userToken = userJson.token;
+  const userId = userJson.userId;
+  const email = userJson.email;
   const modale = document.getElementById("modale")
 
   
@@ -157,13 +157,13 @@ function Compte() {
     
     const config = {
       headers: {
-        Authorization: "Bearer " + usertoken,
+        Authorization: "Bearer " + userToken,
       },
     };
     
     axios
     // envoi l'userId, la data et le usertoken pour pouvoir comparer l'id du token et l'userId
-    .put(apiurl + "/users/" + UserId, qs.stringify(data), config)
+    .put(apiurl + "/users/" + userId, qs.stringify(data), config)
     .then((res) => {
       const user = {
         userId: res.data.userId,
@@ -192,14 +192,14 @@ function Compte() {
   function delet() {
     const config = {
       headers: {
-        Authorization: "Bearer " + usertoken,
+        Authorization: "Bearer " + userToken,
       },
     };
 
     axios
       // envoi l'userId et le usertoken pour pouvoir comparer l'id du token et l'userId
 
-      .delete(apiurl + "/users/" + UserId, config)
+      .delete(apiurl + "/users/" + userId, config)
       .then((res) => {
         localStorage.clear();
         window.location.assign("/");
@@ -213,7 +213,7 @@ function Compte() {
   function getcommentaire() {
     const config = {
       headers: {
-        Authorization: "Bearer " + usertoken,
+        Authorization: "Bearer " + userToken,
       },
     };
 
