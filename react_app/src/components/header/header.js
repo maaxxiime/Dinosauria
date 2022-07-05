@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 
-const Head = styled.header`
+const NavBar = styled.nav`
   padding: 1.5rem 0;
   display: flex;
   justify-content: space-between;
@@ -129,24 +129,6 @@ const Burger = styled.div`
   color: ${colors.txt_white};
 `;
 
-const Close = styled.div`
-  width: 100%;
-  margin: 0.5rem 0 0 0;
-  cursor: pointer;
-  color: ${colors.txt_white};
-
-  & p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-  }
-
-  & p:hover {
-    background-color: ${colors.btn_blue};
-  }
-`;
-
 const MenuDeroulant = styled.div`
   position: fixed;
   z-index: 100;
@@ -221,7 +203,7 @@ function Header(props) {
 
   return (
     <>
-      <Head>      
+      <NavBar>      
         <Burger onClick={() => setMenuOpen(!MenuOpen)} id="open">
           <div className={MenuOpen ? "barre-haut open" : "barre-haut"} />
           <div className={MenuOpen ? "barre-milieu open" : "barre-milieu"} />
@@ -391,7 +373,7 @@ function Header(props) {
             />
           )}
         </DivDeux>
-      </Head>
+      </NavBar>
 
       <MenuDeroulant className={MenuOpen ? "open" : "close"}>
         <div className="container">
