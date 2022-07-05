@@ -127,8 +127,6 @@ const Section = styled.section`
     width: 500px;
     height: 350px;
     margin: 1rem 0;
-{
-
 
     @media all and (min-width: 480px) and (max-width: 767px) {
       width: 25rem;
@@ -170,7 +168,11 @@ function Film() {
           <p> Durée : 1 heure 40 minutes. </p>
         </div>
         <div className="div-img">
-          <LoadImage smallImgSrc={smallCine1} largeImgSrc={largeCine1} />
+          <LoadImage
+            smallImgSrc={smallCine1}
+            largeImgSrc={largeCine1}
+            alt="image de dinosaure"
+          />
         </div>
       </div>
 
@@ -194,7 +196,11 @@ function Film() {
           <p> Un grand parking gratuit à votre disposition. </p>
         </div>
         <div className="div-img">
-          <LoadImage smallImgSrc={smallCine2} largeImgSrc={largeCine2} />
+          <LoadImage
+            smallImgSrc={smallCine2}
+            largeImgSrc={largeCine2}
+            alt="image de dinosaure"
+          />
         </div>
       </div>
     </Section>

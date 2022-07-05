@@ -59,6 +59,7 @@ const LoadImage = (props) => {
         onLoad={() => setBlur(false)}
         className="real-image"
         src={props.largeImgSrc}
+        alt={props.alt}
       />
     </LoaderDiv>
   );

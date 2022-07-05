@@ -73,6 +73,7 @@ function Campement() {
         <LoadImage
           smallImgSrc={smallImgCampement1}
           largeImgSrc={largeImgCampement1}
+          alt={largeImgCampement1}
         />
       </div>
     </Section>

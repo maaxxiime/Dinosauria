@@ -225,6 +225,7 @@ function Carnivore() {
               <LoadImage
                 smallImgSrc={smallImgCarnivore1}
                 largeImgSrc={largeImgCarnivore1}
+                alt="image de dinosaure"
               />
             </div>
           </div>
@@ -248,6 +249,7 @@ function Carnivore() {
               <LoadImage
                 smallImgSrc={smallImgCarnivore2}
                 largeImgSrc={largeImgCarnivore2}
+                alt="image de dinosaure"
               />
             </div>
           </div>
@@ -271,6 +273,7 @@ function Carnivore() {
               <LoadImage
                 smallImgSrc={smallImgCarnivore3}
                 largeImgSrc={largeImgCarnivore3}
+                alt="image de dinosaure"
               />
             </div>
           </div>
@@ -293,6 +296,7 @@ function Carnivore() {
               <LoadImage
                 smallImgSrc={smallImgCarnivore4}
                 largeImgSrc={largeImgCarnivore4}
+                alt="image de dinosaure"
               />
             </div>
           </div>

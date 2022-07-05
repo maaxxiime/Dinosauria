@@ -223,6 +223,7 @@ function Herbivore() {
               <LoadImage
                 smallImgSrc={smallImgHerbivore1}
                 largeImgSrc={largeImgHerbivore1}
+                alt="image de dinosaure"
               />
             </div>
           </div>
@@ -246,6 +247,7 @@ function Herbivore() {
               <LoadImage
                 smallImgSrc={smallImgHerbivore2}
                 largeImgSrc={largeImgHerbivore2}
+                alt="image de dinosaure"
               />
             </div>
           </div>
@@ -268,6 +270,7 @@ function Herbivore() {
               <LoadImage
                 smallImgSrc={smallImgHerbivore3}
                 largeImgSrc={largeImgHerbivore3}
+                alt="image de dinosaure"
               />
             </div>
           </div>
@@ -290,6 +293,7 @@ function Herbivore() {
               <LoadImage
                 smallImgSrc={smallImgHerbivore4}
                 largeImgSrc={largeImgHerbivore4}
+                alt="image de dinosaure"
               />
             </div>
           </div>

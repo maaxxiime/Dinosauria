@@ -49,7 +49,7 @@ function App() {
         const items = data.product[i];
         const mot_clé = items.mot_clé;
         const prix = items.prix;
-        // console.log(element);
+        // console.log(items);
         // console.log(mot_clé);
         // console.log(prix);
 
